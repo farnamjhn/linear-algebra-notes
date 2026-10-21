@@ -1,0 +1,16 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Obsidian local cache & workspace state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# Heavy binary PDF files
+*.pdf
+
+# Python bytecode & temporary files
+__pycache__/
+*.py[cod]
+/tmp/

@@ -1,0 +1,60 @@
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+<style>
+  html, body {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+    line-height: 1.85 !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 15mm !important;
+    color: #111 !important;
+    background: #fff !important;
+  }
+  p, ul, ol, li, h1, h2, h3, h4, blockquote {
+    direction: rtl !important;
+    text-align: right !important;
+    unicode-bidi: plaintext;
+  }
+  blockquote {
+    border-right: 4px solid #4f46e5 !important;
+    border-left: none !important;
+    margin-right: 0 !important;
+    padding-right: 1rem !important;
+    color: #333 !important;
+  }
+  .math.inline, mjx-container {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    display: inline-block;
+    margin: 0 2px;
+  }
+  .math.display, mjx-container[display="true"] {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 1em 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  mjx-utext, mjx-mtext {
+    direction: rtl !important;
+    font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+  }
+  table {
+    direction: rtl !important;
+    border-collapse: collapse;
+    margin: 1rem auto;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 6px 14px;
+    text-align: center !important;
+  }
+  @media print {
+    body { padding: 0 !important; max-width: none !important; }
+    h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+    li, blockquote, table { page-break-inside: avoid; break-inside: avoid; }
+  }
+</style>
