@@ -533,6 +533,68 @@
       font-weight: 600;
     }
 
+    /* Contribution Banner */
+    .contribution-banner {
+      margin-top: 1rem;
+      padding: 0.85rem 1.15rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-right: 3px solid var(--accent-orange);
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem 1.25rem;
+      font-size: 0.8rem;
+    }
+
+    .contribution-banner-content {
+      flex: 1 1 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .contribution-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+      font-size: 0.74rem;
+      letter-spacing: 0.02em;
+    }
+
+    .contribution-desc {
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .contribution-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.38rem 0.85rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-base);
+      border-radius: 4px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.12s ease;
+    }
+
+    .contribution-btn:hover {
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+      background: var(--bg-hover);
+    }
+
     /* Typography & BiDi Protection */
     h1, h2, h3, h4, h5, h6 {
       color: var(--text-main);
@@ -1333,6 +1395,11 @@
     </div>
 
     <div class="header-controls">
+      <!-- GitHub Repo & Contributing -->
+      <a href="https://github.com/farnamjhn/linear-algebra-notes" target="_blank" rel="noopener noreferrer" class="header-btn" title="مخزن گیت‌هاب و راهنمای مشارکت" aria-label="گیت‌هاب">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+
       <!-- Search -->
       <button class="header-btn search-btn" onclick="openSearchModal()" title="جستجو (⌘K)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -2009,6 +2076,22 @@
             <span class="detail-label">مراجع دانشنامه‌ای</span>
             <span class="detail-value">ویکی‌پدیا فارسی و انگلیسی (تأییدشده)</span>
           </div>
+        </div>
+
+        <div class="contribution-banner">
+          <div class="contribution-banner-content">
+            <span class="contribution-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              دعوت به مشارکت و بازخوانی
+            </span>
+            <p class="contribution-desc">
+              صفحات ۱ تا ۲۵ توسط نگارنده بازخوانی شده است، اما صفحات ۲۶ تا ۱۱۰ هنوز بازبینی نشده‌اند. همچنین برای اکثر قضایا جای خالی اثبات‌های کلاسی دکتر طوسی احساس می‌شود. شما می‌توانید با فورک کردن مخزن و ارسال Pull Request، در تکمیل و تصحیح این درس‌نامه مشارکت کنید.
+            </p>
+          </div>
+          <a href="https://github.com/farnamjhn/linear-algebra-notes/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="contribution-btn">
+            <span>راهنمای مشارکت (Fork & PR)</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
       </header>
 
