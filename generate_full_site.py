@@ -40,7 +40,7 @@ def build():
     raw_html = subprocess.check_output(cmd, encoding="utf-8")
     print(f"   Pandoc output length: {len(raw_html)} chars")
 
-    # Remove the first H1 tag from Pandoc output so we don't have duplicate title under the hero banner
+    # Remove the first H1 tag from Pandoc output so we don't have duplicate title under the masthead
     raw_html = re.sub(r'<h1\b[^>]*>.*?</h1>', '', raw_html, count=1, flags=re.DOTALL)
 
     print("2. Tokenizing and fixing BiDi on parenthesized English...")
@@ -77,38 +77,41 @@ def build():
 
     body_html = "".join(processed_tokens)
 
-    print("3. Styling Callout blocks (definitions, theorems, examples, notes)...")
+    print("3. Styling Minimal Callout blocks (NO EMOJIS, technical borders)...")
     def callout_replacer(m):
         full = m.group(0)
         p_content = m.group(1)
         strong_text = m.group(2)
         
         c_class = ""
-        c_icon = ""
+        c_label = ""
         if "تعریف" in strong_text:
             c_class = "callout-def"
-            c_icon = "💡 تعریف"
+            c_label = "تعریف"
         elif "قضیه" in strong_text:
             c_class = "callout-thm"
-            c_icon = "📜 قضیه"
+            c_label = "قضیه"
         elif "لم" in strong_text:
             c_class = "callout-lem"
-            c_icon = "📌 لم"
+            c_label = "لم"
         elif "نتیجه" in strong_text:
             c_class = "callout-cor"
-            c_icon = "🎯 نتیجه"
+            c_label = "نتیجه"
         elif "مثال" in strong_text:
             c_class = "callout-example"
-            c_icon = "✏️ مثال"
+            c_label = "مثال"
         elif "برهان" in strong_text or "اثبات" in strong_text:
             c_class = "callout-proof"
-            c_icon = "🔍 اثبات"
+            c_label = "برهان"
         elif "نکته" in strong_text or "تذکر" in strong_text or "یادداشت" in strong_text:
             c_class = "callout-note"
-            c_icon = "⚠️ نکته"
+            c_label = "تذکر"
         
         if c_class:
-            return f'<div class="callout {c_class}"><div class="callout-header"><span class="callout-badge">{c_icon}</span></div><div class="callout-body"><p>{p_content}</p></div></div>'
+            return f'''<div class="callout {c_class}">
+  <div class="callout-header"><span class="callout-label">{c_label}</span></div>
+  <div class="callout-body"><p>{p_content}</p></div>
+</div>'''
         return full
 
     body_html = re.sub(r'<p>(<strong>([^<]+)</strong>(.*?))</p>', callout_replacer, body_html, flags=re.DOTALL)
@@ -120,8 +123,8 @@ def build():
         return f'''<div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\\[{math_content}\\]</span></div>
   <button class="copy-math-btn" data-latex="{raw_tex}" onclick="copyFormula(this)" title="کپی فرمول LaTeX">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-    <span>کپی LaTeX</span>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    <span>LaTeX</span>
   </button>
 </div>'''
 
@@ -157,7 +160,7 @@ def build():
         # Render clean heading HTML with isolated parts
         page_badge = f'<span class="page-tag">{page_tag}</span>' if page_tag and tag in ['h2', 'h3'] else ''
         en_badge = f'&lrm;<span class="heading-en" dir="ltr">({en_title})</span>&rlm;' if en_title else ''
-        anchor = f'<a class="header-anchor" href="#{hid}" aria-label="پیوند مستقیم به این بخش">#</a>'
+        anchor = f'<a class="header-anchor" href="#{hid}" aria-label="پیوند مستقیم">#</a>'
         
         return f'''<{tag} id="{hid}" class="heading-linked">
   <span class="heading-fa">{fa_title}</span>
@@ -183,27 +186,27 @@ def build():
 
     print(f"   Indexed {len(search_index)} searchable items.")
 
-    print("6. Building hierarchical Table of Contents...")
+    print("6. Building clean minimal Table of Contents...")
     groups = [
         {
             "id": "group-1",
-            "title": "فصل ۱ تا ۴: فضاهای برداری و پایه",
-            "desc": "صفحات ۱ تا ۲۵",
-            "icon": "📐",
+            "num": "۰۱",
+            "title": "فضاهای برداری و پایه",
+            "pages": "ص ۱ تا ۲۵",
             "items": []
         },
         {
             "id": "group-2",
-            "title": "فصل ۵ تا ۱۲: بعد، تبدیل‌های خطی و ماتریس‌ها",
-            "desc": "صفحات ۲۶ تا ۴۹",
-            "icon": "🔄",
+            "num": "۰۲",
+            "title": "تبدیل‌های خطی و ماتریس‌ها",
+            "pages": "ص ۲۶ تا ۴۹",
             "items": []
         },
         {
             "id": "group-3",
-            "title": "فصل ۱۵ تا ۱۸: رتبه، دستگاه‌های خطی، وارون و دترمینان",
-            "desc": "صفحات ۷۴ تا ۱۱۰",
-            "icon": "🔢",
+            "num": "۰۳",
+            "title": "دستگاه‌ها، وارون و دترمینان",
+            "pages": "ص ۷۴ تا ۱۱۰",
             "items": []
         }
     ]
@@ -236,34 +239,34 @@ def build():
                 'title_en': h['title_en']
             })
 
-    # Render TOC HTML
+    # Render Minimal TOC HTML
     toc_parts = []
     for g_idx, g in enumerate(groups):
         open_attr = "open" if g_idx == 0 else ""
-        toc_parts.append(f'''<details class="toc-accordion" {open_attr} id="{g['id']}">
-  <summary class="toc-accordion-summary">
-    <span class="toc-acc-icon">{g['icon']}</span>
-    <div class="toc-acc-text">
-      <span class="toc-acc-title">{html.escape(g['title'])}</span>
-      <span class="toc-acc-desc">{html.escape(g['desc'])}</span>
+        toc_parts.append(f'''<details class="toc-group" {open_attr} id="{g['id']}">
+  <summary class="toc-group-header">
+    <span class="toc-group-num">{g['num']}</span>
+    <div class="toc-group-meta">
+      <span class="toc-group-title">{html.escape(g['title'])}</span>
+      <span class="toc-group-pages">{html.escape(g['pages'])}</span>
     </div>
-    <span class="toc-acc-arrow">▾</span>
+    <span class="toc-arrow">›</span>
   </summary>
-  <div class="toc-accordion-content">''')
+  <div class="toc-group-body">''')
         
         for h2 in g['items']:
-            en_h2_html = f'<div class="toc-title-en" dir="ltr">{html.escape(h2["title_en"])}</div>' if h2["title_en"] else ''
-            toc_parts.append(f'''    <div class="toc-item-h2">
+            en_h2_html = f'<div class="toc-link-en" dir="ltr">{html.escape(h2["title_en"])}</div>' if h2["title_en"] else ''
+            toc_parts.append(f'''    <div class="toc-entry-h2">
       <a href="#{h2['id']}" class="toc-link toc-link-h2" data-id="{h2['id']}">
-        <div class="toc-title-fa">{html.escape(h2['title_fa'])}</div>
+        <div class="toc-link-fa">{html.escape(h2['title_fa'])}</div>
         {en_h2_html}
       </a>''')
             if h2['children']:
-                toc_parts.append('      <div class="toc-sublist">')
+                toc_parts.append('      <div class="toc-subentries">')
                 for h3 in h2['children']:
-                    en_h3_html = f'<div class="toc-title-en" dir="ltr">{html.escape(h3["title_en"])}</div>' if h3["title_en"] else ''
+                    en_h3_html = f'<div class="toc-link-en" dir="ltr">{html.escape(h3["title_en"])}</div>' if h3["title_en"] else ''
                     toc_parts.append(f'''        <a href="#{h3["id"]}" class="toc-link toc-link-h3" data-id="{h3["id"]}">
-          <div class="toc-title-fa">{html.escape(h3["title_fa"])}</div>
+          <div class="toc-link-fa">{html.escape(h3["title_fa"])}</div>
           {en_h3_html}
         </a>''')
                 toc_parts.append('      </div>')
@@ -274,15 +277,15 @@ def build():
     toc_html_rendered = "\n".join(toc_parts)
     search_index_json = json.dumps(search_index, ensure_ascii=False)
 
-    print("7. Assembling final standalone HTML...")
+    print("7. Assembling minimalist dark & cold HTML document...")
     full_html = f'''<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="جزوه جامع مبانی ماتریس و جبر خطی بر اساس کتاب هافمن و کونزه و تدریس دکتر طوسی - دانشگاه" />
-  <title>جزوه جامع مبانی ماتریس و جبر خطی | Matrix Foundations and Linear Algebra</title>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="درس‌نامه مبانی ماتریس و جبر خطی بر اساس کتاب کنت هافمن و ری کونزه - تدریس دکتر طوسی" />
+  <title>مبانی ماتریس و جبر خطی | Matrix Foundations and Linear Algebra</title>
 
   <!-- Prevent FOUC for color scheme according to modern web guidance -->
   <script>
@@ -294,7 +297,7 @@ def build():
     }} catch(e) {{}}
   </script>
 
-  <!-- Typography & Fonts: Vazirmatn -->
+  <!-- Typography: Vazirmatn -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
 
@@ -330,67 +333,71 @@ def build():
 
   <style>
     /* ----------------------------------------------------
-       Design System & Variables (Modern CSS light-dark())
+       Minimalist Dark & Cold Theme with Vibrant Orange & Yellow
+       Refined Editorial Aesthetic (No AI slop, no emojis)
        ---------------------------------------------------- */
     :root {{
-      color-scheme: light dark;
+      color-scheme: dark light;
 
-      /* Neutral Palette */
-      --bg-canvas: light-dark(#f8fafc, #0b0f19);
-      --bg-surface: light-dark(#ffffff, #111827);
-      --bg-sidebar: light-dark(#f1f5f9, #0f172a);
-      --bg-subtle: light-dark(#f8fafc, #1e293b);
-      --bg-hover: light-dark(#e2e8f0, #334155);
+      /* Deep cold background & surfaces */
+      --bg-base: #08090a;
+      --bg-surface: #101215;
+      --bg-surface-elevated: #16191f;
+      --bg-hover: #1c2027;
+      --bg-active: #242933;
 
-      --text-main: light-dark(#0f172a, #f1f5f9);
-      --text-muted: light-dark(#475569, #94a3b8);
-      --text-faint: light-dark(#64748b, #64748b);
+      /* Crisp cold borders */
+      --border-subtle: #1c2026;
+      --border-base: #282d37;
+      --border-strong: #383f4d;
 
-      --border-subtle: light-dark(#e2e8f0, #1e293b);
-      --border-strong: light-dark(#cbd5e1, #334155);
+      /* High-contrast typography */
+      --text-main: #f0f2f5;
+      --text-secondary: #9aa0a6;
+      --text-muted: #646c77;
+      --text-faint: #434a54;
 
-      /* Brand Accent Colors */
-      --brand-indigo: light-dark(#4f46e5, #818cf8);
-      --brand-indigo-subtle: light-dark(#eef2ff, rgba(99, 102, 241, 0.12));
-      --brand-violet: light-dark(#7c3aed, #a78bfa);
+      /* Vibrant secondary accents */
+      --accent-orange: #ff6b00;
+      --accent-orange-hover: #ff8533;
+      --accent-orange-dim: rgba(255, 107, 0, 0.12);
 
-      /* Callout Themes */
-      --def-border: #3b82f6;
-      --def-bg: light-dark(#eff6ff, rgba(59, 130, 246, 0.08));
-      --thm-border: #8b5cf6;
-      --thm-bg: light-dark(#f5f3ff, rgba(139, 92, 246, 0.08));
-      --lem-border: #6366f1;
-      --lem-bg: light-dark(#eef2ff, rgba(99, 102, 241, 0.08));
-      --cor-border: #06b6d4;
-      --cor-bg: light-dark(#ecfeff, rgba(6, 182, 212, 0.08));
-      --example-border: #10b981;
-      --example-bg: light-dark(#ecfdf5, rgba(16, 185, 129, 0.08));
-      --note-border: #f59e0b;
-      --note-bg: light-dark(#fffbeb, rgba(245, 158, 11, 0.08));
-      --proof-border: #64748b;
-      --proof-bg: light-dark(#f8fafc, rgba(100, 116, 139, 0.06));
+      --accent-yellow: #f59e0b;
+      --accent-yellow-dim: rgba(245, 158, 11, 0.12);
 
-      /* Sizing */
-      --header-height: 64px;
-      --sidebar-width: 330px;
-      --content-max-width: 880px;
-      --font-scale: 16px;
-
-      /* Shadows */
-      --shadow-sm: light-dark(0 1px 2px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.4));
-      --shadow-md: light-dark(0 4px 6px -1px rgba(0,0,0,0.07), 0 4px 8px -1px rgba(0,0,0,0.5));
-      --shadow-lg: light-dark(0 10px 15px -3px rgba(0,0,0,0.08), 0 10px 20px -3px rgba(0,0,0,0.6));
+      /* Layout & scale */
+      --header-h: 52px;
+      --sidebar-w: 290px;
+      --content-max-w: 840px;
+      --font-scale: 15.5px;
     }}
 
-    /* Modern color-scheme selectors mapped from meta */
-    :root:has(> head > meta[name="color-scheme"][content="dark"]) {{
-      color-scheme: dark;
-    }}
+    /* Light mode fallback (clean minimal monochrome paper) */
     :root:has(> head > meta[name="color-scheme"][content="light"]) {{
-      color-scheme: light;
+      --bg-base: #fbfbfb;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f4f4f5;
+      --bg-hover: #eaeaea;
+      --bg-active: #dfdfdf;
+
+      --border-subtle: #e5e7eb;
+      --border-base: #d1d5db;
+      --border-strong: #9ca3af;
+
+      --text-main: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --text-faint: #9ca3af;
+
+      --accent-orange: #ea580c;
+      --accent-orange-hover: #c2410c;
+      --accent-orange-dim: rgba(234, 88, 12, 0.08);
+
+      --accent-yellow: #d97706;
+      --accent-yellow-dim: rgba(217, 119, 6, 0.08);
     }}
 
-    /* Global Reset & Base */
+    /* Global Reset */
     *, *::before, *::after {{
       box-sizing: border-box;
       margin: 0;
@@ -408,453 +415,402 @@ def build():
     body {{
       direction: rtl;
       text-align: right;
-      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, Tahoma, sans-serif;
-      background-color: var(--bg-canvas);
+      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-base);
       color: var(--text-main);
-      line-height: 1.95;
+      line-height: 1.9;
       font-size: 1rem;
       min-height: 100vh;
       overflow-x: hidden;
     }}
 
-    /* Reading Progress Bar */
+    /* Reading Progress Line (Vibrant Orange) */
     #progress-bar {{
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
-      height: 3.5px;
-      background: linear-gradient(to left, #4f46e5, #8b5cf6, #ec4899);
+      height: 2px;
+      background: var(--accent-orange);
       z-index: 1000;
-      transition: width 0.1s ease-out;
+      transition: width 0.08s ease-out;
     }}
 
-    /* Top Sticky Header */
-    .top-header {{
+    /* Minimalist Slim Header */
+    .site-header {{
       position: sticky;
       top: 0;
-      height: var(--header-height);
-      background: light-dark(rgba(255, 255, 255, 0.85), rgba(17, 24, 39, 0.85));
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      height: var(--header-h);
+      background: var(--bg-base);
       border-bottom: 1px solid var(--border-subtle);
       z-index: 900;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1.5rem;
-      gap: 1rem;
+      padding: 0 1.25rem;
     }}
 
-    .header-brand {{
+    .brand-wrap {{
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       text-decoration: none;
       color: var(--text-main);
     }}
 
-    .header-logo-icon {{
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--brand-indigo), var(--brand-violet));
-      color: #fff;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
-    }}
-
-    .header-titles {{
-      display: flex;
-      flex-direction: column;
-    }}
-
-    .header-title {{
-      font-size: 1.05rem;
+    .brand-glyph {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.85rem;
       font-weight: 700;
-      line-height: 1.3;
+      color: var(--accent-yellow);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-base);
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
     }}
 
-    .header-sub {{
-      font-size: 0.76rem;
-      color: var(--text-muted);
+    .brand-name {{
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
     }}
 
-    .header-actions {{
+    .header-controls {{
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }}
 
-    /* Header Buttons & Controls */
-    .btn-icon {{
-      background: var(--bg-surface);
+    .header-btn {{
+      background: transparent;
       border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      border-radius: 8px;
-      padding: 0.45rem 0.75rem;
-      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
       font-family: inherit;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      transition: all 0.15s ease;
-      box-shadow: var(--shadow-sm);
+      transition: all 0.12s ease;
     }}
 
-    .btn-icon:hover {{
+    .header-btn:hover {{
       background: var(--bg-hover);
       color: var(--text-main);
-      border-color: var(--border-strong);
+      border-color: var(--border-base);
     }}
 
-    .search-trigger {{
-      padding: 0.45rem 1rem;
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-strong);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+    .search-btn {{
+      padding: 0.3rem 0.75rem;
+      border-color: var(--border-base);
       color: var(--text-muted);
-      cursor: pointer;
-      font-size: 0.85rem;
-      min-width: 170px;
-      transition: all 0.2s;
     }}
 
-    .search-trigger:hover {{
-      border-color: var(--brand-indigo);
-      background: var(--bg-surface);
-      color: var(--text-main);
-    }}
-
-    .search-shortcut {{
+    .search-kbd {{
+      font-family: ui-monospace, monospace;
       font-size: 0.7rem;
-      background: var(--bg-hover);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      border: 1px solid var(--border-subtle);
-      margin-right: auto;
+      border: 1px solid var(--border-base);
+      padding: 0 0.35rem;
+      border-radius: 3px;
+      background: var(--bg-surface);
     }}
 
-    .font-size-group {{
+    .font-stepper {{
       display: flex;
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
+      border-radius: 4px;
       overflow: hidden;
-      background: var(--bg-surface);
     }}
 
-    .font-btn {{
+    .font-step-btn {{
       background: transparent;
       border: none;
-      padding: 0.35rem 0.6rem;
-      color: var(--text-muted);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
       cursor: pointer;
-      font-size: 0.8rem;
-      font-family: inherit;
-      transition: background 0.15s;
+      font-family: ui-monospace, monospace;
     }}
 
-    .font-btn:hover {{
+    .font-step-btn:hover {{
       background: var(--bg-hover);
       color: var(--text-main);
     }}
 
-    .mobile-menu-btn {{
+    .mobile-nav-toggle {{
       display: none;
     }}
 
-    /* Main App Layout */
-    .app-container {{
+    /* Main Layout Grid */
+    .site-layout {{
       display: grid;
-      grid-template-columns: var(--sidebar-width) 1fr;
-      min-height: calc(100vh - var(--header-height));
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: calc(100vh - var(--header-h));
     }}
 
-    /* Sidebar Navigation */
-    .sidebar {{
+    /* Minimalist Flat Sidebar */
+    .site-sidebar {{
       position: sticky;
-      top: var(--header-height);
-      height: calc(100vh - var(--header-height));
+      top: var(--header-h);
+      height: calc(100vh - var(--header-h));
       overflow-y: auto;
-      background: var(--bg-sidebar);
+      background: var(--bg-base);
       border-left: 1px solid var(--border-subtle);
-      padding: 1.25rem 1rem 3rem 1rem;
+      padding: 1rem 0.85rem 3rem 0.85rem;
       scrollbar-width: thin;
-      scrollbar-color: var(--border-strong) transparent;
+      scrollbar-color: var(--border-base) transparent;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
     }}
 
-    .sidebar::-webkit-scrollbar {{
-      width: 6px;
+    .sidebar-filter-wrap {{
+      margin-bottom: 0.25rem;
     }}
-    .sidebar::-webkit-scrollbar-thumb {{
-      background: var(--border-strong);
+
+    .sidebar-filter {{
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.65rem;
       border-radius: 4px;
+      outline: none;
+      transition: border-color 0.15s;
     }}
 
-    .sidebar-stats-card {{
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 0.85rem 1rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      box-shadow: var(--shadow-sm);
+    .sidebar-filter:focus {{
+      border-color: var(--accent-orange);
     }}
 
-    .stats-row {{
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.35rem;
+    /* Minimalist TOC Group */
+    .toc-group {{
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
     }}
-    .stats-row:last-child {{
-      margin-bottom: 0;
-    }}
-    .stats-badge {{
-      font-weight: 700;
-      color: var(--brand-indigo);
+    .toc-group:last-child {{
+      border-bottom: none;
     }}
 
-    /* Sidebar TOC Accordion */
-    .toc-accordion {{
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 0.75rem;
-      box-shadow: var(--shadow-sm);
-    }}
-
-    .toc-accordion[open] {{
-      border-color: var(--border-strong);
-    }}
-
-    .toc-accordion-summary {{
-      padding: 0.75rem 0.9rem;
+    .toc-group-header {{
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
+      padding: 0.35rem 0.4rem;
       cursor: pointer;
       user-select: none;
-      background: var(--bg-surface);
-      transition: background 0.15s;
+      border-radius: 4px;
+      transition: background 0.1s;
     }}
 
-    .toc-accordion-summary:hover {{
+    .toc-group-header:hover {{
       background: var(--bg-hover);
     }}
 
-    .toc-acc-icon {{
-      font-size: 1.1rem;
+    .toc-group-num {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--accent-yellow);
+      font-weight: 700;
     }}
 
-    .toc-acc-text {{
+    .toc-group-meta {{
+      flex: 1;
       display: flex;
       flex-direction: column;
-      flex: 1;
     }}
 
-    .toc-acc-title {{
-      font-size: 0.85rem;
-      font-weight: 700;
+    .toc-group-title {{
+      font-size: 0.82rem;
+      font-weight: 600;
       color: var(--text-main);
       line-height: 1.35;
     }}
 
-    .toc-acc-desc {{
-      font-size: 0.72rem;
-      color: var(--text-faint);
+    .toc-group-pages {{
+      font-size: 0.7rem;
+      color: var(--text-muted);
     }}
 
-    .toc-acc-arrow {{
+    .toc-arrow {{
       font-size: 0.8rem;
       color: var(--text-faint);
-      transition: transform 0.2s ease;
+      transition: transform 0.15s;
     }}
 
-    .toc-accordion[open] .toc-acc-arrow {{
-      transform: rotate(180deg);
+    .toc-group[open] .toc-arrow {{
+      transform: rotate(90deg);
     }}
 
-    .toc-accordion-content {{
-      padding: 0.4rem 0.5rem 0.75rem 0.5rem;
-      background: var(--bg-subtle);
-      border-top: 1px solid var(--border-subtle);
+    .toc-group-body {{
+      padding: 0.35rem 0.2rem 0.35rem 0.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }}
 
-    .toc-item-h2 {{
-      margin-bottom: 0.35rem;
+    .toc-entry-h2 {{
+      margin-top: 0.2rem;
     }}
 
     .toc-link {{
       display: block;
       text-decoration: none;
-      border-radius: 6px;
-      padding: 0.4rem 0.6rem;
-      transition: all 0.15s ease;
+      padding: 0.3rem 0.5rem;
+      border-radius: 3px;
+      border-right: 2px solid transparent;
+      transition: all 0.1s ease;
     }}
 
-    .toc-title-fa {{
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-main);
-      line-height: 1.4;
+    .toc-link-fa {{
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
     }}
 
-    .toc-title-en {{
-      font-size: 0.71rem;
+    .toc-link-en {{
+      font-size: 0.68rem;
       color: var(--text-faint);
       direction: ltr !important;
       text-align: left;
-      line-height: 1.3;
-      margin-top: 0.15rem;
+      line-height: 1.25;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin-top: 0.1rem;
+    }}
+
+    .toc-subentries {{
+      padding-right: 0.75rem;
+      border-right: 1px solid var(--border-subtle);
+      margin-right: 0.5rem;
+      margin-top: 0.15rem;
     }}
 
     .toc-link-h3 {{
-      padding-right: 1.25rem;
-      position: relative;
-    }}
-
-    .toc-link-h3::before {{
-      content: "•";
-      position: absolute;
-      right: 0.5rem;
-      top: 0.4rem;
-      color: var(--text-faint);
+      padding: 0.25rem 0.4rem;
     }}
 
     .toc-link:hover {{
       background: var(--bg-hover);
     }}
-
-    .toc-link:hover .toc-title-fa {{
-      color: var(--brand-indigo);
+    .toc-link:hover .toc-link-fa {{
+      color: var(--text-main);
     }}
 
     .toc-link.active {{
-      background: var(--brand-indigo-subtle);
+      background: var(--accent-orange-dim);
+      border-right-color: var(--accent-orange);
     }}
-    .toc-link.active .toc-title-fa {{
-      color: var(--brand-indigo);
-      font-weight: 700;
+    .toc-link.active .toc-link-fa {{
+      color: var(--accent-orange);
+      font-weight: 600;
     }}
 
-    /* Main Content Area */
-    .main-content {{
+    /* Minimalist Content Area */
+    .site-content {{
       padding: 2.5rem 3rem 6rem 3rem;
-      max-width: var(--content-max-width);
+      max-width: var(--content-max-w);
       margin: 0 auto;
       width: 100%;
     }}
 
-    /* Hero Banner */
-    .hero-banner {{
-      background: linear-gradient(135deg, var(--bg-surface), var(--brand-indigo-subtle));
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 3rem;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
+    /* Minimal Academic Masthead (NO SLOP, NO GLOW) */
+    .document-masthead {{
+      border-bottom: 1px solid var(--border-base);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }}
 
-    .hero-banner::after {{
-      content: "";
-      position: absolute;
-      left: -50px;
-      bottom: -50px;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, var(--brand-indigo) 0%, transparent 70%);
-      opacity: 0.12;
-      border-radius: 50%;
-    }}
-
-    .hero-title {{
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: var(--text-main);
+    .masthead-meta {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      color: var(--accent-yellow);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       margin-bottom: 0.75rem;
-      line-height: 1.35;
     }}
 
-    .hero-title-en {{
-      display: inline-block;
-      direction: ltr !important;
-      unicode-bidi: isolate !important;
-      color: var(--brand-indigo);
-      font-size: 0.65em;
-      font-weight: 600;
-      margin-right: 0.5rem;
+    .masthead-title {{
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
     }}
 
-    .hero-subtitle {{
+    .masthead-subtitle-en {{
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 1.05rem;
-      color: var(--text-muted);
+      color: var(--accent-orange);
+      font-weight: 500;
+      direction: ltr !important;
+      text-align: right;
       margin-bottom: 1.5rem;
-      line-height: 1.7;
     }}
 
-    .hero-badges {{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }}
-
-    .hero-badge {{
+    .masthead-details-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem 1.5rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      padding: 0.35rem 0.85rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-size: 0.8rem;
     }}
 
-    /* Typography & BiDi Isolation */
+    .masthead-detail-item {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }}
+
+    .detail-label {{
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }}
+
+    .detail-value {{
+      color: var(--text-main);
+      font-weight: 600;
+    }}
+
+    /* Typography & BiDi Protection */
     h1, h2, h3, h4, h5, h6 {{
       color: var(--text-main);
       font-weight: 700;
-      margin-top: 2.5rem;
-      margin-bottom: 1.2rem;
-      line-height: 1.45;
+      line-height: 1.4;
       position: relative;
     }}
 
     h2 {{
-      font-size: 1.55rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid var(--border-subtle);
+      font-size: 1.4rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
       margin-top: 3.5rem;
+      margin-bottom: 1.25rem;
     }}
 
     h3 {{
-      font-size: 1.25rem;
-      margin-top: 2.2rem;
+      font-size: 1.15rem;
+      margin-top: 2.25rem;
+      margin-bottom: 0.85rem;
     }}
 
     p {{
-      margin: 1.15rem 0;
+      margin: 1.1rem 0;
       color: var(--text-main);
     }}
 
-    /* Heading Separation (Persian + English) */
+    /* Headings Subtitles (LTR isolate) */
     .heading-fa {{
       display: inline;
     }}
@@ -863,75 +819,74 @@ def build():
       display: inline-block;
       direction: ltr !important;
       unicode-bidi: isolate !important;
-      color: var(--brand-indigo);
+      color: var(--text-muted);
       font-size: 0.82em;
       font-weight: 500;
       margin-right: 0.5rem;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }}
 
-    /* Page Tag Pill */
     .page-tag {{
       display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      background: var(--brand-indigo-subtle);
-      color: var(--brand-indigo);
-      border: 1px solid var(--brand-indigo);
-      padding: 0.12rem 0.55rem;
-      border-radius: 12px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: var(--accent-yellow);
+      background: var(--accent-yellow-dim);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.05rem 0.45rem;
+      border-radius: 3px;
       vertical-align: middle;
       margin-right: 0.5rem;
     }}
 
-    /* English Term (BiDi Protection - NEVER BREAKS ACROSS LINES) */
-    .en-term {{
-      direction: ltr !important;
-      unicode-bidi: isolate !important;
-      display: inline-block !important;
-      white-space: nowrap !important;
-      color: var(--brand-indigo);
-      font-size: 0.92em;
-      padding: 0 0.18rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 500;
-    }}
-
-    /* Heading Anchor Link */
     .header-anchor {{
       opacity: 0;
-      margin-right: 0.5rem;
-      color: var(--brand-indigo);
+      margin-right: 0.4rem;
+      color: var(--accent-orange);
       text-decoration: none;
       font-weight: 400;
-      transition: opacity 0.15s;
+      transition: opacity 0.12s;
     }}
 
     .heading-linked:hover .header-anchor {{
       opacity: 1;
     }}
 
+    /* English Term (BiDi Protection - NEVER WRAPS IN HALF) */
+    .en-term {{
+      direction: ltr !important;
+      unicode-bidi: isolate !important;
+      display: inline-block !important;
+      white-space: nowrap !important;
+      color: var(--accent-orange);
+      font-size: 0.9em;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 500;
+      padding: 0 0.15rem;
+    }}
+
     /* Lists */
     ul, ol {{
-      margin: 1.15rem 0;
-      padding-right: 1.6rem;
+      margin: 1.1rem 0;
+      padding-right: 1.5rem;
     }}
 
     li {{
-      margin: 0.5rem 0;
+      margin: 0.45rem 0;
     }}
 
-    /* Code & Pre */
+    /* Minimal Code Blocks */
     code {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
       display: inline-block;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.88em;
-      background: var(--bg-hover);
-      padding: 0.15rem 0.45rem;
-      border-radius: 5px;
-      color: var(--brand-indigo);
+      font-size: 0.85em;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      color: var(--accent-yellow);
     }}
 
     pre {{
@@ -939,81 +894,74 @@ def build():
       unicode-bidi: isolate !important;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.2rem;
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
       overflow-x: auto;
-      margin: 1.5rem 0;
+      margin: 1.25rem 0;
     }}
 
     pre code {{
       background: transparent;
+      border: none;
       padding: 0;
     }}
 
-    /* Tables */
+    /* Minimalist Tables */
     table {{
       width: 100%;
       border-collapse: collapse;
-      margin: 2rem 0;
+      margin: 1.75rem 0;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      font-size: 0.92rem;
     }}
 
     th, td {{
-      padding: 0.75rem 1rem;
+      padding: 0.65rem 0.85rem;
       border: 1px solid var(--border-subtle);
       text-align: center;
     }}
 
     th {{
-      background: var(--bg-subtle);
-      font-weight: 700;
+      background: var(--bg-surface-elevated);
+      font-weight: 600;
       color: var(--text-main);
     }}
 
-    tbody tr:hover {{
-      background: var(--bg-hover);
-    }}
-
-    /* Blockquotes */
+    /* Clean Blockquotes */
     blockquote {{
       background: var(--bg-surface);
-      border-right: 4px solid var(--brand-indigo);
+      border-right: 3px solid var(--border-strong);
       border-left: none;
-      border-radius: 0 10px 10px 0;
-      padding: 1.2rem 1.6rem;
-      margin: 1.75rem 0;
-      color: var(--text-muted);
-      box-shadow: var(--shadow-sm);
+      border-radius: 0 4px 4px 0;
+      padding: 0.9rem 1.25rem;
+      margin: 1.5rem 0;
+      color: var(--text-secondary);
     }}
 
-    /* Callouts */
+    /* Minimal Technical Callout Boxes (NO EMOJIS) */
     .callout {{
-      border-radius: 12px;
-      margin: 1.75rem 0;
-      border-right: 5px solid transparent;
-      padding: 1.25rem 1.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-right: 3px solid var(--border-strong);
+      border-radius: 4px;
+      margin: 1.5rem 0;
+      padding: 0.9rem 1.2rem;
     }}
 
     .callout-header {{
       display: flex;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }}
 
-    .callout-badge {{
-      font-size: 0.85rem;
+    .callout-label {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 0.2rem 0.65rem;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+      letter-spacing: 0.04em;
     }}
 
     .callout-body p:first-child {{
@@ -1024,115 +972,105 @@ def build():
     }}
 
     .callout-def {{
-      background: var(--def-bg);
-      border-right-color: var(--def-border);
+      border-right-color: var(--accent-yellow);
     }}
-    .callout-def .callout-badge {{
-      background: rgba(59, 130, 246, 0.15);
-      color: #2563eb;
+    .callout-def .callout-label {{
+      color: var(--accent-yellow);
     }}
 
     .callout-thm {{
-      background: var(--thm-bg);
-      border-right-color: var(--thm-border);
+      border-right-color: var(--accent-orange);
     }}
-    .callout-thm .callout-badge {{
-      background: rgba(139, 92, 246, 0.15);
-      color: #7c3aed;
+    .callout-thm .callout-label {{
+      color: var(--accent-orange);
     }}
 
     .callout-lem {{
-      background: var(--lem-bg);
-      border-right-color: var(--lem-border);
+      border-right-color: #d97706;
     }}
-    .callout-lem .callout-badge {{
-      background: rgba(99, 102, 241, 0.15);
-      color: #4f46e5;
+    .callout-lem .callout-label {{
+      color: #fbbf24;
     }}
 
     .callout-cor {{
-      background: var(--cor-bg);
-      border-right-color: var(--cor-border);
+      border-right-color: #ea580c;
     }}
-    .callout-cor .callout-badge {{
-      background: rgba(6, 182, 212, 0.15);
-      color: #0891b2;
+    .callout-cor .callout-label {{
+      color: #fb923c;
     }}
 
     .callout-example {{
-      background: var(--example-bg);
-      border-right-color: var(--example-border);
+      border-right-color: var(--border-strong);
     }}
-    .callout-example .callout-badge {{
-      background: rgba(16, 185, 129, 0.15);
-      color: #059669;
+    .callout-example .callout-label {{
+      color: var(--text-secondary);
     }}
 
     .callout-note {{
-      background: var(--note-bg);
-      border-right-color: var(--note-border);
+      border-right-color: var(--accent-yellow);
+      background: var(--accent-yellow-dim);
     }}
-    .callout-note .callout-badge {{
-      background: rgba(245, 158, 11, 0.15);
-      color: #d97706;
+    .callout-note .callout-label {{
+      color: var(--accent-yellow);
     }}
 
     .callout-proof {{
-      background: var(--proof-bg);
-      border-right-color: var(--proof-border);
+      background: transparent;
+      border: none;
+      border-right: 2px solid var(--border-subtle);
+      padding: 0.5rem 1rem;
+      color: var(--text-secondary);
     }}
-    .callout-proof .callout-badge {{
-      background: rgba(100, 116, 139, 0.15);
-      color: #475569;
+    .callout-proof .callout-label {{
+      color: var(--text-muted);
     }}
 
-    /* MathJax Containers & Copy Button */
+    /* Math Display Containers */
     .math-display-container {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
       position: relative;
-      margin: 1.75rem 0;
-      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      padding: 1.15rem 1.25rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: border-color 0.2s;
+      transition: border-color 0.15s;
     }}
 
     .math-display-container:hover {{
-      border-color: var(--brand-indigo);
+      border-color: var(--border-base);
     }}
 
     .math-display-scroll {{
       width: 100%;
       overflow-x: auto;
       text-align: center;
-      padding: 0.25rem 0;
+      padding: 0.2rem 0;
       scrollbar-width: thin;
-      scrollbar-color: var(--border-strong) transparent;
+      scrollbar-color: var(--border-base) transparent;
     }}
 
     .copy-math-btn {{
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 6px;
+      left: 6px;
       opacity: 0;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-strong);
-      border-radius: 6px;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-base);
+      border-radius: 3px;
+      padding: 0.2rem 0.45rem;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
-      transition: all 0.15s ease;
-      font-family: inherit;
+      gap: 0.3rem;
+      font-family: ui-monospace, monospace;
+      transition: all 0.12s ease;
     }}
 
     .math-display-container:hover .copy-math-btn {{
@@ -1140,9 +1078,9 @@ def build():
     }}
 
     .copy-math-btn:hover {{
-      background: var(--brand-indigo);
-      color: #fff;
-      border-color: var(--brand-indigo);
+      background: var(--accent-orange);
+      color: #000;
+      border-color: var(--accent-orange);
     }}
 
     .math.inline, mjx-container:not([display="true"]) {{
@@ -1156,28 +1094,27 @@ def build():
     mjx-container[display="true"] {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
-      margin: 0.5em 0 !important;
+      margin: 0.4em 0 !important;
     }}
 
-    /* Floating Back to Top Button */
+    /* Back to Top Button */
     #back-to-top {{
       position: fixed;
       bottom: 2rem;
       left: 2rem;
-      background: var(--brand-indigo);
-      color: #fff;
-      border: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      color: var(--accent-orange);
+      border: 1px solid var(--border-strong);
+      width: 38px;
+      height: 38px;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: var(--shadow-lg);
       cursor: pointer;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s, transform 0.25s;
+      transition: all 0.2s;
       z-index: 800;
     }}
 
@@ -1187,20 +1124,22 @@ def build():
     }}
 
     #back-to-top:hover {{
-      transform: translateY(-3px);
+      background: var(--accent-orange);
+      color: #000;
+      border-color: var(--accent-orange);
     }}
 
-    /* Live Search Modal */
+    /* Minimal Search Modal */
     .search-modal-backdrop {{
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(3px);
       z-index: 2000;
       display: none;
       align-items: flex-start;
       justify-content: center;
-      padding-top: 10vh;
+      padding-top: 12vh;
     }}
 
     .search-modal-backdrop.open {{
@@ -1210,29 +1149,29 @@ def build():
     .search-modal {{
       background: var(--bg-surface);
       border: 1px solid var(--border-strong);
-      border-radius: 14px;
+      border-radius: 6px;
       width: 90%;
-      max-width: 620px;
-      box-shadow: var(--shadow-lg);
+      max-width: 580px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      max-height: 75vh;
+      max-height: 70vh;
     }}
 
     .search-input-wrapper {{
       display: flex;
       align-items: center;
-      padding: 0.85rem 1.25rem;
+      padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border-subtle);
-      gap: 0.75rem;
+      gap: 0.65rem;
     }}
 
     .search-input-field {{
       flex: 1;
       border: none;
       background: transparent;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-family: inherit;
       color: var(--text-main);
       outline: none;
@@ -1240,88 +1179,82 @@ def build():
 
     .search-results-list {{
       overflow-y: auto;
-      padding: 0.5rem;
+      padding: 0.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.2rem;
     }}
 
     .search-result-item {{
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
+      padding: 0.55rem 0.85rem;
+      border-radius: 4px;
       text-decoration: none;
       color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      transition: background 0.15s;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      transition: background 0.1s;
     }}
 
     .search-result-item:hover, .search-result-item.selected {{
       background: var(--bg-hover);
     }}
 
-    .search-result-title {{
-      font-size: 0.9rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }}
-
     .search-result-pill {{
-      font-size: 0.72rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 12px;
-      background: var(--bg-subtle);
+      font-family: ui-monospace, monospace;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
-      color: var(--text-faint);
+      color: var(--accent-orange);
       white-space: nowrap;
     }}
 
     .search-empty {{
-      padding: 2.5rem;
+      padding: 2rem;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
     }}
 
-    /* Highlight Animation for Search Navigation */
-    @keyframes highlightPulse {{
-      0% {{ background-color: var(--brand-indigo-subtle); }}
+    @keyframes highlightFlash {{
+      0% {{ background-color: var(--accent-orange-dim); }}
       100% {{ background-color: transparent; }}
     }}
     .search-highlighted {{
-      animation: highlightPulse 2.5s ease-out;
-      border-radius: 8px;
+      animation: highlightFlash 2s ease-out;
     }}
 
-    /* Mobile Drawer & Responsiveness */
+    /* Mobile Drawer */
     @media (max-width: 900px) {{
-      .app-container {{
+      .site-layout {{
         grid-template-columns: 1fr;
       }}
 
-      .sidebar {{
+      .site-sidebar {{
         position: fixed;
         right: 0;
-        top: var(--header-height);
+        top: var(--header-h);
         bottom: 0;
-        width: 85%;
-        max-width: 320px;
+        width: 82%;
+        max-width: 300px;
         z-index: 950;
         transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid var(--border-base);
       }}
 
-      .sidebar.open {{
+      .site-sidebar.open {{
         transform: translateX(0);
       }}
 
       .sidebar-backdrop {{
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
         z-index: 940;
         display: none;
       }}
@@ -1329,204 +1262,155 @@ def build():
         display: block;
       }}
 
-      .mobile-menu-btn {{
+      .mobile-nav-toggle {{
         display: inline-flex;
       }}
 
-      .main-content {{
-        padding: 1.5rem 1.25rem 4rem 1.25rem;
+      .site-content {{
+        padding: 1.5rem 1.15rem 4rem 1.15rem;
       }}
 
-      .hero-banner {{
-        padding: 1.5rem;
-      }}
-      .hero-title {{
+      .masthead-title {{
         font-size: 1.6rem;
-      }}
-
-      .search-trigger {{
-        min-width: auto;
-      }}
-      .search-shortcut {{
-        display: none;
       }}
     }}
 
-    /* Print Optimization */
+    /* Print Stylesheet */
     @media print {{
-      #progress-bar, .top-header, .sidebar, #back-to-top, .search-modal-backdrop, .copy-math-btn {{
+      #progress-bar, .site-header, .site-sidebar, #back-to-top, .search-modal-backdrop, .copy-math-btn {{
         display: none !important;
       }}
       body {{
         background: #fff !important;
         color: #000 !important;
-        font-size: 12pt !important;
-        line-height: 1.6 !important;
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
       }}
-      .app-container {{
+      .site-layout {{
         display: block !important;
       }}
-      .main-content {{
+      .site-content {{
         max-width: 100% !important;
         padding: 0 !important;
       }}
-      .hero-banner {{
+      .callout, .math-display-container {{
         border: 1px solid #ccc !important;
         background: transparent !important;
-        box-shadow: none !important;
-        padding: 1rem !important;
-      }}
-      .callout {{
-        border: 1px solid #999 !important;
-        box-shadow: none !important;
         break-inside: avoid;
-        page-break-inside: avoid;
-      }}
-      .math-display-container {{
-        border: none !important;
-        box-shadow: none !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }}
-      h1, h2, h3 {{
-        page-break-after: avoid;
-        break-after: avoid;
       }}
     }}
   </style>
 </head>
 <body>
-  <!-- Reading Progress Bar -->
   <div id="progress-bar"></div>
 
-  <!-- Top Sticky Navigation Bar -->
-  <header class="top-header">
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <button class="btn-icon mobile-menu-btn" onclick="toggleSidebar()" aria-label="منوی سرفصل‌ها">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  <!-- Minimal Header -->
+  <header class="site-header">
+    <div style="display: flex; align-items: center; gap: 0.65rem;">
+      <button class="header-btn mobile-nav-toggle" onclick="toggleSidebar()" aria-label="منو">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
-      <a href="#" class="header-brand">
-        <div class="header-logo-icon">∑</div>
-        <div class="header-titles">
-          <span class="header-title">مبانی ماتریس و جبر خطی</span>
-          <span class="header-sub">جزوه جامع دانشگاهی | تدریس دکتر طوسی (هافمن - کونزه)</span>
-        </div>
+      <a href="#" class="brand-wrap">
+        <span class="brand-glyph">∑</span>
+        <span class="brand-name">مبانی ماتریس و جبر خطی</span>
       </a>
     </div>
 
-    <div class="header-actions">
-      <!-- Search Trigger -->
-      <button class="search-trigger" onclick="openSearchModal()" title="جستجو در متن جزوه (⌘K)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span>جستجو...</span>
-        <kbd class="search-shortcut">⌘K</kbd>
+    <div class="header-controls">
+      <!-- Search -->
+      <button class="header-btn search-btn" onclick="openSearchModal()" title="جستجو (⌘K)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>جستجو</span>
+        <kbd class="search-kbd">⌘K</kbd>
       </button>
 
-      <!-- Font Size Adjuster -->
-      <div class="font-size-group" title="تنظیم اندازه قلم">
-        <button class="font-btn" onclick="adjustFontSize(-1)" title="کوچک‌تر">A-</button>
-        <button class="font-btn" onclick="resetFontSize()" title="پیش‌فرض">A</button>
-        <button class="font-btn" onclick="adjustFontSize(1)" title="بزرگ‌تر">A+</button>
+      <!-- Font Stepper -->
+      <div class="font-stepper" title="اندازه قلم">
+        <button class="font-step-btn" onclick="adjustFontSize(-1)">A-</button>
+        <button class="font-step-btn" onclick="resetFontSize()">A</button>
+        <button class="font-step-btn" onclick="adjustFontSize(1)">A+</button>
       </div>
 
-      <!-- Color Scheme Toggle according to modern-web-guidance -->
-      <button class="btn-icon" id="theme-toggle-btn" onclick="toggleTheme()" title="تغییر تم (روشن / تاریک)">
-        <svg id="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg id="theme-icon-moon" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      <!-- Theme Toggle -->
+      <button class="header-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="تغییر تم">
+        <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="theme-icon-moon" style="display:none;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
 
-      <!-- Print / Export Button -->
-      <button class="btn-icon" onclick="window.print()" title="چاپ یا ذخیره به صورت PDF">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <!-- Print -->
+      <button class="header-btn" onclick="window.print()" title="چاپ یا PDF">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
       </button>
     </div>
   </header>
 
-  <!-- Mobile Drawer Backdrop -->
   <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
 
-  <!-- App Body Layout -->
-  <div class="app-container">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-stats-card">
-        <div class="stats-row">
-          <span>تعداد فصول آموزشی:</span>
-          <span class="stats-badge">۱۸ مبحث</span>
-        </div>
-        <div class="stats-row">
-          <span>پوشش جزوه:</span>
-          <span class="stats-badge">۱۱۰ صفحه کامل</span>
-        </div>
-        <div class="stats-row">
-          <span>فرمول‌ها و روابط:</span>
-          <span class="stats-badge">+۱,۷۰۰ معادله</span>
-        </div>
+  <div class="site-layout">
+    <!-- Minimal Sidebar -->
+    <aside class="site-sidebar" id="sidebar">
+      <div class="sidebar-filter-wrap">
+        <input type="text" class="sidebar-filter" placeholder="فیلتر سرفصل‌ها..." oninput="filterTocItems(this.value)" />
       </div>
 
-      <!-- Quick Search inside Sidebar -->
-      <div style="position: relative;">
-        <input type="text" id="sidebar-filter-input" placeholder="فیلتر سرفصل‌ها..." oninput="filterTocItems(this.value)" style="width: 100%; padding: 0.45rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-main); font-family: inherit; font-size: 0.82rem; outline: none;" />
-      </div>
-
-      <!-- Hierarchical Table of Contents Accordion -->
       <nav id="toc-nav">
         {toc_html_rendered}
       </nav>
     </aside>
 
-    <!-- Main Content Reader -->
-    <main class="main-content">
-      <!-- Hero Header Card -->
-      <div class="hero-banner">
-        <h1 class="hero-title">
-          <span>جزوه جامع مبانی ماتریس و جبر خطی</span>
-          <span class="hero-title-en" dir="ltr">(Matrix Foundations and Linear Algebra)</span>
-        </h1>
-        <p class="hero-subtitle">
-          مجموعه کامل درس‌نامه‌ها، تعاریف اصول موضوعی، اثبات قضایا، فرمول‌ها و مثال‌های تشریحی مبانی ماتریس و جبر خطی بر اساس کتاب کنت هافمن و ری کونزه به همراه تدریس‌های کلاسی دانشگاهی دکتر طوسی.
-        </p>
-        <div class="hero-badges">
-          <span class="hero-badge">📐 فضاهای برداری و زیرفضاها</span>
-          <span class="hero-badge">⚡ استقلال خطی و پایه</span>
-          <span class="hero-badge">🔄 تبدیل‌های خطی و نمایش ماتریسی</span>
-          <span class="hero-badge">🔢 رتبه، فضا پوچ و دستگاه‌ها</span>
-          <span class="hero-badge">📊 محاسبه وارون و دترمینان</span>
+    <!-- Main Editorial Content -->
+    <main class="site-content">
+      <!-- Minimal Academic Masthead -->
+      <header class="document-masthead">
+        <div class="masthead-meta">دانشگاه • جبر خطی و مبانی ماتریس‌ها • ترم ۴۰۴۱</div>
+        <h1 class="masthead-title">مبانی ماتریس و جبر خطی</h1>
+        <div class="masthead-subtitle-en" dir="ltr">Matrix Foundations & Linear Algebra</div>
+        <div class="masthead-details-grid">
+          <div class="masthead-detail-item">
+            <span class="detail-label">مدرس</span>
+            <span class="detail-value">دکتر طوسی</span>
+          </div>
+          <div class="masthead-detail-item">
+            <span class="detail-label">مرجع درسی</span>
+            <span class="detail-value">هافمن و کونزه (Kenneth Hoffman & Ray Kunze)</span>
+          </div>
+          <div class="masthead-detail-item">
+            <span class="detail-label">محتوا</span>
+            <span class="detail-value">۱۱۰ صفحه درس‌نامه • ۱۸ بخش کامل</span>
+          </div>
         </div>
-      </div>
+      </header>
 
-      <!-- Article Body with Enhanced BiDi, Callouts and Math -->
+      <!-- Article Body -->
       <article id="article-body">
         {body_html}
       </article>
     </main>
   </div>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" onclick="window.scrollTo({{top: 0, behavior: 'smooth'}})" title="بازگشت به ابتدای صفحه" aria-label="بازگشت به بالا">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  <!-- Back to top -->
+  <button id="back-to-top" onclick="window.scrollTo({{top: 0, behavior: 'smooth'}})" title="بازگشت به بالا" aria-label="بالا">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
-  <!-- Live Search Modal (Ctrl+K) -->
+  <!-- Search Modal -->
   <div class="search-modal-backdrop" id="search-modal-backdrop" onclick="closeSearchModalOnBackdrop(event)">
     <div class="search-modal" role="dialog" aria-modal="true" aria-label="جستجو در جزوه">
       <div class="search-input-wrapper">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--brand-indigo);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="modal-search-input" class="search-input-field" placeholder="جستجو در عناوین، تعاریف، قضایا و فرمول‌ها..." oninput="handleModalSearch(this.value)" autocomplete="off" />
-        <button class="btn-icon" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="closeSearchModal()">ESC</button>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-orange);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="modal-search-input" class="search-input-field" placeholder="جستجو در مفاهیم، قضایا، تعاریف و صفحات..." oninput="handleModalSearch(this.value)" autocomplete="off" />
+        <kbd class="search-kbd" onclick="closeSearchModal()" style="cursor: pointer;">ESC</kbd>
       </div>
       <div class="search-results-list" id="search-results-list">
-        <div class="search-empty">عبارت مورد نظر خود را تایپ کنید (مثلاً: زیرفضا، دترمینان، تبدیل خطی، رتبه...)</div>
+        <div class="search-empty">عبارت مورد نظر خود را بنویسید (مثلاً: رتبه، زیرفضا، دترمینان، تبدیل خطی...)</div>
       </div>
     </div>
   </div>
 
-  <!-- Client-side Interactive Scripts -->
   <script>
-    // Search Index Data
     const searchData = {search_index_json};
 
-    // 1. Reading Progress Bar & Back to top
+    // 1. Reading Progress
     window.addEventListener('scroll', () => {{
       const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1541,87 +1425,68 @@ def build():
       }}
     }}, {{ passive: true }});
 
-    // 2. Modern Theme Toggle (Light / Dark)
+    // 2. Theme Toggle (Dark Default)
     function updateThemeUI() {{
       const meta = document.querySelector('meta[name="color-scheme"]');
-      const isDark = meta.content === 'dark' || (meta.content === 'light dark' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.getElementById('theme-icon-sun').style.display = isDark ? 'inline' : 'none';
-      document.getElementById('theme-icon-moon').style.display = isDark ? 'none' : 'inline';
+      const isLight = meta.content === 'light';
+      document.getElementById('theme-icon-sun').style.display = isLight ? 'none' : 'inline';
+      document.getElementById('theme-icon-moon').style.display = isLight ? 'inline' : 'none';
     }}
 
     function toggleTheme() {{
       const meta = document.querySelector('meta[name="color-scheme"]');
-      const current = meta.content;
-      const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      let next;
-      if (current === 'light dark') {{
-        next = isSystemDark ? 'light' : 'dark';
-      }} else if (current === 'dark') {{
-        next = 'light';
-      }} else {{
-        next = 'dark';
-      }}
-
+      const next = meta.content === 'light' ? 'dark' : 'light';
       meta.content = next;
-      try {{
-        localStorage.setItem('color-scheme', next);
-      }} catch(e) {{}}
+      try {{ localStorage.setItem('color-scheme', next); }} catch(e) {{}}
       updateThemeUI();
     }}
     updateThemeUI();
 
-    // 3. Font Size Controls
-    let currentScale = 16;
+    // 3. Font Size Adjuster
+    let currentScale = 15.5;
     try {{
       const saved = localStorage.getItem('site-font-size');
       if (saved) {{
-        currentScale = parseInt(saved, 10);
+        currentScale = parseFloat(saved);
         document.documentElement.style.setProperty('--font-scale', currentScale + 'px');
       }}
     }} catch(e) {{}}
 
     function adjustFontSize(delta) {{
-      currentScale = Math.max(13, Math.min(22, currentScale + delta));
+      currentScale = Math.max(13, Math.min(20, currentScale + delta));
       document.documentElement.style.setProperty('--font-scale', currentScale + 'px');
       try {{ localStorage.setItem('site-font-size', currentScale); }} catch(e) {{}}
     }}
 
     function resetFontSize() {{
-      currentScale = 16;
-      document.documentElement.style.setProperty('--font-scale', '16px');
+      currentScale = 15.5;
+      document.documentElement.style.setProperty('--font-scale', '15.5px');
       try {{ localStorage.removeItem('site-font-size'); }} catch(e) {{}}
     }}
 
-    // 4. Mobile Drawer Toggle
+    // 4. Mobile Drawer
     function toggleSidebar() {{
-      const sidebar = document.getElementById('sidebar');
-      const backdrop = document.getElementById('sidebar-backdrop');
-      sidebar.classList.toggle('open');
-      backdrop.classList.toggle('open');
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-backdrop').classList.toggle('open');
     }}
 
-    // 5. Copy Formula LaTeX
+    // 5. Copy Formula
     function copyFormula(button) {{
       const latex = button.getAttribute('data-latex');
       if (!latex) return;
       navigator.clipboard.writeText(latex).then(() => {{
         const span = button.querySelector('span');
         const orig = span.textContent;
-        span.textContent = 'کپی شد! ✓';
-        button.style.background = 'var(--example-border)';
-        button.style.color = '#fff';
+        span.textContent = 'کپی شد!';
+        button.style.color = 'var(--accent-orange)';
         setTimeout(() => {{
           span.textContent = orig;
-          button.style.background = '';
           button.style.color = '';
-        }}, 2000);
-      }}).catch(err => {{
-        console.error('Copy failed:', err);
+        }}, 1800);
       }});
     }}
 
-    // 6. Search Modal Logic
+    // 6. Search Modal
     function openSearchModal() {{
       document.getElementById('search-modal-backdrop').classList.add('open');
       const input = document.getElementById('modal-search-input');
@@ -1635,9 +1500,7 @@ def build():
     }}
 
     function closeSearchModalOnBackdrop(e) {{
-      if (e.target.id === 'search-modal-backdrop') {{
-        closeSearchModal();
-      }}
+      if (e.target.id === 'search-modal-backdrop') closeSearchModal();
     }}
 
     document.addEventListener('keydown', (e) => {{
@@ -1653,25 +1516,24 @@ def build():
       const q = query.trim().toLowerCase();
       const list = document.getElementById('search-results-list');
       if (!q) {{
-        list.innerHTML = '<div class="search-empty">عبارت مورد نظر خود را تایپ کنید (مثلاً: زیرفضا، دترمینان، تبدیل خطی، رتبه...)</div>';
+        list.innerHTML = '<div class="search-empty">عبارت مورد نظر خود را بنویسید (مثلاً: رتبه، زیرفضا، دترمینان، تبدیل خطی...)</div>';
         return;
       }}
 
       const matches = searchData.filter(item => item.title.toLowerCase().includes(q)).slice(0, 30);
       if (matches.length === 0) {{
-        list.innerHTML = '<div class="search-empty">موردی یافت نشد. لطفاً با کلمات دیگری جستجو کنید.</div>';
+        list.innerHTML = '<div class="search-empty">نتیجه‌ای یافت نشد.</div>';
         return;
       }}
 
       let html = '';
       matches.forEach(item => {{
-        let pillText = item.level.toUpperCase();
-        if (item.level === 'h1' || item.level === 'h2') pillText = 'فصل / بخش';
-        else if (item.level === 'h3') pillText = 'صفحه / موضوع';
-        else if (item.level === 'callout') pillText = item.type || 'نکته / قضیه';
+        let pillText = 'بخش';
+        if (item.level === 'h3') pillText = 'صفحه';
+        else if (item.level === 'callout') pillText = item.type || 'نکته';
 
         html += `<a href="#${{item.id}}" class="search-result-item" onclick="navigateToItem('${{item.id}}')">
-          <span class="search-result-title">${{item.title}}</span>
+          <span>${{item.title}}</span>
           <span class="search-result-pill">${{pillText}}</span>
         </a>`;
       }});
@@ -1685,41 +1547,38 @@ def build():
         if (target) {{
           target.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
           target.classList.add('search-highlighted');
-          setTimeout(() => target.classList.remove('search-highlighted'), 3000);
+          setTimeout(() => target.classList.remove('search-highlighted'), 2500);
         }}
       }}, 100);
     }}
 
-    // 7. Filter TOC items inside sidebar
+    // 7. Filter TOC
     function filterTocItems(val) {{
       const term = val.trim().toLowerCase();
-      const links = document.querySelectorAll('.toc-accordion .toc-link');
-      const accordions = document.querySelectorAll('.toc-accordion');
+      const links = document.querySelectorAll('.toc-group .toc-link');
+      const groups = document.querySelectorAll('.toc-group');
 
       if (!term) {{
         links.forEach(l => l.style.display = '');
         return;
       }}
 
-      accordions.forEach(acc => {{
-        let hasVisible = false;
-        const accLinks = acc.querySelectorAll('.toc-link');
-        accLinks.forEach(l => {{
-          const text = l.textContent.toLowerCase();
-          if (text.includes(term)) {{
+      groups.forEach(grp => {{
+        let hasMatch = false;
+        const gLinks = grp.querySelectorAll('.toc-link');
+        gLinks.forEach(l => {{
+          if (l.textContent.toLowerCase().includes(term)) {{
             l.style.display = '';
-            hasVisible = true;
+            hasMatch = true;
           }} else {{
             l.style.display = 'none';
           }}
         }});
-        if (hasVisible) {{
-          acc.open = true;
-        }}
+        if (hasMatch) grp.open = true;
       }});
     }}
 
-    // 8. Active Scrollspy for Table of Contents
+    // 8. Scrollspy
     const headingsObserved = document.querySelectorAll('article h2[id], article h3[id]');
     const observer = new IntersectionObserver((entries) => {{
       entries.forEach(entry => {{
@@ -1728,8 +1587,8 @@ def build():
           document.querySelectorAll('.toc-link').forEach(link => {{
             if (link.getAttribute('data-id') === id) {{
               link.classList.add('active');
-              const parentAcc = link.closest('.toc-accordion');
-              if (parentAcc && !parentAcc.open) parentAcc.open = true;
+              const parentGrp = link.closest('.toc-group');
+              if (parentGrp && !parentGrp.open) parentGrp.open = true;
             }} else {{
               link.classList.remove('active');
             }}
@@ -1744,13 +1603,23 @@ def build():
 </html>
 '''
 
-    print("8. Writing updated files...")
+    print("8. Writing updated files to both linear-algebra-notes/ and root...")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(full_html)
     with open("linear_algebra_notes.html", "w", encoding="utf-8") as f:
         f.write(full_html)
 
-    print(f"COMPLETE! index.html ({len(full_html)} bytes) & linear_algebra_notes.html written.")
+    # Also sync to parent directory if in linear-algebra-notes
+    if os.path.exists("../linear_algebra_notes.html"):
+        with open("../index.html", "w", encoding="utf-8") as f:
+            f.write(full_html)
+        with open("../linear_algebra_notes.html", "w", encoding="utf-8") as f:
+            f.write(full_html)
+        with open("../generate_full_site.py", "w", encoding="utf-8") as f:
+            with open("generate_full_site.py", "r", encoding="utf-8") as g:
+                f.write(g.read())
+
+    print(f"SUCCESS! Wrote minimalist website ({len(full_html)} bytes).")
 
 if __name__ == "__main__":
     build()
