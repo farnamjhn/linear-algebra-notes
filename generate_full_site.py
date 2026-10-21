@@ -410,6 +410,12 @@ def build():
       scroll-behavior: smooth;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }}
+    @supports (overflow: clip) {{
+      html {{
+        overflow-x: clip;
+      }}
     }}
 
     body {{
@@ -421,7 +427,15 @@ def build():
       line-height: 1.9;
       font-size: 1rem;
       min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
+    }}
+    @supports (overflow: clip) {{
+      body {{
+        overflow-x: clip;
+      }}
     }}
 
     /* Reading Progress Line (Vibrant Orange) */
@@ -448,6 +462,9 @@ def build():
       align-items: center;
       justify-content: space-between;
       padding: 0 1.25rem;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }}
 
     .brand-wrap {{
@@ -546,8 +563,11 @@ def build():
     /* Main Layout Grid */
     .site-layout {{
       display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
       min-height: calc(100vh - var(--header-h));
+      min-height: calc(100dvh - var(--header-h));
+      width: 100%;
+      max-width: 100%;
     }}
 
     /* Minimalist Flat Sidebar */
@@ -719,6 +739,16 @@ def build():
       max-width: var(--content-max-w);
       margin: 0 auto;
       width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }}
+
+    article {{
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
     }}
 
     /* Minimal Academic Masthead (NO SLOP, NO GLOW) */
@@ -789,6 +819,7 @@ def build():
       font-weight: 700;
       line-height: 1.4;
       position: relative;
+      overflow-wrap: break-word;
     }}
 
     h2 {{
@@ -852,17 +883,17 @@ def build():
       opacity: 1;
     }}
 
-    /* English Term (BiDi Protection - NEVER WRAPS IN HALF) */
+    /* English Term (BiDi Protection - isolated) */
     .en-term {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
-      display: inline-block !important;
-      white-space: nowrap !important;
+      display: inline !important;
       color: var(--accent-orange);
       font-size: 0.9em;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-weight: 500;
       padding: 0 0.15rem;
+      overflow-wrap: break-word;
     }}
 
     /* Lists */
@@ -908,13 +939,16 @@ def build():
 
     /* Minimalist Tables */
     table {{
+      display: block;
       width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border-collapse: collapse;
       margin: 1.75rem 0;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
-      overflow: hidden;
       font-size: 0.92rem;
     }}
 
@@ -1035,9 +1069,12 @@ def build():
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      min-width: 0;
       transition: border-color 0.15s;
     }}
 
@@ -1046,12 +1083,17 @@ def build():
     }}
 
     .math-display-scroll {{
+      display: block;
       width: 100%;
+      max-width: 100%;
       overflow-x: auto;
+      overflow-y: hidden;
       text-align: center;
       padding: 0.2rem 0;
       scrollbar-width: thin;
       scrollbar-color: var(--border-base) transparent;
+      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
     }}
 
     .copy-math-btn {{
@@ -1071,6 +1113,7 @@ def build():
       gap: 0.3rem;
       font-family: ui-monospace, monospace;
       transition: all 0.12s ease;
+      z-index: 5;
     }}
 
     .math-display-container:hover .copy-math-btn {{
@@ -1083,18 +1126,32 @@ def build():
       border-color: var(--accent-orange);
     }}
 
+    mjx-container {{
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }}
+
     .math.inline, mjx-container:not([display="true"]) {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
       display: inline-block;
       margin: 0 3px;
       vertical-align: middle;
+      max-width: 100%;
     }}
 
     mjx-container[display="true"] {{
       direction: ltr !important;
       unicode-bidi: isolate !important;
       margin: 0.4em 0 !important;
+      display: block !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+    }}
+
+    math {{
+      max-width: 100% !important;
     }}
 
     /* Back to Top Button */
@@ -1228,10 +1285,12 @@ def build():
       animation: highlightFlash 2s ease-out;
     }}
 
-    /* Mobile Drawer */
+    /* Mobile Drawer & Responsive Layout */
     @media (max-width: 900px) {{
       .site-layout {{
-        grid-template-columns: 1fr;
+        display: block;
+        width: 100%;
+        max-width: 100%;
       }}
 
       .site-sidebar {{
@@ -1242,13 +1301,23 @@ def build():
         width: 82%;
         max-width: 300px;
         z-index: 950;
-        transform: translateX(100%);
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        display: none;
         border-left: 1px solid var(--border-base);
+        overscroll-behavior: contain;
       }}
 
       .site-sidebar.open {{
-        transform: translateX(0);
+        display: flex;
+        animation: slideInSidebar 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }}
+
+      @keyframes slideInSidebar {{
+        from {{
+          transform: translateX(100%);
+        }}
+        to {{
+          transform: translateX(0);
+        }}
       }}
 
       .sidebar-backdrop {{
@@ -1264,14 +1333,88 @@ def build():
 
       .mobile-nav-toggle {{
         display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
       }}
 
       .site-content {{
-        padding: 1.5rem 1.15rem 4rem 1.15rem;
+        padding: 1.25rem 1rem 4rem 1rem;
+        max-width: 100%;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-x: clip;
       }}
 
       .masthead-title {{
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+      }}
+    }}
+
+    @media (max-width: 768px) {{
+      .site-header {{
+        padding: 0 0.75rem;
+      }}
+
+      .brand-name {{
+        font-size: 0.85rem;
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }}
+
+      /* Prevent header buttons from overflowing on mobile */
+      .search-kbd,
+      .search-btn span,
+      .font-stepper,
+      .header-btn[onclick="window.print()"] {{
+        display: none !important;
+      }}
+
+      .search-btn {{
+        padding: 0;
+        width: 34px;
+        height: 34px;
+        justify-content: center;
+      }}
+
+      #theme-toggle-btn {{
+        padding: 0;
+        width: 34px;
+        height: 34px;
+        justify-content: center;
+      }}
+
+      .header-controls {{
+        gap: 0.35rem;
+      }}
+
+      .masthead-details-grid {{
+        grid-template-columns: 1fr;
+        padding: 0.85rem 1rem;
+      }}
+
+      .math-display-container {{
+        padding: 0.85rem 0.5rem;
+      }}
+
+      blockquote, .callout, p, pre {{
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+      }}
+
+      .search-modal-backdrop {{
+        padding-top: 5vh;
+      }}
+
+      .search-modal {{
+        width: 95%;
+        max-height: 85vh;
       }}
     }}
 
@@ -1598,18 +1741,42 @@ def build():
     }}, {{ rootMargin: '0px 0px -75% 0px' }});
 
     headingsObserved.forEach(h => observer.observe(h));
+
+    // 9. Auto-close sidebar on mobile when navigating
+    document.querySelectorAll('.toc-link').forEach(link => {{
+      link.addEventListener('click', () => {{
+        if (window.innerWidth <= 900) {{
+          const sidebar = document.getElementById('sidebar');
+          const backdrop = document.getElementById('sidebar-backdrop');
+          if (sidebar && sidebar.classList.contains('open')) {{
+            sidebar.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('open');
+          }}
+        }}
+      }});
+    }});
   </script>
 </body>
 </html>
 '''
 
-    print("8. Writing updated files to both linear-algebra-notes/ and root...")
+    print("8. Writing updated files...")
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(full_html)
     with open("linear_algebra_notes.html", "w", encoding="utf-8") as f:
         f.write(full_html)
 
-    # Also sync to parent directory if in linear-algebra-notes
+    # Sync to child directory if run from root
+    if os.path.exists("linear-algebra-notes/index.html"):
+        with open("linear-algebra-notes/index.html", "w", encoding="utf-8") as f:
+            f.write(full_html)
+        with open("linear-algebra-notes/linear_algebra_notes.html", "w", encoding="utf-8") as f:
+            f.write(full_html)
+        with open("linear-algebra-notes/generate_full_site.py", "w", encoding="utf-8") as f:
+            with open("generate_full_site.py", "r", encoding="utf-8") as g:
+                f.write(g.read())
+
+    # Sync to parent directory if run from linear-algebra-notes
     if os.path.exists("../linear_algebra_notes.html"):
         with open("../index.html", "w", encoding="utf-8") as f:
             f.write(full_html)
