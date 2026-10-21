@@ -4,7 +4,7 @@
 وب‌سایت و مجموعه درس‌نامه‌های جامع دانشگاهی مبانی ماتریس و جبر خطی، برگرفته از تدریس‌های کلاسی **دکتر طوسی** و بر اساس کتاب مرجع **جبر خطی کنت هافمن و ری کونزه (Kenneth Hoffman & Ray Kunze)**.
 
 🌐 **مشاهده وب‌سایت آنلاین (GitHub Pages):**  
-[https://farnam-jhn.github.io/linear-algebra-notes/](https://farnam-jhn.github.io/linear-algebra-notes/)
+[https://farnamjhn.github.io/linear-algebra-notes/](https://farnamjhn.github.io/linear-algebra-notes/)
 
 ---
 
