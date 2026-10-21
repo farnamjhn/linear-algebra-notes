@@ -1005,6 +1005,159 @@
       animation: highlightFlash 2s ease-out;
     }
 
+    /* Wikipedia Reference Cards & Chips */
+    .subject-wiki-card {
+      margin: 0.75rem 0 1.5rem 0;
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-right: 3px solid var(--accent-yellow);
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .wiki-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-yellow);
+      font-weight: 600;
+      font-size: 0.76rem;
+    }
+
+    .wiki-chips {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .wiki-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-base);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.76rem;
+      line-height: 1.3;
+      transition: all 0.12s ease;
+    }
+
+    .wiki-chip:hover {
+      border-color: var(--accent-orange);
+      color: var(--text-main);
+      background: var(--bg-hover);
+    }
+
+    .wiki-chip.en .wiki-lang {
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+    }
+
+    .wiki-chip.fa .wiki-lang {
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+
+    .external-icon {
+      color: var(--text-muted);
+      opacity: 0.65;
+      transition: opacity 0.12s;
+    }
+
+    .wiki-chip:hover .external-icon {
+      opacity: 1;
+      color: var(--accent-orange);
+    }
+
+    /* Sidebar Wikipedia Index */
+    .wiki-sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.4rem 0.2rem;
+    }
+
+    .wiki-sidebar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 4px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.12s;
+    }
+
+    .wiki-sidebar-item:hover {
+      border-color: var(--border-base);
+      background: var(--bg-hover);
+    }
+
+    .wiki-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .wiki-sidebar-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .wiki-sidebar-title:hover {
+      color: var(--accent-orange);
+    }
+
+    .wiki-sidebar-links {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .wiki-sidebar-link {
+      font-size: 0.68rem;
+      color: var(--accent-orange);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-family: ui-monospace, monospace;
+      border: 1px solid var(--border-subtle);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+    }
+
+    .wiki-sidebar-link.fa-link {
+      color: var(--accent-yellow);
+    }
+
+    .wiki-sidebar-link:hover {
+      border-color: var(--accent-orange);
+      color: #fff;
+    }
+
+    .search-result-pill.wiki-pill {
+      color: var(--accent-yellow);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
     /* Mobile Drawer & Responsive Layout */
     @media (max-width: 900px) {
       .site-layout {
@@ -1703,6 +1856,132 @@
     </div>
   </div>
 </details>
+<details class="toc-group" id="group-wiki">
+  <summary class="toc-group-header">
+    <span class="toc-group-num">W</span>
+    <div class="toc-group-meta">
+      <span class="toc-group-title">مراجع دانشنامه‌ای ویکی‌پدیا</span>
+      <span class="toc-group-pages">۱۹ مبحث درسی</span>
+    </div>
+    <span class="toc-arrow">›</span>
+  </summary>
+  <div class="toc-group-body wiki-sidebar-list">
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">فضاهای برداری و مقدمه</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Vector_space" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Vector space (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="فضای برداری (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">میدان و زیرمیدان</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Field_(mathematics)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Field (mathematics) (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_(%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C%D8%A7%D8%AA)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="میدان (ریاضیات) (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">ماتریس‌ها و عملیات ماتریسی</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Matrix (mathematics) (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="ماتریس (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">فضای توابع و چندجمله‌ای‌ها</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Function_space" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Function space (EN)">EN ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">زیرفضاها و پوشش خطی (اسپن)</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Linear_subspace" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Linear subspace (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%B2%DB%8C%D8%B1%D9%81%D8%B6%D8%A7%DB%8C_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="زیرفضای خطی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">استقلال و وابستگی خطی</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Linear_independence" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Linear independence (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="استقلال خطی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">پایه و بردار مختصات</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Basis (linear algebra) (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%DB%8C%D9%87_(%D8%AC%D8%A8%D8%B1_%D8%AE%D8%B7%DB%8C)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="پایه (جبر خطی) (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">قضایای وجود پایه</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Basis (linear algebra) (EN)">EN ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">بُعد و قضیه جایگزینی استاینیتز</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Dimension_(vector_space)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Dimension (vector space) (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%A8%D8%B9%D8%AF_(%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="بعد (فضای برداری) (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">تبدیل‌های خطی (نگاشت خطی)</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Linear_map" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Linear map (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%AA%D8%A8%D8%AF%DB%8C%D9%84_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="تبدیل خطی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">وارون‌پذیری و یکریختی (ایزومورفیسم)</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Invertible_matrix" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Invertible matrix (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%DB%8C%DA%A9%E2%80%8C%D8%B1%DB%8C%D8%AE%D8%AA%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="یک‌ریختی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">هسته، تصویر و قضیه رتبه و پوچی</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Kernel_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Kernel (linear algebra) (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%87%D8%B3%D8%AA%D9%87_(%D8%AC%D8%A8%D8%B1)" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="هسته (جبر) (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">جبر تبدیل‌های خطی</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Associative_algebra" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Associative algebra (EN)">EN ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">فضای سطری، ستونی و فضای پوچ</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Row_and_column_spaces" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Row and column spaces (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%B3%D8%B7%D8%B1%DB%8C_%D9%88_%D8%B3%D8%AA%D9%88%D9%86%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="فضای سطری و ستونی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">نمایش ماتریسی تبدیل‌های خطی و تغییر پایه</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Transformation_matrix" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Transformation matrix (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D8%AA%D8%A8%D8%AF%DB%8C%D9%84" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="ماتریس تبدیل (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">عملیات سطری مقدماتی، فرم پلکانی و رتبه</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Row_echelon_form" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Row echelon form (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%BE%D9%84%DA%A9%D8%A7%D9%86%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="ماتریس پلکانی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">دستگاه‌های معادلات خطی و حذف گاوسی</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/System_of_linear_equations" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="System of linear equations (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%DA%AF%D8%A7%D9%87_%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A7%D8%AA_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="دستگاه معادلات خطی (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">روش محاسبه وارون ماتریس (گاوس-جردن)</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Invertible_matrix" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Invertible matrix (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%88%D8%A7%D8%B1%D9%88%D9%86%E2%80%8C%D9%BE%D8%B0%DB%8C%D8%B1" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="ماتریس وارون‌پذیر (FA)">FA ↗</a></div>
+      </div>
+    </div>
+    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">دترمینان، فرمول لایبنیتس و قاعده کرامر</span>
+        <div class="wiki-sidebar-links"><a href="https://en.wikipedia.org/wiki/Determinant" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="Determinant (EN)">EN ↗</a> <a href="https://fa.wikipedia.org/wiki/%D8%AF%D8%AA%D8%B1%D9%85%DB%8C%D9%86%D8%A7%D9%86" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="دترمینان (FA)">FA ↗</a></div>
+      </div>
+    </div>
+  </div>
+</details>
       </nav>
     </aside>
 
@@ -1725,6 +2004,10 @@
           <div class="masthead-detail-item">
             <span class="detail-label">محتوا</span>
             <span class="detail-value">۱۱۰ صفحه درس‌نامه • ۱۸ بخش کامل</span>
+          </div>
+          <div class="masthead-detail-item">
+            <span class="detail-label">مراجع دانشنامه‌ای</span>
+            <span class="detail-value">ویکی‌پدیا فارسی و انگلیسی (تأییدشده)</span>
           </div>
         </div>
       </header>
@@ -1758,6 +2041,29 @@ Equations)</span>&rlm;، محاسبه وارون ماتریس &lrm;<span class="
   
   <a class="header-anchor" href="#بخش-اول-مقدمه-و-فضاهای-برداری-introduction-and-vector-spaces" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Vector_space" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Vector space در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Vector space در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Vector space</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="فضای برداری در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="فضای برداری در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >فضای برداری</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Linear_algebra" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Linear algebra در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Linear algebra در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Linear algebra</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۱-انگیزه-و-معرفی-جبر-خطی-motivation-and-introduction-to-linear-algebra" class="heading-linked">
   <span class="heading-fa">صفحه ۱: انگیزه و معرفی جبر خطی</span>
   &lrm;<span class="heading-en" dir="ltr">(Motivation and Introduction to Linear Algebra)</span>&rlm;
@@ -1982,6 +2288,24 @@ Space Theory)</span>&rlm; فقط از اصول بنیادی &lrm;<span class="en
   <span class="page-tag">صفحه ۵</span>
   <a class="header-anchor" href="#صفحه-۵-تعریف-میدان-و-زیرمیدان-definition-of-field-and-subfield" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Field_(mathematics)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Field (mathematics) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Field (mathematics) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Field (mathematics)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_(%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C%D8%A7%D8%AA)" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="میدان (ریاضیات) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="میدان (ریاضیات) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >میدان (ریاضیات)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p>بهتر است بر این پایه فرض کنید که میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; درگیر در بحث زیر،
 میدان اعداد حقیقی &lrm;<span class="en-term" dir="ltr">(Field of Real Numbers)</span>&rlm; <span
 class="math inline">\(\mathbb{R}\)</span> یا میدان اعداد مختلط &lrm;<span class="en-term" dir="ltr">(Field of
@@ -2164,6 +2488,29 @@ class="math inline">\(n\)</span>-tuples) عبارتند از:</p>
   <span class="page-tag">صفحه ۸ و ۹</span>
   <a class="header-anchor" href="#صفحه-۸-و-۹-تعریف-ماتریس-و-عملیات-جبری-روی-ماتریسها-definition-of-matrix-and-matrix-operations" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Matrix (mathematics) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Matrix (mathematics) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Matrix (mathematics)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="ماتریس در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="ماتریس در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >ماتریس</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Matrix_multiplication" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Matrix multiplication در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Matrix multiplication در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Matrix multiplication</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p><strong>۳. فضای ماتریس‌ها &lrm;<span class="en-term" dir="ltr">(Matrix Space)</span>&rlm;:</strong></p>
 <ul>
 <li><p><strong>الف)</strong> ** ماتریس &lrm;<span class="en-term" dir="ltr">(Matrix)</span>&rlm;** را به عنوان آرایش
@@ -2351,6 +2698,24 @@ n}(F)\)</span> بررسی شود.)</p></li>
   <span class="page-tag">صفحه ۱۰</span>
   <a class="header-anchor" href="#صفحه-۱۰-فضای-توابع-فضای-چندجملهایها-و-فضاهای-برداری-غیرمتعارف-function-spaces-polynomial-spaces-and-non-standard-vector-spaces" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Function_space" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Function space در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Function space در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Function space</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Polynomial_ring" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Polynomial ring در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Polynomial ring در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Polynomial ring</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <ul>
 <li><p><strong>۴. فضای توابع &lrm;<span class="en-term" dir="ltr">(Function Space)</span>&rlm;:</strong> فرض کنید <span
 class="math inline">\(S\)</span> یک مجموعه ناتهی &lrm;<span class="en-term" dir="ltr">(Non-empty Set)</span>&rlm; و <span
@@ -2611,6 +2976,34 @@ Combination)</span>&rlm;</strong> می‌نامند.</p>
   
   <a class="header-anchor" href="#بخش-دوم-زیرفضاها-و-زیرفضای-پدیدآمده-subspaces-and-span" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Linear_subspace" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Linear subspace در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Linear subspace در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Linear subspace</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%B2%DB%8C%D8%B1%D9%81%D8%B6%D8%A7%DB%8C_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="زیرفضای خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="زیرفضای خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >زیرفضای خطی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Linear_span" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Linear span در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Linear span در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Linear span</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%BE%D9%88%D8%B4%D8%B4_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="پوشش خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="پوشش خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >پوشش خطی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۱۳-تا-۱۷-تعریف-زیرفضا-قضایا-و-مفهوم-مولد-subspace-definition-theorems-and-spanning-sets" class="heading-linked">
   <span class="heading-fa">صفحه ۱۳ تا ۱۷: تعریف زیرفضا، قضایا و مفهوم مولد</span>
   &lrm;<span class="heading-en" dir="ltr">(Subspace Definition, Theorems, and Spanning Sets)</span>&rlm;
@@ -2916,6 +3309,24 @@ class="math inline">\(\{u_1, \dots, u_r\}\)</span> را به عنوان یک م�
   
   <a class="header-anchor" href="#بخش-سوم-استقلال-خطی-و-وابستگی-خطی-linear-independence-and-dependence" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Linear_independence" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Linear independence در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Linear independence در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Linear independence</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="استقلال خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="استقلال خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >استقلال خطی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۱۹-تا-۲۲-تعاریف-قضایا-و-مثالهای-استقلال-خطی-definitions-theorems-and-examples-of-linear-independence" class="heading-linked">
   <span class="heading-fa">صفحه ۱۹ تا ۲۲: تعاریف، قضایا و مثال‌های استقلال خطی</span>
   &lrm;<span class="heading-en" dir="ltr">(Definitions, Theorems, and Examples of Linear Independence)</span>&rlm;
@@ -3119,6 +3530,29 @@ f_3\}\)</span> وابسته خطی &lrm;<span class="en-term" dir="ltr">(Linearl
   
   <a class="header-anchor" href="#بخش-چهارم-پایه-و-مختصات-basis-and-coordinates" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Basis (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Basis (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Basis (linear algebra)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%DB%8C%D9%87_(%D8%AC%D8%A8%D8%B1_%D8%AE%D8%B7%DB%8C)" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="پایه (جبر خطی) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="پایه (جبر خطی) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >پایه (جبر خطی)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Coordinate_vector" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Coordinate vector در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Coordinate vector در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Coordinate vector</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۲۳-تا-۲۵-پایه-پایه-مرتب-و-بردار-مختصات-basis-ordered-basis-and-coordinate-vector" class="heading-linked">
   <span class="heading-fa">صفحه ۲۳ تا ۲۵: پایه، پایه مرتب و بردار مختصات</span>
   &lrm;<span class="heading-en" dir="ltr">(Basis, Ordered Basis, and Coordinate Vector)</span>&rlm;
@@ -3302,6 +3736,24 @@ class="math inline">\([p(x)]_B = \begin{bmatrix} 5 \\ -1 \\ 0 \\ 2
   <span class="page-tag">صفحه ۲۶</span>
   <a class="header-anchor" href="#وجود-پایه-existence-of-a-basis-صفحه-۲۶" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Basis (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Basis (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Basis (linear algebra)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Zorn%27s_lemma" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Zorn&#x27;s lemma در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Zorn&#x27;s lemma در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Zorn&#x27;s lemma</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <ul>
 <li><p><strong>یادآوری - الف) تعریف &lrm;<span class="en-term" dir="ltr">(Definition)</span>&rlm;:</strong> یک مجموعه
 غیرتهی &lrm;<span class="en-term" dir="ltr">(Non-empty set)</span>&rlm; <span class="math inline">\(A\)</span> همراه با
@@ -3437,6 +3889,29 @@ basis)</span>&rlm; است.</p></li>
   
   <a class="header-anchor" href="#بعد-و-قضیه-جایگزینی-dimension-and-replacement-theorem-صفحات-۲۸-تا-۳۱" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Dimension_(vector_space)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Dimension (vector space) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Dimension (vector space) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Dimension (vector space)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%A8%D8%B9%D8%AF_(%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C)" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="بعد (فضای برداری) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="بعد (فضای برداری) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >بعد (فضای برداری)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Steinitz_exchange_lemma" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Steinitz exchange lemma در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Steinitz exchange lemma در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Steinitz exchange lemma</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۲۸" class="heading-linked">
   <span class="heading-fa">صفحه ۲۸</span>
   
@@ -3731,6 +4206,24 @@ dimension)</span>&rlm; است و:</p>
   
   <a class="header-anchor" href="#تبدیلهای-خطی-linear-transformations-صفحات-۳۲-تا-۳۵" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Linear_map" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Linear map در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Linear map در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Linear map</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%AA%D8%A8%D8%AF%DB%8C%D9%84_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="تبدیل خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="تبدیل خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >تبدیل خطی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۳۲" class="heading-linked">
   <span class="heading-fa">صفحه ۳۲</span>
   
@@ -4046,6 +4539,29 @@ P(\mathbb{R})\)</span> پوشا &lrm;<span class="en-term" dir="ltr">(Surjective
   
   <a class="header-anchor" href="#وارونپذیری-و-یکریختی-invertibility-and-isomorphism-صفحات-۳۶-تا-۳۸" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Invertible_matrix" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Invertible matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Invertible matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Invertible matrix</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Isomorphism" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Isomorphism در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Isomorphism در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Isomorphism</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%DB%8C%DA%A9%E2%80%8C%D8%B1%DB%8C%D8%AE%D8%AA%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="یک‌ریختی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="یک‌ریختی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >یک‌ریختی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۳۶" class="heading-linked">
   <span class="heading-fa">صفحه ۳۶</span>
   
@@ -4236,6 +4752,34 @@ class="math inline">\((a_1, a_2, a_3, \dots) \mapsto (a_2, a_3,
   
   <a class="header-anchor" href="#هسته-و-تصویر-یک-تبدیل-خطی-kernel-and-image-of-a-linear-transformation-صفحات-۳۹-و-۴۰" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Kernel_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Kernel (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Kernel (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Kernel (linear algebra)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%87%D8%B3%D8%AA%D9%87_(%D8%AC%D8%A8%D8%B1)" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="هسته (جبر) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="هسته (جبر) در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >هسته (جبر)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Rank%E2%80%93nullity_theorem" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Rank–nullity theorem در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Rank–nullity theorem در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Rank–nullity theorem</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%82%D8%B6%DB%8C%D9%87_%D8%B1%D8%AA%D8%A8%D9%87_%D9%88_%D9%BE%D9%88%DA%86%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="قضیه رتبه و پوچی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="قضیه رتبه و پوچی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >قضیه رتبه و پوچی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۳۹" class="heading-linked">
   <span class="heading-fa">صفحه ۳۹</span>
   
@@ -4377,6 +4921,24 @@ class="math inline">\(\mathbb{R}^2\)</span> ، به دلیل بزرگ‌تر ب�
   <span class="page-tag">صفحه ۴۱</span>
   <a class="header-anchor" href="#جبر-تبدیلهای-خطی-algebra-of-linear-transformations-صفحه-۴۱" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Associative_algebra" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Associative algebra در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Associative algebra در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Associative algebra</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Endomorphism" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Endomorphism در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Endomorphism در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Endomorphism</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <ul>
 <li><p><strong>۱-۱۰- تعریف &lrm;<span class="en-term" dir="ltr">(Definition)</span>&rlm;:</strong> فرض کنید <span
 class="math inline">\(S\)</span> یک مجموعه غیرتهی &lrm;<span class="en-term" dir="ltr">(Non-empty set)</span>&rlm; و
@@ -4471,6 +5033,29 @@ class="math inline">\(\mathcal{L}(V)\)</span>.</p></li>
   
   <a class="header-anchor" href="#فضای-سطری-فضای-ستونی-و-فضای-پوچ-row-space-column-space-and-null-space-صفحات-۴۲-و-۴۳" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Row_and_column_spaces" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Row and column spaces در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Row and column spaces در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Row and column spaces</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%B3%D8%B7%D8%B1%DB%8C_%D9%88_%D8%B3%D8%AA%D9%88%D9%86%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="فضای سطری و ستونی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="فضای سطری و ستونی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >فضای سطری و ستونی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Kernel_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Kernel (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Kernel (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Kernel (linear algebra)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۴۲" class="heading-linked">
   <span class="heading-fa">صفحه ۴۲</span>
   
@@ -4598,6 +5183,29 @@ A\text{)})" onclick="copyFormula(this)" title="کپی فرمول LaTeX">
   
   <a class="header-anchor" href="#نمایش-ماتریسی-تبدیلهای-خطی-matrix-representation-of-linear-transformations-صفحات-۴۴-تا-۴۹" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Transformation_matrix" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Transformation matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Transformation matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Transformation matrix</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D8%AA%D8%A8%D8%AF%DB%8C%D9%84" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="ماتریس تبدیل در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="ماتریس تبدیل در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >ماتریس تبدیل</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Change_of_basis" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Change of basis در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Change of basis در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Change of basis</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <h3 id="صفحه-۴۴" class="heading-linked">
   <span class="heading-fa">صفحه ۴۴</span>
   
@@ -4895,6 +5503,34 @@ class="math inline">\(\dim_F \mathcal{L}(V, W) = mn\)</span>).</p></li>
   <span class="page-tag">صفحه ۷۴</span>
   <a class="header-anchor" href="#صفحه-۷۴" aria-label="پیوند مستقیم">#</a>
 </h2>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Row_echelon_form" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Row echelon form در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Row echelon form در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Row echelon form</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%BE%D9%84%DA%A9%D8%A7%D9%86%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="ماتریس پلکانی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="ماتریس پلکانی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >ماتریس پلکانی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Elementary_matrix" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Elementary matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Elementary matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Elementary matrix</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Rank (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Rank (linear algebra) در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Rank (linear algebra)</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p><strong>(ب)</strong> مشابه برهان &lrm;<span class="en-term" dir="ltr">(Proof)</span>&rlm; قضیه &lrm;<span class="en-term" dir="ltr">(Theorem)</span>&rlm; ۱۵-۴ عمل
 می‌شود: ماتریس‌های &lrm;<span class="en-term" dir="ltr">(Matrices)</span>&rlm; <span class="math inline">\(A = A_0, A_1,
 \dots, A_{s-1}, A_s = R\)</span> وجود دارند به طوری که برای هر <span
@@ -5311,6 +5947,34 @@ Combination)</span>&rlm; از سطرهای <span class="math inline">\(A\)</span
   
   <a class="header-anchor" href="#دستگاههای-معادلات-خطی-systems-of-linear-equations" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/System_of_linear_equations" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="System of linear equations در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="System of linear equations در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">System of linear equations</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%DA%AF%D8%A7%D9%87_%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A7%D8%AA_%D8%AE%D8%B7%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="دستگاه معادلات خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="دستگاه معادلات خطی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >دستگاه معادلات خطی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Gaussian_elimination" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Gaussian elimination در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Gaussian elimination در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Gaussian elimination</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%AD%D8%B0%D9%81_%DA%AF%D8%A7%D9%88%D8%B3%DB%8C" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="حذف گاوسی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="حذف گاوسی در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >حذف گاوسی</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p>در این قسمت دستگاه معادلات خطی &lrm;<span class="en-term" dir="ltr">(System of Linear Equations)</span>&rlm; مطالعه
 می‌شود که در علوم انسانی و تجربی کاربرد دارد. در این قسمت نتایج بخش‌های
 قبلی را برای توصیف مجموعه جواب‌های &lrm;<span class="en-term" dir="ltr">(Solution Set)</span>&rlm; دستگاه معادلات خطی به
@@ -6199,6 +6863,29 @@ I_n\)</span>.</p></li>
   
   <a class="header-anchor" href="#روش-محاسبه-وارون-یک-ماتریس-وارونپذیر-method-for-computing-the-inverse-of-an-invertible-matrix" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Invertible_matrix" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Invertible matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Invertible matrix در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Invertible matrix</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%88%D8%A7%D8%B1%D9%88%D9%86%E2%80%8C%D9%BE%D8%B0%DB%8C%D8%B1" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="ماتریس وارون‌پذیر در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="ماتریس وارون‌پذیر در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >ماتریس وارون‌پذیر</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Gaussian_elimination#Finding_the_inverse_of_a_matrix" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Gauss–Jordan elimination در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Gauss–Jordan elimination در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Gauss–Jordan elimination</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p><strong>۱۷-۱- یادآوری &lrm;<span class="en-term" dir="ltr">(Recall)</span>&rlm;:</strong> از ۱۴-۱ و ۱۵-۱ فرض کنید
 <span class="math inline">\(A, B \in M_{n \times n}(F)\)</span>. در این
 صورت:</p>
@@ -6387,6 +7074,44 @@ I_n\)</span>.</p>
   
   <a class="header-anchor" href="#دترمینان-determinant" aria-label="پیوند مستقیم">#</a>
 </h3>
+<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    <a href="https://en.wikipedia.org/wiki/Determinant" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Determinant در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Determinant در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Determinant</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D8%AF%D8%AA%D8%B1%D9%85%DB%8C%D9%86%D8%A7%D9%86" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="دترمینان در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="دترمینان در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >دترمینان</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Leibniz formula for determinants در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Leibniz formula for determinants در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Leibniz formula for determinants</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Laplace_expansion" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Laplace expansion در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Laplace expansion در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Laplace expansion</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://en.wikipedia.org/wiki/Cramer%27s_rule" target="_blank" rel="noopener noreferrer" class="wiki-chip en" aria-label="Cramer&#x27;s rule در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)" title="Cramer&#x27;s rule در ویکی‌پدیای انگلیسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">EN</span>
+  <span class="wiki-chip-title" dir="ltr">Cramer&#x27;s rule</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+    <a href="https://fa.wikipedia.org/wiki/%D9%82%D8%A7%D8%B9%D8%AF%D9%87_%DA%A9%D8%B1%D8%A7%D9%85%D8%B1" target="_blank" rel="noopener noreferrer" class="wiki-chip fa" aria-label="قاعده کرامر در ویکی‌پدیای فارسی (باز شدن در برگه جدید)" title="قاعده کرامر در ویکی‌پدیای فارسی (باز شدن در برگه جدید)">
+  <span class="wiki-lang">FA</span>
+  <span class="wiki-chip-title" >قاعده کرامر</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>
+  </div>
+</div>
 <p>صد سال پیش‌تر، جایگاه دترمینان‌ها &lrm;<span class="en-term" dir="ltr">(Determinants)</span>&rlm; در جبر خطی &lrm;<span class="en-term" dir="ltr">(Linear
 Algebra)</span>&rlm; مهم‌تر از جایگاه امروزشان بود. بالاخره مسیر نظریه‌های ریاضیات هم
 عوض می‌شود! با این حال همین عدد می‌تواند خیلی چیزها را درباره ماتریس
@@ -7540,7 +8265,7 @@ Reduction):</p>
   </div>
 
   <script>
-    const searchData = [{"id": "بخش-اول-مقدمه-و-فضاهای-برداری-introduction-and-vector-spaces", "title": "بخش اول: مقدمه و فضاهای برداری Introduction and Vector Spaces", "level": "h2"}, {"id": "صفحه-۱-انگیزه-و-معرفی-جبر-خطی-motivation-and-introduction-to-linear-algebra", "title": "صفحه ۱: انگیزه و معرفی جبر خطی Motivation and Introduction to Linear Algebra", "level": "h3"}, {"id": "صفحه-۲-خواص-مشترک-جوابها-و-مفهوم-ترکیب-خطی-common-properties-of-solutions-and-linear-combination", "title": "صفحه ۲: خواص مشترک جواب‌ها و مفهوم ترکیب خطی Common Properties of Solutions and Linear Combination", "level": "h3"}, {"id": "صفحه-۳-و-۴-بردارهای-هندسی-و-تعریف-جبر-خطی-geometric-vectors-and-definition-of-linear-algebra", "title": "صفحه ۳ و ۴: بردارهای هندسی و تعریف جبر خطی Geometric Vectors and Definition of Linear Algebra", "level": "h3"}, {"id": "صفحه-۵-تعریف-میدان-و-زیرمیدان-definition-of-field-and-subfield", "title": "صفحه ۵: تعریف میدان و زیرمیدان Definition of Field and Subfield", "level": "h3"}, {"id": "صفحه-۶-و-۷-مثالهای-مقدماتی-فضاهای-برداری-و-فضای-fn-introductory-examples-of-vector-spaces-and-the-space-fn", "title": "صفحه ۶ و ۷: مثال‌های مقدماتی فضاهای برداری و فضای \\(F^n\\) (Introductory Examples of Vector Spaces and the Space \\(F^n\\))", "level": "h3"}, {"id": "صفحه-۸-و-۹-تعریف-ماتریس-و-عملیات-جبری-روی-ماتریسها-definition-of-matrix-and-matrix-operations", "title": "صفحه ۸ و ۹: تعریف ماتریس و عملیات جبری روی ماتریس‌ها Definition of Matrix and Matrix Operations", "level": "h3"}, {"id": "صفحه-۱۰-فضای-توابع-فضای-چندجملهایها-و-فضاهای-برداری-غیرمتعارف-function-spaces-polynomial-spaces-and-non-standard-vector-spaces", "title": "صفحه ۱۰: فضای توابع، فضای چندجمله‌ای‌ها و فضاهای برداری غیرمتعارف Function Spaces, Polynomial Spaces, and Non-standard Vector Spaces", "level": "h3"}, {"id": "صفحه-۱۱-و-۱۲-تعریف-اصول-موضوعی-فضای-برداری-و-خواص-مقدماتی-axiomatic-definition-of-vector-space-and-elementary-properties", "title": "صفحه ۱۱ و ۱۲: تعریف اصول موضوعی فضای برداری و خواص مقدماتی Axiomatic Definition of Vector Space and Elementary Properties", "level": "h3"}, {"id": "بخش-دوم-زیرفضاها-و-زیرفضای-پدیدآمده-subspaces-and-span", "title": "بخش دوم: زیرفضاها و زیرفضای پدیدآمده Subspaces and Span", "level": "h2"}, {"id": "صفحه-۱۳-تا-۱۷-تعریف-زیرفضا-قضایا-و-مفهوم-مولد-subspace-definition-theorems-and-spanning-sets", "title": "صفحه ۱۳ تا ۱۷: تعریف زیرفضا، قضایا و مفهوم مولد Subspace Definition, Theorems, and Spanning Sets", "level": "h3"}, {"id": "صفحه-۱۸-ارتباط-مفهوم-مولد-با-حل-دستگاههای-معادلات-connection-of-spanning-sets-to-solving-systems-of-equations", "title": "صفحه ۱۸: ارتباط مفهوم مولد با حل دستگاه‌های معادلات Connection of Spanning Sets to Solving Systems of Equations", "level": "h3"}, {"id": "بخش-سوم-استقلال-خطی-و-وابستگی-خطی-linear-independence-and-dependence", "title": "بخش سوم: استقلال خطی و وابستگی خطی Linear Independence and Dependence", "level": "h2"}, {"id": "صفحه-۱۹-تا-۲۲-تعاریف-قضایا-و-مثالهای-استقلال-خطی-definitions-theorems-and-examples-of-linear-independence", "title": "صفحه ۱۹ تا ۲۲: تعاریف، قضایا و مثال‌های استقلال خطی Definitions, Theorems, and Examples of Linear Independence", "level": "h3"}, {"id": "بخش-چهارم-پایه-و-مختصات-basis-and-coordinates", "title": "بخش چهارم: پایه و مختصات Basis and Coordinates", "level": "h2"}, {"id": "صفحه-۲۳-تا-۲۵-پایه-پایه-مرتب-و-بردار-مختصات-basis-ordered-basis-and-coordinate-vector", "title": "صفحه ۲۳ تا ۲۵: پایه، پایه مرتب و بردار مختصات Basis, Ordered Basis, and Coordinate Vector", "level": "h3"}, {"id": "وجود-پایه-existence-of-a-basis-صفحه-۲۶", "title": "(۵) وجود پایه — صفحه ۲۶ Existence of a Basis", "level": "h2"}, {"id": "قضایای-وجود-پایه-basis-existence-theorems-صفحه-۲۷", "title": "قضایای وجود پایه — صفحه ۲۷ Basis Existence Theorems", "level": "h2"}, {"id": "بعد-و-قضیه-جایگزینی-dimension-and-replacement-theorem-صفحات-۲۸-تا-۳۱", "title": "(۶) بعد و قضیه جایگزینی — صفحات ۲۸ تا ۳۱ Dimension and Replacement Theorem", "level": "h2"}, {"id": "صفحه-۲۸", "title": "صفحه ۲۸", "level": "h3"}, {"id": "صفحه-۲۹", "title": "صفحه ۲۹", "level": "h3"}, {"id": "صفحه-۳۰", "title": "صفحه ۳۰", "level": "h3"}, {"id": "صفحه-۳۱", "title": "صفحه ۳۱", "level": "h3"}, {"id": "تبدیلهای-خطی-linear-transformations-صفحات-۳۲-تا-۳۵", "title": "(۷) تبدیل‌های خطی — صفحات ۳۲ تا ۳۵ Linear Transformations", "level": "h2"}, {"id": "صفحه-۳۲", "title": "صفحه ۳۲", "level": "h3"}, {"id": "صفحه-۳۳", "title": "صفحه ۳۳", "level": "h3"}, {"id": "صفحه-۳۴-بخش-اول-و-دوم", "title": "صفحه ۳۴ (بخش اول و دوم)", "level": "h3"}, {"id": "صفحه-۳۵", "title": "صفحه ۳۵", "level": "h3"}, {"id": "وارونپذیری-و-یکریختی-invertibility-and-isomorphism-صفحات-۳۶-تا-۳۸", "title": "(۸) وارون‌پذیری و یکریختی — صفحات ۳۶ تا ۳۸ Invertibility and Isomorphism", "level": "h2"}, {"id": "صفحه-۳۶", "title": "صفحه ۳۶", "level": "h3"}, {"id": "صفحه-۳۷", "title": "صفحه ۳۷", "level": "h3"}, {"id": "صفحه-۳۸", "title": "صفحه ۳۸", "level": "h3"}, {"id": "هسته-و-تصویر-یک-تبدیل-خطی-kernel-and-image-of-a-linear-transformation-صفحات-۳۹-و-۴۰", "title": "(۹) هسته و تصویر یک تبدیل خطی — صفحات ۳۹ و ۴۰ Kernel and Image of a Linear Transformation", "level": "h2"}, {"id": "صفحه-۳۹", "title": "صفحه ۳۹", "level": "h3"}, {"id": "صفحه-۴۰", "title": "صفحه ۴۰", "level": "h3"}, {"id": "جبر-تبدیلهای-خطی-algebra-of-linear-transformations-صفحه-۴۱", "title": "(۱۰) جبر تبدیل‌های خطی — صفحه ۴۱ Algebra of Linear Transformations", "level": "h2"}, {"id": "فضای-سطری-فضای-ستونی-و-فضای-پوچ-row-space-column-space-and-null-space-صفحات-۴۲-و-۴۳", "title": "(۱۱) فضای سطری، فضای ستونی و فضای پوچ — صفحات ۴۲ و ۴۳ Row Space, Column Space, and Null Space", "level": "h2"}, {"id": "صفحه-۴۲", "title": "صفحه ۴۲", "level": "h3"}, {"id": "صفحه-۴۳", "title": "صفحه ۴۳", "level": "h3"}, {"id": "نمایش-ماتریسی-تبدیلهای-خطی-matrix-representation-of-linear-transformations-صفحات-۴۴-تا-۴۹", "title": "(۱۲) نمایش ماتریسی تبدیل‌های خطی — صفحات ۴۴ تا ۴۹ Matrix Representation of Linear Transformations", "level": "h2"}, {"id": "صفحه-۴۴", "title": "صفحه ۴۴", "level": "h3"}, {"id": "صفحات-۴۵-و-۴۶", "title": "صفحات ۴۵ و ۴۶", "level": "h3"}, {"id": "صفحه-۴۷", "title": "صفحه ۴۷", "level": "h3"}, {"id": "صفحات-۴۸-و-۴۹", "title": "صفحات ۴۸ و ۴۹", "level": "h3"}, {"id": "صفحه-۷۴", "title": "صفحه ۷۴", "level": "h2"}, {"id": "صفحه-۷۵", "title": "صفحه ۷۵", "level": "h2"}, {"id": "صفحه-۷۶", "title": "صفحه ۷۶", "level": "h2"}, {"id": "صفحه-۷۷", "title": "صفحه ۷۷", "level": "h2"}, {"id": "صفحه-۷۸", "title": "صفحه ۷۸", "level": "h2"}, {"id": "صفحه-۷۹", "title": "صفحه ۷۹", "level": "h2"}, {"id": "دستگاههای-معادلات-خطی-systems-of-linear-equations", "title": "(۱۶) دستگاه‌های معادلات خطی Systems of Linear Equations", "level": "h3"}, {"id": "صفحه-۸۰", "title": "صفحه ۸۰", "level": "h2"}, {"id": "صفحه-۸۱", "title": "صفحه ۸۱", "level": "h2"}, {"id": "صفحه-۸۲", "title": "صفحه ۸۲", "level": "h2"}, {"id": "صفحه-۸۳", "title": "صفحه ۸۳", "level": "h2"}, {"id": "صفحه-۸۴", "title": "صفحه ۸۴", "level": "h2"}, {"id": "صفحه-۸۵", "title": "صفحه ۸۵", "level": "h2"}, {"id": "صفحه-۸۶", "title": "صفحه ۸۶", "level": "h2"}, {"id": "صفحه-۸۷", "title": "صفحه ۸۷", "level": "h2"}, {"id": "صفحه-۸۸", "title": "صفحه ۸۸", "level": "h2"}, {"id": "صفحه-۸۹", "title": "صفحه ۸۹", "level": "h2"}, {"id": "صفحه-۹۰", "title": "صفحه ۹۰", "level": "h2"}, {"id": "صفحه-۹۱-تا-۹۳-ادغام-و-تکمیل-صفحات-تکراری-۹۱-۹۳-در-اسکن", "title": "صفحه ۹۱ تا ۹۳ (ادغام و تکمیل صفحات تکراری ۹۱-۹۳ در اسکن)", "level": "h2"}, {"id": "روش-محاسبه-وارون-یک-ماتریس-وارونپذیر-method-for-computing-the-inverse-of-an-invertible-matrix", "title": "(۱۷) روش محاسبه وارون یک ماتریس وارون‌پذیر Method for Computing the Inverse of an Invertible Matrix", "level": "h3"}, {"id": "صفحه-۹۴", "title": "صفحه ۹۴", "level": "h2"}, {"id": "دترمینان-determinant", "title": "(۱۸) دترمینان Determinant", "level": "h3"}, {"id": "صفحه-۹۵", "title": "صفحه ۹۵", "level": "h2"}, {"id": "صفحه-۹۶", "title": "صفحه ۹۶", "level": "h2"}, {"id": "صفحه-۹۷", "title": "صفحه ۹۷", "level": "h2"}, {"id": "صفحه-۹۸", "title": "صفحه ۹۸", "level": "h2"}, {"id": "صفحه-۹۹", "title": "صفحه ۹۹", "level": "h2"}, {"id": "صفحه-۱۰۰", "title": "صفحه ۱۰۰", "level": "h2"}, {"id": "صفحه-۱۰۱", "title": "صفحه ۱۰۱", "level": "h2"}, {"id": "صفحه-۱۰۲", "title": "صفحه ۱۰۲", "level": "h2"}, {"id": "صفحه-۱۰۳", "title": "صفحه ۱۰۳", "level": "h2"}, {"id": "صفحه-۱۰۴", "title": "صفحه ۱۰۴", "level": "h2"}, {"id": "صفحه-۱۰۵", "title": "صفحه ۱۰۵", "level": "h2"}, {"id": "صفحه-۱۰۶", "title": "صفحه ۱۰۶", "level": "h2"}, {"id": "صفحه-۱۰۷", "title": "صفحه ۱۰۷", "level": "h2"}, {"id": "صفحه-۱۰۸", "title": "صفحه ۱۰۸", "level": "h2"}, {"id": "صفحه-۱۰۹", "title": "صفحه ۱۰۹", "level": "h2"}, {"id": "صفحه-۱۱۰", "title": "صفحه ۱۱۰", "level": "h2"}, {"id": "callout-0", "title": "مثال ۱-۱:: ...", "level": "callout", "type": "example"}, {"id": "callout-1", "title": "۶. مثال فضای برداری با اعمال غیرمعمول:: بر روی\nمجموعه \\(V = \\mathbb{R} \\times\n\\mathbb{R}\\) یک عمل جمع برداری &lrm;(Vector Addition)&rlm; به صورت زیر\nتعریف می‌ک...", "level": "callout", "type": "example"}, {"id": "callout-2", "title": "نکته ۱:: بردارهای \\(u_1, \\dots, u_n\\) وابسته خطی &lrm;(Linearly\nDependent)&rlm; هستند اگر و تنها اگر اسکالرهایی مانند \\(c_1, \\do...", "level": "callout", "type": "note"}, {"id": "callout-3", "title": "نکته ۲:: مجموعه \\(S\\) مستقل خطی &lrm;(Linearly Independent)&rlm; است\nاگر و تنها اگر برای هر زیرمجموعه متناهی \\(\\{u_1, \\dots, u_n...", "level": "callout", "type": "note"}, {"id": "callout-4", "title": "نکته ۳:: مجموعه \\(S\\) وابسته خطی است اگر و تنها اگر برداری\nچون \\(u \\in S\\) وجود داشته باشد که\n\\(\\text{Span}(S - \\{u\\}) =\n\\text{S...", "level": "callout", "type": "note"}, {"id": "callout-5", "title": "و) لم زرن (Zorn’s Lemma):: اگر \\((A, \\le)\\) یک مجموعه جزئاً مرتب &lrm;(Partially\nordered set)&rlm; باشد به طوری که هر زنجیر &lrm;(Chain)&rlm; در \\...", "level": "callout", "type": "lem"}];
+    const searchData = [{"id": "بخش-اول-مقدمه-و-فضاهای-برداری-introduction-and-vector-spaces", "title": "بخش اول: مقدمه و فضاهای برداری Introduction and Vector Spaces", "level": "h2"}, {"id": "صفحه-۱-انگیزه-و-معرفی-جبر-خطی-motivation-and-introduction-to-linear-algebra", "title": "صفحه ۱: انگیزه و معرفی جبر خطی Motivation and Introduction to Linear Algebra", "level": "h3"}, {"id": "صفحه-۲-خواص-مشترک-جوابها-و-مفهوم-ترکیب-خطی-common-properties-of-solutions-and-linear-combination", "title": "صفحه ۲: خواص مشترک جواب‌ها و مفهوم ترکیب خطی Common Properties of Solutions and Linear Combination", "level": "h3"}, {"id": "صفحه-۳-و-۴-بردارهای-هندسی-و-تعریف-جبر-خطی-geometric-vectors-and-definition-of-linear-algebra", "title": "صفحه ۳ و ۴: بردارهای هندسی و تعریف جبر خطی Geometric Vectors and Definition of Linear Algebra", "level": "h3"}, {"id": "صفحه-۵-تعریف-میدان-و-زیرمیدان-definition-of-field-and-subfield", "title": "صفحه ۵: تعریف میدان و زیرمیدان Definition of Field and Subfield", "level": "h3"}, {"id": "صفحه-۶-و-۷-مثالهای-مقدماتی-فضاهای-برداری-و-فضای-fn-introductory-examples-of-vector-spaces-and-the-space-fn", "title": "صفحه ۶ و ۷: مثال‌های مقدماتی فضاهای برداری و فضای \\(F^n\\) (Introductory Examples of Vector Spaces and the Space \\(F^n\\))", "level": "h3"}, {"id": "صفحه-۸-و-۹-تعریف-ماتریس-و-عملیات-جبری-روی-ماتریسها-definition-of-matrix-and-matrix-operations", "title": "صفحه ۸ و ۹: تعریف ماتریس و عملیات جبری روی ماتریس‌ها Definition of Matrix and Matrix Operations", "level": "h3"}, {"id": "صفحه-۱۰-فضای-توابع-فضای-چندجملهایها-و-فضاهای-برداری-غیرمتعارف-function-spaces-polynomial-spaces-and-non-standard-vector-spaces", "title": "صفحه ۱۰: فضای توابع، فضای چندجمله‌ای‌ها و فضاهای برداری غیرمتعارف Function Spaces, Polynomial Spaces, and Non-standard Vector Spaces", "level": "h3"}, {"id": "صفحه-۱۱-و-۱۲-تعریف-اصول-موضوعی-فضای-برداری-و-خواص-مقدماتی-axiomatic-definition-of-vector-space-and-elementary-properties", "title": "صفحه ۱۱ و ۱۲: تعریف اصول موضوعی فضای برداری و خواص مقدماتی Axiomatic Definition of Vector Space and Elementary Properties", "level": "h3"}, {"id": "بخش-دوم-زیرفضاها-و-زیرفضای-پدیدآمده-subspaces-and-span", "title": "بخش دوم: زیرفضاها و زیرفضای پدیدآمده Subspaces and Span", "level": "h2"}, {"id": "صفحه-۱۳-تا-۱۷-تعریف-زیرفضا-قضایا-و-مفهوم-مولد-subspace-definition-theorems-and-spanning-sets", "title": "صفحه ۱۳ تا ۱۷: تعریف زیرفضا، قضایا و مفهوم مولد Subspace Definition, Theorems, and Spanning Sets", "level": "h3"}, {"id": "صفحه-۱۸-ارتباط-مفهوم-مولد-با-حل-دستگاههای-معادلات-connection-of-spanning-sets-to-solving-systems-of-equations", "title": "صفحه ۱۸: ارتباط مفهوم مولد با حل دستگاه‌های معادلات Connection of Spanning Sets to Solving Systems of Equations", "level": "h3"}, {"id": "بخش-سوم-استقلال-خطی-و-وابستگی-خطی-linear-independence-and-dependence", "title": "بخش سوم: استقلال خطی و وابستگی خطی Linear Independence and Dependence", "level": "h2"}, {"id": "صفحه-۱۹-تا-۲۲-تعاریف-قضایا-و-مثالهای-استقلال-خطی-definitions-theorems-and-examples-of-linear-independence", "title": "صفحه ۱۹ تا ۲۲: تعاریف، قضایا و مثال‌های استقلال خطی Definitions, Theorems, and Examples of Linear Independence", "level": "h3"}, {"id": "بخش-چهارم-پایه-و-مختصات-basis-and-coordinates", "title": "بخش چهارم: پایه و مختصات Basis and Coordinates", "level": "h2"}, {"id": "صفحه-۲۳-تا-۲۵-پایه-پایه-مرتب-و-بردار-مختصات-basis-ordered-basis-and-coordinate-vector", "title": "صفحه ۲۳ تا ۲۵: پایه، پایه مرتب و بردار مختصات Basis, Ordered Basis, and Coordinate Vector", "level": "h3"}, {"id": "وجود-پایه-existence-of-a-basis-صفحه-۲۶", "title": "(۵) وجود پایه — صفحه ۲۶ Existence of a Basis", "level": "h2"}, {"id": "قضایای-وجود-پایه-basis-existence-theorems-صفحه-۲۷", "title": "قضایای وجود پایه — صفحه ۲۷ Basis Existence Theorems", "level": "h2"}, {"id": "بعد-و-قضیه-جایگزینی-dimension-and-replacement-theorem-صفحات-۲۸-تا-۳۱", "title": "(۶) بعد و قضیه جایگزینی — صفحات ۲۸ تا ۳۱ Dimension and Replacement Theorem", "level": "h2"}, {"id": "صفحه-۲۸", "title": "صفحه ۲۸", "level": "h3"}, {"id": "صفحه-۲۹", "title": "صفحه ۲۹", "level": "h3"}, {"id": "صفحه-۳۰", "title": "صفحه ۳۰", "level": "h3"}, {"id": "صفحه-۳۱", "title": "صفحه ۳۱", "level": "h3"}, {"id": "تبدیلهای-خطی-linear-transformations-صفحات-۳۲-تا-۳۵", "title": "(۷) تبدیل‌های خطی — صفحات ۳۲ تا ۳۵ Linear Transformations", "level": "h2"}, {"id": "صفحه-۳۲", "title": "صفحه ۳۲", "level": "h3"}, {"id": "صفحه-۳۳", "title": "صفحه ۳۳", "level": "h3"}, {"id": "صفحه-۳۴-بخش-اول-و-دوم", "title": "صفحه ۳۴ (بخش اول و دوم)", "level": "h3"}, {"id": "صفحه-۳۵", "title": "صفحه ۳۵", "level": "h3"}, {"id": "وارونپذیری-و-یکریختی-invertibility-and-isomorphism-صفحات-۳۶-تا-۳۸", "title": "(۸) وارون‌پذیری و یکریختی — صفحات ۳۶ تا ۳۸ Invertibility and Isomorphism", "level": "h2"}, {"id": "صفحه-۳۶", "title": "صفحه ۳۶", "level": "h3"}, {"id": "صفحه-۳۷", "title": "صفحه ۳۷", "level": "h3"}, {"id": "صفحه-۳۸", "title": "صفحه ۳۸", "level": "h3"}, {"id": "هسته-و-تصویر-یک-تبدیل-خطی-kernel-and-image-of-a-linear-transformation-صفحات-۳۹-و-۴۰", "title": "(۹) هسته و تصویر یک تبدیل خطی — صفحات ۳۹ و ۴۰ Kernel and Image of a Linear Transformation", "level": "h2"}, {"id": "صفحه-۳۹", "title": "صفحه ۳۹", "level": "h3"}, {"id": "صفحه-۴۰", "title": "صفحه ۴۰", "level": "h3"}, {"id": "جبر-تبدیلهای-خطی-algebra-of-linear-transformations-صفحه-۴۱", "title": "(۱۰) جبر تبدیل‌های خطی — صفحه ۴۱ Algebra of Linear Transformations", "level": "h2"}, {"id": "فضای-سطری-فضای-ستونی-و-فضای-پوچ-row-space-column-space-and-null-space-صفحات-۴۲-و-۴۳", "title": "(۱۱) فضای سطری، فضای ستونی و فضای پوچ — صفحات ۴۲ و ۴۳ Row Space, Column Space, and Null Space", "level": "h2"}, {"id": "صفحه-۴۲", "title": "صفحه ۴۲", "level": "h3"}, {"id": "صفحه-۴۳", "title": "صفحه ۴۳", "level": "h3"}, {"id": "نمایش-ماتریسی-تبدیلهای-خطی-matrix-representation-of-linear-transformations-صفحات-۴۴-تا-۴۹", "title": "(۱۲) نمایش ماتریسی تبدیل‌های خطی — صفحات ۴۴ تا ۴۹ Matrix Representation of Linear Transformations", "level": "h2"}, {"id": "صفحه-۴۴", "title": "صفحه ۴۴", "level": "h3"}, {"id": "صفحات-۴۵-و-۴۶", "title": "صفحات ۴۵ و ۴۶", "level": "h3"}, {"id": "صفحه-۴۷", "title": "صفحه ۴۷", "level": "h3"}, {"id": "صفحات-۴۸-و-۴۹", "title": "صفحات ۴۸ و ۴۹", "level": "h3"}, {"id": "صفحه-۷۴", "title": "صفحه ۷۴", "level": "h2"}, {"id": "صفحه-۷۵", "title": "صفحه ۷۵", "level": "h2"}, {"id": "صفحه-۷۶", "title": "صفحه ۷۶", "level": "h2"}, {"id": "صفحه-۷۷", "title": "صفحه ۷۷", "level": "h2"}, {"id": "صفحه-۷۸", "title": "صفحه ۷۸", "level": "h2"}, {"id": "صفحه-۷۹", "title": "صفحه ۷۹", "level": "h2"}, {"id": "دستگاههای-معادلات-خطی-systems-of-linear-equations", "title": "(۱۶) دستگاه‌های معادلات خطی Systems of Linear Equations", "level": "h3"}, {"id": "صفحه-۸۰", "title": "صفحه ۸۰", "level": "h2"}, {"id": "صفحه-۸۱", "title": "صفحه ۸۱", "level": "h2"}, {"id": "صفحه-۸۲", "title": "صفحه ۸۲", "level": "h2"}, {"id": "صفحه-۸۳", "title": "صفحه ۸۳", "level": "h2"}, {"id": "صفحه-۸۴", "title": "صفحه ۸۴", "level": "h2"}, {"id": "صفحه-۸۵", "title": "صفحه ۸۵", "level": "h2"}, {"id": "صفحه-۸۶", "title": "صفحه ۸۶", "level": "h2"}, {"id": "صفحه-۸۷", "title": "صفحه ۸۷", "level": "h2"}, {"id": "صفحه-۸۸", "title": "صفحه ۸۸", "level": "h2"}, {"id": "صفحه-۸۹", "title": "صفحه ۸۹", "level": "h2"}, {"id": "صفحه-۹۰", "title": "صفحه ۹۰", "level": "h2"}, {"id": "صفحه-۹۱-تا-۹۳-ادغام-و-تکمیل-صفحات-تکراری-۹۱-۹۳-در-اسکن", "title": "صفحه ۹۱ تا ۹۳ (ادغام و تکمیل صفحات تکراری ۹۱-۹۳ در اسکن)", "level": "h2"}, {"id": "روش-محاسبه-وارون-یک-ماتریس-وارونپذیر-method-for-computing-the-inverse-of-an-invertible-matrix", "title": "(۱۷) روش محاسبه وارون یک ماتریس وارون‌پذیر Method for Computing the Inverse of an Invertible Matrix", "level": "h3"}, {"id": "صفحه-۹۴", "title": "صفحه ۹۴", "level": "h2"}, {"id": "دترمینان-determinant", "title": "(۱۸) دترمینان Determinant", "level": "h3"}, {"id": "صفحه-۹۵", "title": "صفحه ۹۵", "level": "h2"}, {"id": "صفحه-۹۶", "title": "صفحه ۹۶", "level": "h2"}, {"id": "صفحه-۹۷", "title": "صفحه ۹۷", "level": "h2"}, {"id": "صفحه-۹۸", "title": "صفحه ۹۸", "level": "h2"}, {"id": "صفحه-۹۹", "title": "صفحه ۹۹", "level": "h2"}, {"id": "صفحه-۱۰۰", "title": "صفحه ۱۰۰", "level": "h2"}, {"id": "صفحه-۱۰۱", "title": "صفحه ۱۰۱", "level": "h2"}, {"id": "صفحه-۱۰۲", "title": "صفحه ۱۰۲", "level": "h2"}, {"id": "صفحه-۱۰۳", "title": "صفحه ۱۰۳", "level": "h2"}, {"id": "صفحه-۱۰۴", "title": "صفحه ۱۰۴", "level": "h2"}, {"id": "صفحه-۱۰۵", "title": "صفحه ۱۰۵", "level": "h2"}, {"id": "صفحه-۱۰۶", "title": "صفحه ۱۰۶", "level": "h2"}, {"id": "صفحه-۱۰۷", "title": "صفحه ۱۰۷", "level": "h2"}, {"id": "صفحه-۱۰۸", "title": "صفحه ۱۰۸", "level": "h2"}, {"id": "صفحه-۱۰۹", "title": "صفحه ۱۰۹", "level": "h2"}, {"id": "صفحه-۱۱۰", "title": "صفحه ۱۱۰", "level": "h2"}, {"id": "callout-0", "title": "مثال ۱-۱:: ...", "level": "callout", "type": "example"}, {"id": "callout-1", "title": "۶. مثال فضای برداری با اعمال غیرمعمول:: بر روی\nمجموعه \\(V = \\mathbb{R} \\times\n\\mathbb{R}\\) یک عمل جمع برداری &lrm;(Vector Addition)&rlm; به صورت زیر\nتعریف می‌ک...", "level": "callout", "type": "example"}, {"id": "callout-2", "title": "نکته ۱:: بردارهای \\(u_1, \\dots, u_n\\) وابسته خطی &lrm;(Linearly\nDependent)&rlm; هستند اگر و تنها اگر اسکالرهایی مانند \\(c_1, \\do...", "level": "callout", "type": "note"}, {"id": "callout-3", "title": "نکته ۲:: مجموعه \\(S\\) مستقل خطی &lrm;(Linearly Independent)&rlm; است\nاگر و تنها اگر برای هر زیرمجموعه متناهی \\(\\{u_1, \\dots, u_n...", "level": "callout", "type": "note"}, {"id": "callout-4", "title": "نکته ۳:: مجموعه \\(S\\) وابسته خطی است اگر و تنها اگر برداری\nچون \\(u \\in S\\) وجود داشته باشد که\n\\(\\text{Span}(S - \\{u\\}) =\n\\text{S...", "level": "callout", "type": "note"}, {"id": "callout-5", "title": "و) لم زرن (Zorn’s Lemma):: اگر \\((A, \\le)\\) یک مجموعه جزئاً مرتب &lrm;(Partially\nordered set)&rlm; باشد به طوری که هر زنجیر &lrm;(Chain)&rlm; در \\...", "level": "callout", "type": "lem"}, {"id": "wiki-vector-spaces", "title": "Vector space — فضاهای برداری و مقدمه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Vector_space", "lang": "EN"}, {"id": "wiki-vector-spaces", "title": "فضای برداری — فضاهای برداری و مقدمه", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C", "lang": "FA"}, {"id": "wiki-vector-spaces", "title": "Linear algebra — فضاهای برداری و مقدمه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Linear_algebra", "lang": "EN"}, {"id": "wiki-fields", "title": "Field (mathematics) — میدان و زیرمیدان", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Field_(mathematics)", "lang": "EN"}, {"id": "wiki-fields", "title": "میدان (ریاضیات) — میدان و زیرمیدان", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_(%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C%D8%A7%D8%AA)", "lang": "FA"}, {"id": "wiki-matrices", "title": "Matrix (mathematics) — ماتریس‌ها و عملیات ماتریسی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Matrix_(mathematics)", "lang": "EN"}, {"id": "wiki-matrices", "title": "ماتریس — ماتریس‌ها و عملیات ماتریسی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3", "lang": "FA"}, {"id": "wiki-matrices", "title": "Matrix multiplication — ماتریس‌ها و عملیات ماتریسی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Matrix_multiplication", "lang": "EN"}, {"id": "wiki-function-spaces", "title": "Function space — فضای توابع و چندجمله‌ای‌ها", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Function_space", "lang": "EN"}, {"id": "wiki-function-spaces", "title": "Polynomial ring — فضای توابع و چندجمله‌ای‌ها", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Polynomial_ring", "lang": "EN"}, {"id": "wiki-subspaces", "title": "Linear subspace — زیرفضاها و پوشش خطی (اسپن)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Linear_subspace", "lang": "EN"}, {"id": "wiki-subspaces", "title": "زیرفضای خطی — زیرفضاها و پوشش خطی (اسپن)", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%B2%DB%8C%D8%B1%D9%81%D8%B6%D8%A7%DB%8C_%D8%AE%D8%B7%DB%8C", "lang": "FA"}, {"id": "wiki-subspaces", "title": "Linear span — زیرفضاها و پوشش خطی (اسپن)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Linear_span", "lang": "EN"}, {"id": "wiki-subspaces", "title": "پوشش خطی — زیرفضاها و پوشش خطی (اسپن)", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%BE%D9%88%D8%B4%D8%B4_%D8%AE%D8%B7%DB%8C", "lang": "FA"}, {"id": "wiki-linear-independence", "title": "Linear independence — استقلال و وابستگی خطی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Linear_independence", "lang": "EN"}, {"id": "wiki-linear-independence", "title": "استقلال خطی — استقلال و وابستگی خطی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84_%D8%AE%D8%B7%DB%8C", "lang": "FA"}, {"id": "wiki-basis-coordinates", "title": "Basis (linear algebra) — پایه و بردار مختصات", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Basis_(linear_algebra)", "lang": "EN"}, {"id": "wiki-basis-coordinates", "title": "پایه (جبر خطی) — پایه و بردار مختصات", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%DB%8C%D9%87_(%D8%AC%D8%A8%D8%B1_%D8%AE%D8%B7%DB%8C)", "lang": "FA"}, {"id": "wiki-basis-coordinates", "title": "Coordinate vector — پایه و بردار مختصات", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Coordinate_vector", "lang": "EN"}, {"id": "wiki-basis-existence", "title": "Basis (linear algebra) — قضایای وجود پایه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Basis_(linear_algebra)", "lang": "EN"}, {"id": "wiki-basis-existence", "title": "Zorn's lemma — قضایای وجود پایه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Zorn%27s_lemma", "lang": "EN"}, {"id": "wiki-dimension", "title": "Dimension (vector space) — بُعد و قضیه جایگزینی استاینیتز", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Dimension_(vector_space)", "lang": "EN"}, {"id": "wiki-dimension", "title": "بعد (فضای برداری) — بُعد و قضیه جایگزینی استاینیتز", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%B9%D8%AF_(%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C)", "lang": "FA"}, {"id": "wiki-dimension", "title": "Steinitz exchange lemma — بُعد و قضیه جایگزینی استاینیتز", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Steinitz_exchange_lemma", "lang": "EN"}, {"id": "wiki-linear-maps", "title": "Linear map — تبدیل‌های خطی (نگاشت خطی)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Linear_map", "lang": "EN"}, {"id": "wiki-linear-maps", "title": "تبدیل خطی — تبدیل‌های خطی (نگاشت خطی)", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%AA%D8%A8%D8%AF%DB%8C%D9%84_%D8%AE%D8%B7%DB%8C", "lang": "FA"}, {"id": "wiki-invertibility-isomorphism", "title": "Invertible matrix — وارون‌پذیری و یکریختی (ایزومورفیسم)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Invertible_matrix", "lang": "EN"}, {"id": "wiki-invertibility-isomorphism", "title": "Isomorphism — وارون‌پذیری و یکریختی (ایزومورفیسم)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Isomorphism", "lang": "EN"}, {"id": "wiki-invertibility-isomorphism", "title": "یک‌ریختی — وارون‌پذیری و یکریختی (ایزومورفیسم)", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%DB%8C%DA%A9%E2%80%8C%D8%B1%DB%8C%D8%AE%D8%AA%DB%8C", "lang": "FA"}, {"id": "wiki-kernel-image", "title": "Kernel (linear algebra) — هسته، تصویر و قضیه رتبه و پوچی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Kernel_(linear_algebra)", "lang": "EN"}, {"id": "wiki-kernel-image", "title": "هسته (جبر) — هسته، تصویر و قضیه رتبه و پوچی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%87%D8%B3%D8%AA%D9%87_(%D8%AC%D8%A8%D8%B1)", "lang": "FA"}, {"id": "wiki-kernel-image", "title": "Rank–nullity theorem — هسته، تصویر و قضیه رتبه و پوچی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Rank%E2%80%93nullity_theorem", "lang": "EN"}, {"id": "wiki-kernel-image", "title": "قضیه رتبه و پوچی — هسته، تصویر و قضیه رتبه و پوچی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%82%D8%B6%DB%8C%D9%87_%D8%B1%D8%AA%D8%A8%D9%87_%D9%88_%D9%BE%D9%88%DA%86%DB%8C", "lang": "FA"}, {"id": "wiki-algebra-linear-maps", "title": "Associative algebra — جبر تبدیل‌های خطی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Associative_algebra", "lang": "EN"}, {"id": "wiki-algebra-linear-maps", "title": "Endomorphism — جبر تبدیل‌های خطی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Endomorphism", "lang": "EN"}, {"id": "wiki-row-column-null-space", "title": "Row and column spaces — فضای سطری، ستونی و فضای پوچ", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Row_and_column_spaces", "lang": "EN"}, {"id": "wiki-row-column-null-space", "title": "فضای سطری و ستونی — فضای سطری، ستونی و فضای پوچ", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%B3%D8%B7%D8%B1%DB%8C_%D9%88_%D8%B3%D8%AA%D9%88%D9%86%DB%8C", "lang": "FA"}, {"id": "wiki-row-column-null-space", "title": "Kernel (linear algebra) — فضای سطری، ستونی و فضای پوچ", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Kernel_(linear_algebra)", "lang": "EN"}, {"id": "wiki-matrix-representation", "title": "Transformation matrix — نمایش ماتریسی تبدیل‌های خطی و تغییر پایه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Transformation_matrix", "lang": "EN"}, {"id": "wiki-matrix-representation", "title": "ماتریس تبدیل — نمایش ماتریسی تبدیل‌های خطی و تغییر پایه", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D8%AA%D8%A8%D8%AF%DB%8C%D9%84", "lang": "FA"}, {"id": "wiki-matrix-representation", "title": "Change of basis — نمایش ماتریسی تبدیل‌های خطی و تغییر پایه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Change_of_basis", "lang": "EN"}, {"id": "wiki-row-operations-echelon", "title": "Row echelon form — عملیات سطری مقدماتی، فرم پلکانی و رتبه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Row_echelon_form", "lang": "EN"}, {"id": "wiki-row-operations-echelon", "title": "ماتریس پلکانی — عملیات سطری مقدماتی، فرم پلکانی و رتبه", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%BE%D9%84%DA%A9%D8%A7%D9%86%DB%8C", "lang": "FA"}, {"id": "wiki-row-operations-echelon", "title": "Elementary matrix — عملیات سطری مقدماتی، فرم پلکانی و رتبه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Elementary_matrix", "lang": "EN"}, {"id": "wiki-row-operations-echelon", "title": "Rank (linear algebra) — عملیات سطری مقدماتی، فرم پلکانی و رتبه", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Rank_(linear_algebra)", "lang": "EN"}, {"id": "wiki-linear-systems", "title": "System of linear equations — دستگاه‌های معادلات خطی و حذف گاوسی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/System_of_linear_equations", "lang": "EN"}, {"id": "wiki-linear-systems", "title": "دستگاه معادلات خطی — دستگاه‌های معادلات خطی و حذف گاوسی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%DA%AF%D8%A7%D9%87_%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A7%D8%AA_%D8%AE%D8%B7%DB%8C", "lang": "FA"}, {"id": "wiki-linear-systems", "title": "Gaussian elimination — دستگاه‌های معادلات خطی و حذف گاوسی", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Gaussian_elimination", "lang": "EN"}, {"id": "wiki-linear-systems", "title": "حذف گاوسی — دستگاه‌های معادلات خطی و حذف گاوسی", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%AD%D8%B0%D9%81_%DA%AF%D8%A7%D9%88%D8%B3%DB%8C", "lang": "FA"}, {"id": "wiki-matrix-inversion", "title": "Invertible matrix — روش محاسبه وارون ماتریس (گاوس-جردن)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Invertible_matrix", "lang": "EN"}, {"id": "wiki-matrix-inversion", "title": "ماتریس وارون‌پذیر — روش محاسبه وارون ماتریس (گاوس-جردن)", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%88%D8%A7%D8%B1%D9%88%D9%86%E2%80%8C%D9%BE%D8%B0%DB%8C%D8%B1", "lang": "FA"}, {"id": "wiki-matrix-inversion", "title": "Gauss–Jordan elimination — روش محاسبه وارون ماتریس (گاوس-جردن)", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Gaussian_elimination#Finding_the_inverse_of_a_matrix", "lang": "EN"}, {"id": "wiki-determinants", "title": "Determinant — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Determinant", "lang": "EN"}, {"id": "wiki-determinants", "title": "دترمینان — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%AA%D8%B1%D9%85%DB%8C%D9%86%D8%A7%D9%86", "lang": "FA"}, {"id": "wiki-determinants", "title": "Leibniz formula for determinants — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants", "lang": "EN"}, {"id": "wiki-determinants", "title": "Laplace expansion — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Laplace_expansion", "lang": "EN"}, {"id": "wiki-determinants", "title": "Cramer's rule — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://en.wikipedia.org/wiki/Cramer%27s_rule", "lang": "EN"}, {"id": "wiki-determinants", "title": "قاعده کرامر — دترمینان، فرمول لایبنیتس و قاعده کرامر", "level": "wiki", "url": "https://fa.wikipedia.org/wiki/%D9%82%D8%A7%D8%B9%D8%AF%D9%87_%DA%A9%D8%B1%D8%A7%D9%85%D8%B1", "lang": "FA"}];
 
     // 1. Reading Progress
     window.addEventListener('scroll', () => {
@@ -7660,6 +8385,18 @@ Reduction):</p>
 
       let html = '';
       matches.forEach(item => {
+        if (item.level === 'wiki') {
+          const badge = item.lang || 'WIKI';
+          html += `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="search-result-item" onclick="closeSearchModal()">
+            <span style="display:inline-flex; align-items:center; gap:0.5rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              <span class="wiki-chip ${badge.toLowerCase()}" style="padding:0.1rem 0.35rem; font-size:0.65rem; pointer-events:none;"><span class="wiki-lang">${badge}</span></span>
+              <span>${item.title}</span>
+            </span>
+            <span class="search-result-pill wiki-pill">ویکی‌پدیا ↗</span>
+          </a>`;
+          return;
+        }
+
         let pillText = 'بخش';
         if (item.level === 'h3') pillText = 'صفحه';
         else if (item.level === 'callout') pillText = item.type || 'نکته';

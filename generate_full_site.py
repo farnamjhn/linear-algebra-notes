@@ -135,6 +135,247 @@ def build():
     headings = []
     search_index = []
 
+    WIKIPEDIA_TOPICS = [
+        {
+            "id": "wiki-vector-spaces",
+            "subject_fa": "فضاهای برداری و مقدمه",
+            "subject_en": "Vector Spaces & Introduction",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("بخش اول" in fa or "فضاهای برداری" in fa),
+            "refs": [
+                {"lang": "en", "title": "Vector space", "url": "https://en.wikipedia.org/wiki/Vector_space"},
+                {"lang": "fa", "title": "فضای برداری", "url": "https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C"},
+                {"lang": "en", "title": "Linear algebra", "url": "https://en.wikipedia.org/wiki/Linear_algebra"}
+            ]
+        },
+        {
+            "id": "wiki-fields",
+            "subject_fa": "میدان و زیرمیدان",
+            "subject_en": "Fields & Subfields",
+            "matches": lambda tag, fa, en, hid: "تعریف میدان" in fa or "Field" in en,
+            "refs": [
+                {"lang": "en", "title": "Field (mathematics)", "url": "https://en.wikipedia.org/wiki/Field_(mathematics)"},
+                {"lang": "fa", "title": "میدان (ریاضیات)", "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_(%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C%D8%A7%D8%AA)"}
+            ]
+        },
+        {
+            "id": "wiki-matrices",
+            "subject_fa": "ماتریس‌ها و عملیات ماتریسی",
+            "subject_en": "Matrix & Matrix Operations",
+            "matches": lambda tag, fa, en, hid: "تعریف ماتریس" in fa or "Matrix Operations" in en,
+            "refs": [
+                {"lang": "en", "title": "Matrix (mathematics)", "url": "https://en.wikipedia.org/wiki/Matrix_(mathematics)"},
+                {"lang": "fa", "title": "ماتریس", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3"},
+                {"lang": "en", "title": "Matrix multiplication", "url": "https://en.wikipedia.org/wiki/Matrix_multiplication"}
+            ]
+        },
+        {
+            "id": "wiki-function-spaces",
+            "subject_fa": "فضای توابع و چندجمله‌ای‌ها",
+            "subject_en": "Function & Polynomial Spaces",
+            "matches": lambda tag, fa, en, hid: "فضای توابع" in fa or "Function Spaces" in en,
+            "refs": [
+                {"lang": "en", "title": "Function space", "url": "https://en.wikipedia.org/wiki/Function_space"},
+                {"lang": "en", "title": "Polynomial ring", "url": "https://en.wikipedia.org/wiki/Polynomial_ring"}
+            ]
+        },
+        {
+            "id": "wiki-subspaces",
+            "subject_fa": "زیرفضاها و پوشش خطی (اسپن)",
+            "subject_en": "Subspaces & Linear Span",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("بخش دوم" in fa or "زیرفضاها" in fa),
+            "refs": [
+                {"lang": "en", "title": "Linear subspace", "url": "https://en.wikipedia.org/wiki/Linear_subspace"},
+                {"lang": "fa", "title": "زیرفضای خطی", "url": "https://fa.wikipedia.org/wiki/%D8%B2%DB%8C%D8%B1%D9%81%D8%B6%D8%A7%DB%8C_%D8%AE%D8%B7%DB%8C"},
+                {"lang": "en", "title": "Linear span", "url": "https://en.wikipedia.org/wiki/Linear_span"},
+                {"lang": "fa", "title": "پوشش خطی", "url": "https://fa.wikipedia.org/wiki/%D9%BE%D9%88%D8%B4%D8%B4_%D8%AE%D8%B7%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-linear-independence",
+            "subject_fa": "استقلال و وابستگی خطی",
+            "subject_en": "Linear Independence & Dependence",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("بخش سوم" in fa or "استقلال خطی" in fa),
+            "refs": [
+                {"lang": "en", "title": "Linear independence", "url": "https://en.wikipedia.org/wiki/Linear_independence"},
+                {"lang": "fa", "title": "استقلال خطی", "url": "https://fa.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84_%D8%AE%D8%B7%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-basis-coordinates",
+            "subject_fa": "پایه و بردار مختصات",
+            "subject_en": "Basis & Coordinates",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("بخش چهارم" in fa or "پایه و مختصات" in fa),
+            "refs": [
+                {"lang": "en", "title": "Basis (linear algebra)", "url": "https://en.wikipedia.org/wiki/Basis_(linear_algebra)"},
+                {"lang": "fa", "title": "پایه (جبر خطی)", "url": "https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%DB%8C%D9%87_(%D8%AC%D8%A8%D8%B1_%D8%AE%D8%B7%DB%8C)"},
+                {"lang": "en", "title": "Coordinate vector", "url": "https://en.wikipedia.org/wiki/Coordinate_vector"}
+            ]
+        },
+        {
+            "id": "wiki-basis-existence",
+            "subject_fa": "قضایای وجود پایه",
+            "subject_en": "Basis Existence & Zorn's Lemma",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("وجود پایه" in fa),
+            "refs": [
+                {"lang": "en", "title": "Basis (linear algebra)", "url": "https://en.wikipedia.org/wiki/Basis_(linear_algebra)"},
+                {"lang": "en", "title": "Zorn's lemma", "url": "https://en.wikipedia.org/wiki/Zorn%27s_lemma"}
+            ]
+        },
+        {
+            "id": "wiki-dimension",
+            "subject_fa": "بُعد و قضیه جایگزینی استاینیتز",
+            "subject_en": "Dimension & Steinitz Replacement",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("بعد و قضیه جایگزینی" in fa or "Dimension and Replacement" in en),
+            "refs": [
+                {"lang": "en", "title": "Dimension (vector space)", "url": "https://en.wikipedia.org/wiki/Dimension_(vector_space)"},
+                {"lang": "fa", "title": "بعد (فضای برداری)", "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%B9%D8%AF_(%D9%81%D8%B6%D8%A7%DB%8C_%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C)"},
+                {"lang": "en", "title": "Steinitz exchange lemma", "url": "https://en.wikipedia.org/wiki/Steinitz_exchange_lemma"}
+            ]
+        },
+        {
+            "id": "wiki-linear-maps",
+            "subject_fa": "تبدیل‌های خطی (نگاشت خطی)",
+            "subject_en": "Linear Transformations & Maps",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("تبدیل‌های خطی" in fa and "جبر" not in fa and "نمایش" not in fa),
+            "refs": [
+                {"lang": "en", "title": "Linear map", "url": "https://en.wikipedia.org/wiki/Linear_map"},
+                {"lang": "fa", "title": "تبدیل خطی", "url": "https://fa.wikipedia.org/wiki/%D8%AA%D8%A8%D8%AF%DB%8C%D9%84_%D8%AE%D8%B7%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-invertibility-isomorphism",
+            "subject_fa": "وارون‌پذیری و یکریختی (ایزومورفیسم)",
+            "subject_en": "Invertibility & Isomorphism",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("وارون‌پذیری و یکریختی" in fa or "Isomorphism" in en),
+            "refs": [
+                {"lang": "en", "title": "Invertible matrix", "url": "https://en.wikipedia.org/wiki/Invertible_matrix"},
+                {"lang": "en", "title": "Isomorphism", "url": "https://en.wikipedia.org/wiki/Isomorphism"},
+                {"lang": "fa", "title": "یک‌ریختی", "url": "https://fa.wikipedia.org/wiki/%DB%8C%DA%A9%E2%80%8C%D8%B1%DB%8C%D8%AE%D8%AA%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-kernel-image",
+            "subject_fa": "هسته، تصویر و قضیه رتبه و پوچی",
+            "subject_en": "Kernel, Image & Rank-Nullity",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("هسته و تصویر" in fa or "Kernel and Image" in en),
+            "refs": [
+                {"lang": "en", "title": "Kernel (linear algebra)", "url": "https://en.wikipedia.org/wiki/Kernel_(linear_algebra)"},
+                {"lang": "fa", "title": "هسته (جبر)", "url": "https://fa.wikipedia.org/wiki/%D9%87%D8%B3%D8%AA%D9%87_(%D8%AC%D8%A8%D8%B1)"},
+                {"lang": "en", "title": "Rank–nullity theorem", "url": "https://en.wikipedia.org/wiki/Rank%E2%80%93nullity_theorem"},
+                {"lang": "fa", "title": "قضیه رتبه و پوچی", "url": "https://fa.wikipedia.org/wiki/%D9%82%D8%B6%DB%8C%D9%87_%D8%B1%D8%AA%D8%A8%D9%87_%D9%88_%D9%BE%D9%88%DA%86%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-algebra-linear-maps",
+            "subject_fa": "جبر تبدیل‌های خطی",
+            "subject_en": "Algebra of Linear Transformations",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("جبر تبدیل‌های خطی" in fa or "Algebra of Linear" in en),
+            "refs": [
+                {"lang": "en", "title": "Associative algebra", "url": "https://en.wikipedia.org/wiki/Associative_algebra"},
+                {"lang": "en", "title": "Endomorphism", "url": "https://en.wikipedia.org/wiki/Endomorphism"}
+            ]
+        },
+        {
+            "id": "wiki-row-column-null-space",
+            "subject_fa": "فضای سطری، ستونی و فضای پوچ",
+            "subject_en": "Row, Column & Null Space",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("فضای سطری، فضای ستونی" in fa or "Row Space, Column Space" in en),
+            "refs": [
+                {"lang": "en", "title": "Row and column spaces", "url": "https://en.wikipedia.org/wiki/Row_and_column_spaces"},
+                {"lang": "fa", "title": "فضای سطری و ستونی", "url": "https://fa.wikipedia.org/wiki/%D9%81%D8%B6%D8%A7%DB%8C_%D8%B3%D8%B7%D8%B1%DB%8C_%D9%88_%D8%B3%D8%AA%D9%88%D9%86%DB%8C"},
+                {"lang": "en", "title": "Kernel (linear algebra)", "url": "https://en.wikipedia.org/wiki/Kernel_(linear_algebra)"}
+            ]
+        },
+        {
+            "id": "wiki-matrix-representation",
+            "subject_fa": "نمایش ماتریسی تبدیل‌های خطی و تغییر پایه",
+            "subject_en": "Matrix Representation & Change of Basis",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("نمایش ماتریسی تبدیل‌های خطی" in fa or "Matrix Representation" in en),
+            "refs": [
+                {"lang": "en", "title": "Transformation matrix", "url": "https://en.wikipedia.org/wiki/Transformation_matrix"},
+                {"lang": "fa", "title": "ماتریس تبدیل", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D8%AA%D8%A8%D8%AF%DB%8C%D9%84"},
+                {"lang": "en", "title": "Change of basis", "url": "https://en.wikipedia.org/wiki/Change_of_basis"}
+            ]
+        },
+        {
+            "id": "wiki-row-operations-echelon",
+            "subject_fa": "عملیات سطری مقدماتی، فرم پلکانی و رتبه",
+            "subject_en": "Row Operations & Echelon Form",
+            "matches": lambda tag, fa, en, hid: tag == "h2" and ("صفحه ۷۴" in fa),
+            "refs": [
+                {"lang": "en", "title": "Row echelon form", "url": "https://en.wikipedia.org/wiki/Row_echelon_form"},
+                {"lang": "fa", "title": "ماتریس پلکانی", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%BE%D9%84%DA%A9%D8%A7%D9%86%DB%8C"},
+                {"lang": "en", "title": "Elementary matrix", "url": "https://en.wikipedia.org/wiki/Elementary_matrix"},
+                {"lang": "en", "title": "Rank (linear algebra)", "url": "https://en.wikipedia.org/wiki/Rank_(linear_algebra)"}
+            ]
+        },
+        {
+            "id": "wiki-linear-systems",
+            "subject_fa": "دستگاه‌های معادلات خطی و حذف گاوسی",
+            "subject_en": "Systems of Linear Equations",
+            "matches": lambda tag, fa, en, hid: "دستگاه‌های معادلات خطی" in fa or "Systems of Linear Equations" in en,
+            "refs": [
+                {"lang": "en", "title": "System of linear equations", "url": "https://en.wikipedia.org/wiki/System_of_linear_equations"},
+                {"lang": "fa", "title": "دستگاه معادلات خطی", "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%DA%AF%D8%A7%D9%87_%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A7%D8%AA_%D8%AE%D8%B7%DB%8C"},
+                {"lang": "en", "title": "Gaussian elimination", "url": "https://en.wikipedia.org/wiki/Gaussian_elimination"},
+                {"lang": "fa", "title": "حذف گاوسی", "url": "https://fa.wikipedia.org/wiki/%D8%AD%D8%B0%D9%81_%DA%AF%D8%A7%D9%88%D8%B3%DB%8C"}
+            ]
+        },
+        {
+            "id": "wiki-matrix-inversion",
+            "subject_fa": "روش محاسبه وارون ماتریس (گاوس-جردن)",
+            "subject_en": "Matrix Inversion & Gauss-Jordan",
+            "matches": lambda tag, fa, en, hid: "روش محاسبه وارون یک ماتریس" in fa or "Inverse of an Invertible Matrix" in en,
+            "refs": [
+                {"lang": "en", "title": "Invertible matrix", "url": "https://en.wikipedia.org/wiki/Invertible_matrix"},
+                {"lang": "fa", "title": "ماتریس وارون‌پذیر", "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%A7%D8%AA%D8%B1%DB%8C%D8%B3_%D9%88%D8%A7%D8%B1%D9%88%D9%86%E2%80%8C%D9%BE%D8%B0%DB%8C%D8%B1"},
+                {"lang": "en", "title": "Gauss–Jordan elimination", "url": "https://en.wikipedia.org/wiki/Gaussian_elimination#Finding_the_inverse_of_a_matrix"}
+            ]
+        },
+        {
+            "id": "wiki-determinants",
+            "subject_fa": "دترمینان، فرمول لایبنیتس و قاعده کرامر",
+            "subject_en": "Determinant & Cramer's Rule",
+            "matches": lambda tag, fa, en, hid: "(۱۸) دترمینان" in fa or ("دترمینان" in fa and "Determinant" in en),
+            "refs": [
+                {"lang": "en", "title": "Determinant", "url": "https://en.wikipedia.org/wiki/Determinant"},
+                {"lang": "fa", "title": "دترمینان", "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%AA%D8%B1%D9%85%DB%8C%D9%86%D8%A7%D9%86"},
+                {"lang": "en", "title": "Leibniz formula for determinants", "url": "https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants"},
+                {"lang": "en", "title": "Laplace expansion", "url": "https://en.wikipedia.org/wiki/Laplace_expansion"},
+                {"lang": "en", "title": "Cramer's rule", "url": "https://en.wikipedia.org/wiki/Cramer%27s_rule"},
+                {"lang": "fa", "title": "قاعده کرامر", "url": "https://fa.wikipedia.org/wiki/%D9%82%D8%A7%D8%B9%D8%AF%D9%87_%DA%A9%D8%B1%D8%A7%D9%85%D8%B1"}
+            ]
+        }
+    ]
+
+    seen_wiki_topics = set()
+
+    def render_wiki_card(topic):
+        chips = []
+        for ref in topic["refs"]:
+            lang = ref["lang"].upper()
+            title = html.escape(ref["title"])
+            url = ref["url"]
+            dir_attr = 'dir="ltr"' if ref["lang"] == "en" else ''
+            chip_cls = "en" if ref["lang"] == "en" else "fa"
+            lang_label = "ویکی‌پدیای انگلیسی" if ref["lang"] == "en" else "ویکی‌پدیای فارسی"
+            aria_label = f'{title} در {lang_label} (باز شدن در برگه جدید)'
+            chips.append(f'''<a href="{url}" target="_blank" rel="noopener noreferrer" class="wiki-chip {chip_cls}" aria-label="{aria_label}" title="{aria_label}">
+  <span class="wiki-lang">{lang}</span>
+  <span class="wiki-chip-title" {dir_attr}>{title}</span>
+  <svg class="external-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+</a>''')
+        chips_html = "\n    ".join(chips)
+        return f'''<div class="subject-wiki-card">
+  <div class="wiki-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.09 13.12L9.44 4H7.07L2 20h2.46l1.32-4.24h4.48l1.31 4.24h2.44L12.09 13.12zm-3.03-.92l1.63-5.26 1.63 5.26H9.06zM22 20l-4.57-16h-2.35l-3.32 10.9L10 9.25l1.62-5.25H9.28L6.8 12.38 8.65 18h2.38l2.67-8.82L16.38 18H18.8l3.2-10.45L22 20z"/></svg>
+    <span>مراجع دانشنامه‌ای ویکی‌پدیا:</span>
+  </div>
+  <div class="wiki-chips">
+    {chips_html}
+  </div>
+</div>'''
+
     def heading_processor(m):
         tag = m.group(1)
         hid = m.group(2)
@@ -157,6 +398,14 @@ def build():
             'level': tag
         })
         
+        # Check for matching Wikipedia subject
+        matched_wiki_html = ""
+        for t in WIKIPEDIA_TOPICS:
+            if t["id"] not in seen_wiki_topics and t["matches"](tag, fa_title, en_title, hid):
+                seen_wiki_topics.add(t["id"])
+                matched_wiki_html = "\n" + render_wiki_card(t)
+                break
+        
         # Render clean heading HTML with isolated parts
         page_badge = f'<span class="page-tag">{page_tag}</span>' if page_tag and tag in ['h2', 'h3'] else ''
         en_badge = f'&lrm;<span class="heading-en" dir="ltr">({en_title})</span>&rlm;' if en_title else ''
@@ -167,7 +416,7 @@ def build():
   {en_badge}
   {page_badge}
   {anchor}
-</{tag}>'''
+</{tag}>{matched_wiki_html}'''
 
     body_html = re.sub(r'<(h[1-3])\s+id="([^"]+)">(.*?)</\1>', heading_processor, body_html, flags=re.DOTALL)
 
@@ -274,7 +523,52 @@ def build():
         
         toc_parts.append('  </div>\n</details>')
 
-    toc_html_rendered = "\n".join(toc_parts)
+    # Render Wikipedia References Group in Sidebar
+    wiki_sidebar_parts = ['''<details class="toc-group" id="group-wiki">
+  <summary class="toc-group-header">
+    <span class="toc-group-num">W</span>
+    <div class="toc-group-meta">
+      <span class="toc-group-title">مراجع دانشنامه‌ای ویکی‌پدیا</span>
+      <span class="toc-group-pages">۱۹ مبحث درسی</span>
+    </div>
+    <span class="toc-arrow">›</span>
+  </summary>
+  <div class="toc-group-body wiki-sidebar-list">''']
+
+    for t in WIKIPEDIA_TOPICS:
+        en_links = [r for r in t['refs'] if r['lang'] == 'en']
+        fa_links = [r for r in t['refs'] if r['lang'] == 'fa']
+        
+        links_html = []
+        if en_links:
+            links_html.append(f'<a href="{en_links[0]["url"]}" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link en-link" title="{en_links[0]["title"]} (EN)">EN ↗</a>')
+        if fa_links:
+            links_html.append(f'<a href="{fa_links[0]["url"]}" target="_blank" rel="noopener noreferrer" class="wiki-sidebar-link fa-link" title="{fa_links[0]["title"]} (FA)">FA ↗</a>')
+        
+        joined_links = ' '.join(links_html)
+        wiki_sidebar_parts.append(f'''    <div class="wiki-sidebar-item">
+      <div class="wiki-sidebar-header">
+        <span class="wiki-sidebar-title">{html.escape(t['subject_fa'])}</span>
+        <div class="wiki-sidebar-links">{joined_links}</div>
+      </div>
+    </div>''')
+    wiki_sidebar_parts.append('  </div>\n</details>')
+    wiki_sidebar_html = "\n".join(wiki_sidebar_parts)
+
+    toc_html_rendered = "\n".join(toc_parts) + "\n" + wiki_sidebar_html
+
+    # Also add Wikipedia topics to search index
+    for t in WIKIPEDIA_TOPICS:
+        for ref in t['refs']:
+            lang_code = ref['lang'].upper()
+            search_index.append({
+                'id': t['id'],
+                'title': f'{ref["title"]} — {t["subject_fa"]}',
+                'level': 'wiki',
+                'url': ref['url'],
+                'lang': lang_code
+            })
+
     search_index_json = json.dumps(search_index, ensure_ascii=False)
 
     print("7. Assembling minimalist dark & cold HTML document...")
@@ -1285,6 +1579,159 @@ def build():
       animation: highlightFlash 2s ease-out;
     }}
 
+    /* Wikipedia Reference Cards & Chips */
+    .subject-wiki-card {{
+      margin: 0.75rem 0 1.5rem 0;
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-right: 3px solid var(--accent-yellow);
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }}
+
+    .wiki-tag {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-yellow);
+      font-weight: 600;
+      font-size: 0.76rem;
+    }}
+
+    .wiki-chips {{
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }}
+
+    .wiki-chip {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-base);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.76rem;
+      line-height: 1.3;
+      transition: all 0.12s ease;
+    }}
+
+    .wiki-chip:hover {{
+      border-color: var(--accent-orange);
+      color: var(--text-main);
+      background: var(--bg-hover);
+    }}
+
+    .wiki-chip.en .wiki-lang {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+    }}
+
+    .wiki-chip.fa .wiki-lang {{
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }}
+
+    .external-icon {{
+      color: var(--text-muted);
+      opacity: 0.65;
+      transition: opacity 0.12s;
+    }}
+
+    .wiki-chip:hover .external-icon {{
+      opacity: 1;
+      color: var(--accent-orange);
+    }}
+
+    /* Sidebar Wikipedia Index */
+    .wiki-sidebar-list {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.4rem 0.2rem;
+    }}
+
+    .wiki-sidebar-item {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 4px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      transition: border-color 0.12s;
+    }}
+
+    .wiki-sidebar-item:hover {{
+      border-color: var(--border-base);
+      background: var(--bg-hover);
+    }}
+
+    .wiki-sidebar-header {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }}
+
+    .wiki-sidebar-title {{
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+    }}
+
+    .wiki-sidebar-title:hover {{
+      color: var(--accent-orange);
+    }}
+
+    .wiki-sidebar-links {{
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }}
+
+    .wiki-sidebar-link {{
+      font-size: 0.68rem;
+      color: var(--accent-orange);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-family: ui-monospace, monospace;
+      border: 1px solid var(--border-subtle);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+    }}
+
+    .wiki-sidebar-link.fa-link {{
+      color: var(--accent-yellow);
+    }}
+
+    .wiki-sidebar-link:hover {{
+      border-color: var(--accent-orange);
+      color: #fff;
+    }}
+
+    .search-result-pill.wiki-pill {{
+      color: var(--accent-yellow);
+      border-color: rgba(245, 158, 11, 0.4);
+    }}
+
     /* Mobile Drawer & Responsive Layout */
     @media (max-width: 900px) {{
       .site-layout {{
@@ -1521,6 +1968,10 @@ def build():
             <span class="detail-label">محتوا</span>
             <span class="detail-value">۱۱۰ صفحه درس‌نامه • ۱۸ بخش کامل</span>
           </div>
+          <div class="masthead-detail-item">
+            <span class="detail-label">مراجع دانشنامه‌ای</span>
+            <span class="detail-value">ویکی‌پدیا فارسی و انگلیسی (تأییدشده)</span>
+          </div>
         </div>
       </header>
 
@@ -1671,6 +2122,18 @@ def build():
 
       let html = '';
       matches.forEach(item => {{
+        if (item.level === 'wiki') {{
+          const badge = item.lang || 'WIKI';
+          html += `<a href="${{item.url}}" target="_blank" rel="noopener noreferrer" class="search-result-item" onclick="closeSearchModal()">
+            <span style="display:inline-flex; align-items:center; gap:0.5rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              <span class="wiki-chip ${{badge.toLowerCase()}}" style="padding:0.1rem 0.35rem; font-size:0.65rem; pointer-events:none;"><span class="wiki-lang">${{badge}}</span></span>
+              <span>${{item.title}}</span>
+            </span>
+            <span class="search-result-pill wiki-pill">ویکی‌پدیا ↗</span>
+          </a>`;
+          return;
+        }}
+
         let pillText = 'بخش';
         if (item.level === 'h3') pillText = 'صفحه';
         else if (item.level === 'callout') pillText = item.type || 'نکته';
@@ -1766,25 +2229,36 @@ def build():
     with open("linear_algebra_notes.html", "w", encoding="utf-8") as f:
         f.write(full_html)
 
-    # Sync to child directory if run from root
-    if os.path.exists("linear-algebra-notes/index.html"):
-        with open("linear-algebra-notes/index.html", "w", encoding="utf-8") as f:
-            f.write(full_html)
-        with open("linear-algebra-notes/linear_algebra_notes.html", "w", encoding="utf-8") as f:
-            f.write(full_html)
-        with open("linear-algebra-notes/generate_full_site.py", "w", encoding="utf-8") as f:
-            with open("generate_full_site.py", "r", encoding="utf-8") as g:
-                f.write(g.read())
+    # Determine script location and target paths safely
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    is_in_subfolder = os.path.basename(script_dir) == "linear-algebra-notes"
+    
+    if is_in_subfolder:
+        notes_dir = script_dir
+        parent_dir = os.path.dirname(script_dir)
+    else:
+        notes_dir = os.path.join(script_dir, "linear-algebra-notes")
+        parent_dir = script_dir
 
-    # Sync to parent directory if run from linear-algebra-notes
-    if os.path.exists("../linear_algebra_notes.html"):
-        with open("../index.html", "w", encoding="utf-8") as f:
+    # Write to notes_dir
+    with open(os.path.join(notes_dir, "index.html"), "w", encoding="utf-8") as f:
+        f.write(full_html)
+    with open(os.path.join(notes_dir, "linear_algebra_notes.html"), "w", encoding="utf-8") as f:
+        f.write(full_html)
+
+    # Sync to parent_dir if it has linear_algebra_notes.html
+    if os.path.exists(os.path.join(parent_dir, "linear_algebra_notes.html")):
+        with open(os.path.join(parent_dir, "index.html"), "w", encoding="utf-8") as f:
             f.write(full_html)
-        with open("../linear_algebra_notes.html", "w", encoding="utf-8") as f:
+        with open(os.path.join(parent_dir, "linear_algebra_notes.html"), "w", encoding="utf-8") as f:
             f.write(full_html)
-        with open("../generate_full_site.py", "w", encoding="utf-8") as f:
-            with open("generate_full_site.py", "r", encoding="utf-8") as g:
-                f.write(g.read())
+
+    # Sync generator script safely
+    this_script_path = os.path.abspath(__file__)
+    other_script_path = os.path.join(parent_dir, "generate_full_site.py") if is_in_subfolder else os.path.join(notes_dir, "generate_full_site.py")
+    if os.path.exists(other_script_path) and other_script_path != this_script_path:
+        with open(this_script_path, "r", encoding="utf-8") as src, open(other_script_path, "w", encoding="utf-8") as dst:
+            dst.write(src.read())
 
     print(f"SUCCESS! Wrote minimalist website ({len(full_html)} bytes).")
 
