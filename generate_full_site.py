@@ -28,16 +28,45 @@ def parse_heading_title(raw_text):
     else:
         return clean, "", page_tag
 
+def normalize_markdown_bold(text):
+    def fix_line(line):
+        cnt = line.count('**')
+        if cnt < 2 or cnt % 2 != 0:
+            return line
+        parts = line.split('**')
+        new_parts = [parts[0]]
+        for i in range(1, len(parts), 2):
+            in_content = parts[i]
+            out_content = parts[i+1]
+            l_ws = in_content[:len(in_content) - len(in_content.lstrip(' \t\u00A0'))]
+            r_ws = in_content[len(in_content.rstrip(' \t\u00A0')):]
+            core = in_content.strip(' \t\u00A0')
+            if l_ws and not new_parts[-1].endswith((' ', '\t', '\n')):
+                new_parts[-1] += l_ws
+            new_parts.append(core)
+            next_out = out_content
+            if r_ws and not next_out.startswith((' ', '\t', '\n')):
+                next_out = r_ws + next_out
+            new_parts.append(next_out)
+        return '**'.join(new_parts)
+    return '\n'.join(fix_line(l) for l in text.splitlines())
+
 def build():
-    print("1. Running pandoc on linear_algebra_notes_compiled.md...")
+    print("1. Reading and normalizing linear_algebra_notes_compiled.md...")
+    with open("linear_algebra_notes_compiled.md", "r", encoding="utf-8") as f:
+        md_text = f.read()
+
+    md_text = normalize_markdown_bold(md_text)
+
+    print("   Running pandoc on normalized markdown...")
     cmd = [
         "/opt/homebrew/bin/pandoc",
-        "linear_algebra_notes_compiled.md",
         "-f", "markdown+tex_math_dollars+pipe_tables",
         "-t", "html5",
         "--mathjax"
     ]
-    raw_html = subprocess.check_output(cmd, encoding="utf-8")
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, encoding="utf-8")
+    raw_html, _ = proc.communicate(md_text)
     print(f"   Pandoc output length: {len(raw_html)} chars")
 
     # Remove the first H1 tag from Pandoc output so we don't have duplicate title under the masthead
@@ -612,7 +641,8 @@ def build():
       chtml: {{
         scale: 1,
         minScale: 0.8,
-        matchFontHeight: true
+        matchFontHeight: true,
+        mtextInheritFont: true
       }},
       startup: {{
         pageReady: () => {{
@@ -1485,6 +1515,12 @@ def build():
     mjx-container {{
       max-width: 100% !important;
       box-sizing: border-box !important;
+    }}
+
+    mjx-mtext {{
+      font-family: 'Vazirmatn', sans-serif !important;
+      direction: rtl;
+      unicode-bidi: isolate;
     }}
 
     .math.inline, mjx-container:not([display="true"]) {{

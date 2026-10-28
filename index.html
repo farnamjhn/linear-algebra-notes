@@ -38,7 +38,8 @@
       chtml: {
         scale: 1,
         minScale: 0.8,
-        matchFontHeight: true
+        matchFontHeight: true,
+        mtextInheritFont: true
       },
       startup: {
         pageReady: () => {
@@ -911,6 +912,12 @@
     mjx-container {
       max-width: 100% !important;
       box-sizing: border-box !important;
+    }
+
+    mjx-mtext {
+      font-family: 'Vazirmatn', sans-serif !important;
+      direction: rtl;
+      unicode-bidi: isolate;
     }
 
     .math.inline, mjx-container:not([display="true"]) {
@@ -2447,8 +2454,8 @@ F)\)</span>.</p></li>
 <span class="math inline">\(K\)</span> از <span
 class="math inline">\(F\)</span> که نسبت به عمل‌های تعریف شده روی <span
 class="math inline">\(F\)</span> دارای خاصیت بسته بودن &lrm;<span class="en-term" dir="ltr">(Closure)</span>&rlm; است و
-خود در اصول یک میدان صدق می‌کند، یک ** زیرمیدان &lrm;<span class="en-term" dir="ltr">(Subfield)</span>&rlm;** از <span
-class="math inline">\(F\)</span> نامیده می‌شود.</p>
+خود در اصول یک میدان صدق می‌کند، یک <strong>زیرمیدان &lrm;<span class="en-term" dir="ltr">(Subfield)</span>&rlm;</strong>
+از <span class="math inline">\(F\)</span> نامیده می‌شود.</p>
 <h3 id="صفحه-۶-و-۷-مثالهای-مقدماتی-فضاهای-برداری-و-فضای-fn-introductory-examples-of-vector-spaces-and-the-space-fn" class="heading-linked">
   <span class="heading-fa">صفحه ۶ و ۷: مثال‌های مقدماتی فضاهای برداری و فضای \(F^n\) (Introductory Examples of Vector Spaces and the Space \(F^n\))</span>
   
@@ -2596,8 +2603,8 @@ class="math inline">\(n\)</span>-tuples) عبارتند از:</p>
 </div>
 <p><strong>۳. فضای ماتریس‌ها &lrm;<span class="en-term" dir="ltr">(Matrix Space)</span>&rlm;:</strong></p>
 <ul>
-<li><p><strong>الف)</strong> ** ماتریس &lrm;<span class="en-term" dir="ltr">(Matrix)</span>&rlm;** را به عنوان آرایش
-مستطیلی &lrm;<span class="en-term" dir="ltr">(Rectangular Array)</span>&rlm; از عناصر میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; <span
+<li><p><strong>الف)</strong> <strong>ماتریس &lrm;<span class="en-term" dir="ltr">(Matrix)</span>&rlm;</strong> را به
+عنوان آرایش مستطیلی &lrm;<span class="en-term" dir="ltr">(Rectangular Array)</span>&rlm; از عناصر میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; <span
 class="math inline">\(F\)</span> تعریف می‌کنیم:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[A = \begin{bmatrix} a_{11} &amp; a_{12}
@@ -2623,34 +2630,34 @@ class="math inline">\(i\)</span>-ام و ستون <span
 class="math inline">\(j\)</span>-ام قرار دارد.</p></li>
 <li><p><strong>ب)</strong> اغلب نماد فوق را به صورت <span
 class="math inline">\(A = (a_{ij})_{m \times n}\)</span> خلاصه می‌کنیم؛
-زیرنویس <span class="math inline">\(m \times n\)</span> ** اندازه یا
-مرتبه ماتریس &lrm;<span class="en-term" dir="ltr">(Size / Order of the Matrix)</span>&rlm;** را نشان می‌دهد و کل نماد به
-معنی یک ماتریس <span class="math inline">\(m \times n\)</span> است که
-درایه <span class="math inline">\((i, j)\)</span> آن <span
+زیرنویس <span class="math inline">\(m \times n\)</span> <strong>اندازه
+یا مرتبه ماتریس &lrm;<span class="en-term" dir="ltr">(Size / Order of the Matrix)</span>&rlm;</strong> را نشان می‌دهد و کل
+نماد به معنی یک ماتریس <span class="math inline">\(m \times n\)</span>
+است که درایه <span class="math inline">\((i, j)\)</span> آن <span
 class="math inline">\(a_{ij}\)</span> است. دو ماتریس <span
 class="math inline">\(A = (a_{ij})_{m \times n}\)</span> و <span
-class="math inline">\(B = (b_{ij})_{p \times q}\)</span> با هم **
-برابرند &lrm;<span class="en-term" dir="ltr">(Equal Matrices)</span>&rlm;**اگر و تنها اگر <span class="math inline">\(m =
-p\)</span> ، <span class="math inline">\(n = q\)</span> و به ازای هر
-<span class="math inline">\(i, j\)</span> داشته باشیم <span
-class="math inline">\(a_{ij} = b_{ij}\)</span>.</p></li>
+class="math inline">\(B = (b_{ij})_{p \times q}\)</span> با هم
+<strong>برابرند &lrm;<span class="en-term" dir="ltr">(Equal Matrices)</span>&rlm;</strong>اگر و تنها اگر <span
+class="math inline">\(m = p\)</span> ، <span class="math inline">\(n =
+q\)</span> و به ازای هر <span class="math inline">\(i, j\)</span> داشته
+باشیم <span class="math inline">\(a_{ij} = b_{ij}\)</span>.</p></li>
 <li><p><strong>ج)</strong> فهرست افقی <span
 class="math inline">\((a_{i1}, a_{i2}, \dots, a_{in})\)</span> به ازای
-<span class="math inline">\(1 \le i \le m\)</span> ، ** سطر <span
+<span class="math inline">\(1 \le i \le m\)</span> ، <strong>سطر <span
 class="math inline">\(i\)</span>-ام ماتریس (<span
-class="math inline">\(i\)</span>-th Row of the Matrix)** نامیده می‌شود.
-فهرست عمودی <span class="math inline">\(\begin{bmatrix} a_{1j} \\ a_{2j}
-\\ \vdots \\ a_{mj} \end{bmatrix}\)</span> به ازای <span
-class="math inline">\(1 \le j \le n\)</span> ، ** ستون <span
+class="math inline">\(i\)</span>-th Row of the Matrix)</strong> نامیده
+می‌شود. فهرست عمودی <span class="math inline">\(\begin{bmatrix} a_{1j} \\
+a_{2j} \\ \vdots \\ a_{mj} \end{bmatrix}\)</span> به ازای <span
+class="math inline">\(1 \le j \le n\)</span> ، <strong>ستون <span
 class="math inline">\(j\)</span>-ام ماتریس (<span
-class="math inline">\(j\)</span>-th Column of the Matrix)** نامیده
-می‌شود. سطرهای ماتریس بالا را می‌توان به عنوان برداری &lrm;<span class="en-term" dir="ltr">(Row Vector)</span>&rlm; از
-<span class="math inline">\(F^n\)</span> در نظر گرفت و همچنین ستون‌های
+class="math inline">\(j\)</span>-th Column of the Matrix)</strong>
+نامیده می‌شود. سطرهای ماتریس بالا را می‌توان به عنوان برداری &lrm;<span class="en-term" dir="ltr">(Row Vector)</span>&rlm;
+از <span class="math inline">\(F^n\)</span> در نظر گرفت و همچنین ستون‌های
 ماتریس بالا را می‌توان به عنوان برداری &lrm;<span class="en-term" dir="ltr">(Column Vector)</span>&rlm; از <span
 class="math inline">\(F^m\)</span> در نظر گرفت.</p></li>
 <li><p><strong>د)</strong> هرگاه تعداد سطرها و ستون‌های یک ماتریس با هم
 برابر باشند (<span class="math inline">\(m = n\)</span>)، آن ماتریس را
-** ماتریس مربعی &lrm;<span class="en-term" dir="ltr">(Square Matrix)</span>&rlm;**می‌نامیم.</p></li>
+<strong>ماتریس مربعی &lrm;<span class="en-term" dir="ltr">(Square Matrix)</span>&rlm;</strong>می‌نامیم.</p></li>
 </ul>
 <p>در جدول‌بندی داده‌ها &lrm;<span class="en-term" dir="ltr">(Data Tabulation)</span>&rlm; وقتی که تعداد آن‌ها زیاد است (در
 علوم، بازرگانی و ریاضیات)، موضوع استفاده از ماتریس‌ها به طور طبیعی پیش
@@ -2662,10 +2669,10 @@ class="math inline">\(F^m\)</span> در نظر گرفت.</p></li>
 <thead>
 <tr>
 <th><strong>شهر</strong></th>
-<th>** اصفهان**</th>
-<th>** تهران**</th>
-<th>** شیراز**</th>
-<th>** مشهد**</th>
+<th><strong>اصفهان</strong></th>
+<th><strong>تهران</strong></th>
+<th><strong>شیراز</strong></th>
+<th><strong>مشهد</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -2810,9 +2817,9 @@ Functions)</span>&rlm; به صورت <span class="math inline">\((f + g)(x) = f(
 g(x)\)</span> و ضرب اسکالر &lrm;<span class="en-term" dir="ltr">(Scalar Multiplication)</span>&rlm; به صورت <span
 class="math inline">\((cf)(x) = c f(x)\)</span> تعریف شود و خواص آن‌ها
 بررسی شود.</p></li>
-<li><p><strong>۵. فضای چندجمله‌ای‌ها &lrm;<span class="en-term" dir="ltr">(Polynomial Space)</span>&rlm;:</strong> یک **
-چندجمله‌ای &lrm;<span class="en-term" dir="ltr">(Polynomial)</span>&rlm;** با ضرایب &lrm;<span class="en-term" dir="ltr">(Coefficients)</span>&rlm; در میدان <span
-class="math inline">\(F\)</span> یک عبارت به شکل زیر است:</p>
+<li><p><strong>۵. فضای چندجمله‌ای‌ها &lrm;<span class="en-term" dir="ltr">(Polynomial Space)</span>&rlm;:</strong> یک
+<strong>چندجمله‌ای &lrm;<span class="en-term" dir="ltr">(Polynomial)</span>&rlm;</strong> با ضرایب &lrm;<span class="en-term" dir="ltr">(Coefficients)</span>&rlm; در میدان
+<span class="math inline">\(F\)</span> یک عبارت به شکل زیر است:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[f(x) = a_n x^n + \dots + a_1 x +
 a_0\]</span></div>
@@ -2879,7 +2886,7 @@ class="math inline">\(-(a, b) = (-a - 2, -b - 2)\)</span> است و اصول
   <a class="header-anchor" href="#صفحه-۱۱-و-۱۲-تعریف-اصول-موضوعی-فضای-برداری-و-خواص-مقدماتی-axiomatic-definition-of-vector-space-and-elementary-properties" aria-label="پیوند مستقیم">#</a>
 </h3>
 <p><strong>۲-۱- تعریف فضای برداری &lrm;<span class="en-term" dir="ltr">(Definition of a Vector
-Space)</span>&rlm;:</strong> یک ** فضای برداری &lrm;<span class="en-term" dir="ltr">(Vector Space)</span>&rlm;** <span
+Space)</span>&rlm;:</strong> یک <strong>فضای برداری &lrm;<span class="en-term" dir="ltr">(Vector Space)</span>&rlm;</strong> <span
 class="math inline">\(V\)</span> روی میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; <span
 class="math inline">\(F\)</span> متشکل است از:</p>
 <ol type="1">
@@ -2968,8 +2975,8 @@ class="math inline">\(u = v\)</span>.</p></li>
 یکتا است و قرینه &lrm;<span class="en-term" dir="ltr">(Additive Inverse)</span>&rlm; هر بردار یکتا است.</p></li>
 <li><p><strong>الف)</strong> برای هر <span class="math inline">\(u \in
 V\)</span> داریم: <span class="math inline">\(0_F \cdot u =
-0_V\)</span>. ** ب)** برای هر <span class="math inline">\(c \in
-F\)</span> داریم: <span class="math inline">\(c \cdot 0_V =
+0_V\)</span>. <strong>ب)</strong> برای هر <span class="math inline">\(c
+\in F\)</span> داریم: <span class="math inline">\(c \cdot 0_V =
 0_V\)</span>.</p></li>
 <li><p>برای هر <span class="math inline">\(c \in F\)</span> و <span
 class="math inline">\(u \in V\)</span> داریم: <span
@@ -3036,11 +3043,11 @@ v_i" onclick="copyFormula(this)" title="کپی فرمول LaTeX">
 </div>
 <p><strong>۴-۱- تعریف ترکیب خطی &lrm;<span class="en-term" dir="ltr">(Definition of Linear
 Combination)</span>&rlm;:</strong> بردار <span class="math inline">\(v\)</span> از
-فضای برداری <span class="math inline">\(V\)</span> یک ** ترکیب خطی
-&lrm;<span class="en-term" dir="ltr">(Linear Combination)</span>&rlm;** از بردارهای <span class="math inline">\(u_1,
-\dots, u_n \in V\)</span> نامیده می‌شود هرگاه اسکالرهایی چون <span
-class="math inline">\(c_1, \dots, c_n\)</span> در میدان <span
-class="math inline">\(F\)</span> وجود داشته باشند که:</p>
+فضای برداری <span class="math inline">\(V\)</span> یک <strong>ترکیب خطی
+&lrm;<span class="en-term" dir="ltr">(Linear Combination)</span>&rlm;</strong> از بردارهای <span
+class="math inline">\(u_1, \dots, u_n \in V\)</span> نامیده می‌شود هرگاه
+اسکالرهایی چون <span class="math inline">\(c_1, \dots, c_n\)</span> در
+میدان <span class="math inline">\(F\)</span> وجود داشته باشند که:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[v = c_1 u_1 + \dots + c_n u_n =
 \sum_{i=1}^{n} c_i u_i\]</span></div>
@@ -3095,9 +3102,10 @@ Combination)</span>&rlm;</strong> می‌نامند.</p>
 </h3>
 <p><strong>۱-۲- تعریف زیرفضا &lrm;<span class="en-term" dir="ltr">(Definition of Subspace)</span>&rlm;:</strong> فرض کنید
 <span class="math inline">\(V\)</span> فضای برداری &lrm;<span class="en-term" dir="ltr">(Vector Space)</span>&rlm; روی
-میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; <span class="math inline">\(F\)</span> باشد. یک ** زیرفضای
-&lrm;<span class="en-term" dir="ltr">(Subspace)</span>&rlm;** <span class="math inline">\(V\)</span> عبارت است از یک
-زیرمجموعه &lrm;<span class="en-term" dir="ltr">(Subset)</span>&rlm; <span class="math inline">\(W\)</span> از <span
+میدان &lrm;<span class="en-term" dir="ltr">(Field)</span>&rlm; <span class="math inline">\(F\)</span> باشد. یک
+<strong>زیرفضای &lrm;<span class="en-term" dir="ltr">(Subspace)</span>&rlm;</strong> <span
+class="math inline">\(V\)</span> عبارت است از یک زیرمجموعه &lrm;<span class="en-term" dir="ltr">(Subset)</span>&rlm;
+<span class="math inline">\(W\)</span> از <span
 class="math inline">\(V\)</span> که خود با اعمال جمع برداری &lrm;<span class="en-term" dir="ltr">(Vector
 Addition)</span>&rlm; و ضرب اسکالر &lrm;<span class="en-term" dir="ltr">(Scalar Multiplication)</span>&rlm; تعریف شده روی <span
 class="math inline">\(V\)</span> ، یک فضای برداری روی میدان <span
@@ -3157,20 +3165,21 @@ class="math inline">\(\mathbb{R}^3\)</span> نیستند.</p></li>
 <li><p><strong>الف)</strong> در <span class="math inline">\(F^n\)</span>
 ، مجموعه <span class="math inline">\(W = \{ (x_1, 0, \dots, 0) \mid x_1
 \in F \}\)</span> یک زیرفضای <span class="math inline">\(F^n\)</span>
-است. ** ب)** مجموعه جواب &lrm;<span class="en-term" dir="ltr">(Solution Set)</span>&rlm; یک دستگاه معادلات خطی همگن
-&lrm;<span class="en-term" dir="ltr">(Homogeneous System of Linear Equations)</span>&rlm; با <span
+است. <strong>ب)</strong> مجموعه جواب &lrm;<span class="en-term" dir="ltr">(Solution Set)</span>&rlm; یک دستگاه معادلات
+خطی همگن &lrm;<span class="en-term" dir="ltr">(Homogeneous System of Linear Equations)</span>&rlm; با <span
 class="math inline">\(n\)</span> مجهول، زیرفضایی از <span
 class="math inline">\(F^n\)</span> است (که به آن فضای پوچ &lrm;<span class="en-term" dir="ltr">(Null Space)</span>&rlm;
 نیز می‌گویند).</p></li>
 <li><p>یک ماتریس مربعی &lrm;<span class="en-term" dir="ltr">(Square Matrix)</span>&rlm; <span class="math inline">\(A =
 (a_{ij})_{n \times n}\)</span> را <strong>ماتریس متقارن &lrm;<span class="en-term" dir="ltr">(Symmetric
 Matrix)</span>&rlm;</strong> گوییم هرگاه <span class="math inline">\(a_{ij} = a_{ji}
-\quad (1 \le i, j \le n)\)</span> ، و آن را ** ماتریس قطری &lrm;<span class="en-term" dir="ltr">(Diagonal
-Matrix)</span>&rlm;** گوییم هرگاه <span class="math inline">\(a_{ij} = 0 \quad (i
-\neq j)\)</span>. مجموعه ماتریس‌های متقارن و مجموعه ماتریس‌های قطری، هر
-کدام زیرفضایی از <span class="math inline">\(M_{n \times n}(F)\)</span>
-(فضای ماتریس‌های <span class="math inline">\(n \times n\)</span> روی
-میدان <span class="math inline">\(F\)</span>) هستند.</p></li>
+\quad (1 \le i, j \le n)\)</span> ، و آن را <strong>ماتریس قطری
+&lrm;<span class="en-term" dir="ltr">(Diagonal Matrix)</span>&rlm;</strong> گوییم هرگاه <span
+class="math inline">\(a_{ij} = 0 \quad (i \neq j)\)</span>. مجموعه
+ماتریس‌های متقارن و مجموعه ماتریس‌های قطری، هر کدام زیرفضایی از <span
+class="math inline">\(M_{n \times n}(F)\)</span> (فضای ماتریس‌های <span
+class="math inline">\(n \times n\)</span> روی میدان <span
+class="math inline">\(F\)</span>) هستند.</p></li>
 <li><p>فضای برداری توابع حقیقی <span class="math inline">\(F(\mathbb{R},
 \mathbb{R})\)</span> روی میدان <span
 class="math inline">\(\mathbb{R}\)</span> را در نظر بگیرید؛ زیرمجموعه‌های
@@ -3207,10 +3216,10 @@ class="math inline">\(\{W_i\}_{i \in I}\)</span> یک خانواده از زیر
 <p><strong>۵-۲- تعریف زیرفضای پدیدآمده یا اسپن &lrm;<span class="en-term" dir="ltr">(Definition of
 Span)</span>&rlm;:</strong> فرض کنید <span class="math inline">\(V\)</span> یک فضای
 برداری روی میدان <span class="math inline">\(F\)</span> باشد و <span
-class="math inline">\(S \subseteq V\)</span>. ** زیرفضای پدیدآمده توسط
-<span class="math inline">\(S\)</span> (Subspace Spanned by <span
+class="math inline">\(S \subseteq V\)</span>. <strong>زیرفضای پدیدآمده
+توسط <span class="math inline">\(S\)</span> (Subspace Spanned by <span
 class="math inline">\(S\)</span> / Span of <span
-class="math inline">\(S\)</span>)** را کوچکترین زیرفضایی از <span
+class="math inline">\(S\)</span>)</strong> را کوچکترین زیرفضایی از <span
 class="math inline">\(V\)</span> که شامل <span
 class="math inline">\(S\)</span> است تعریف می‌کنیم و آن را با <span
 class="math inline">\(\text{Span}(S)\)</span> نشان می‌دهیم. به این معنی
@@ -3261,9 +3270,10 @@ class="math inline">\(S\)</span>:</p>
 </div>
 <p><strong>۸-۲- تعریف مجموعه مولد &lrm;<span class="en-term" dir="ltr">(Definition of Spanning Set /
 Generator)</span>&rlm;:</strong> یک زیرمجموعه <span class="math inline">\(S\)</span>
-از فضای برداری <span class="math inline">\(V\)</span> را ** مولد
-&lrm;<span class="en-term" dir="ltr">(Spanning Set / Generator)</span>&rlm;** فضای <span class="math inline">\(V\)</span>
-گوییم هرگاه <span class="math inline">\(\text{Span}(S) = V\)</span>.</p>
+از فضای برداری <span class="math inline">\(V\)</span> را <strong>مولد
+&lrm;<span class="en-term" dir="ltr">(Spanning Set / Generator)</span>&rlm;</strong> فضای <span
+class="math inline">\(V\)</span> گوییم هرگاه <span
+class="math inline">\(\text{Span}(S) = V\)</span>.</p>
 <p><strong>۹-۲- مثال‌ها &lrm;<span class="en-term" dir="ltr">(Examples)</span>&rlm;:</strong></p>
 <ol type="1">
 <li><p>در <span class="math inline">\(F^n\)</span> مجموعه بردارهای یکه
@@ -3345,9 +3355,10 @@ class="math inline">\(X\)</span> باشد.</p></li>
 <p><strong>۱۱-۲- تعریف مجموع زیرمجموعه‌ها &lrm;<span class="en-term" dir="ltr">(Sum of Subsets)</span>&rlm;:</strong> فرض
 کنید <span class="math inline">\(S_1\)</span> و <span
 class="math inline">\(S_2\)</span> زیرمجموعه‌هایی از فضای برداری <span
-class="math inline">\(V\)</span> باشند؛ مجموعه زیر را ** مجموع
-زیرمجموعه‌های &lrm;<span class="en-term" dir="ltr">(Sum of Subsets)</span>&rlm;** <span class="math inline">\(S_1\)</span>
-و <span class="math inline">\(S_2\)</span> می‌نامیم و با <span
+class="math inline">\(V\)</span> باشند؛ مجموعه زیر را <strong>مجموع
+زیرمجموعه‌های &lrm;<span class="en-term" dir="ltr">(Sum of Subsets)</span>&rlm;</strong> <span
+class="math inline">\(S_1\)</span> و <span
+class="math inline">\(S_2\)</span> می‌نامیم و با <span
 class="math inline">\(S_1 + S_2\)</span> نشان می‌دهیم:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[S_1 + S_2 = \{ v_1 + v_2 \mid v_1 \in
@@ -3480,8 +3491,8 @@ Dependence and Independence)</span>&rlm;:</strong> فرض کنید <span
 class="math inline">\(V\)</span> فضای برداری روی میدان <span
 class="math inline">\(F\)</span> باشد. زیرمجموعه <span
 class="math inline">\(S\)</span> از <span
-class="math inline">\(V\)</span> ** وابسته خطی &lrm;<span class="en-term" dir="ltr">(Linearly Dependent)</span>&rlm;**
-نامیده می‌شود هرگاه بردارهای متمایز مانند <span
+class="math inline">\(V\)</span> <strong>وابسته خطی &lrm;<span class="en-term" dir="ltr">(Linearly
+Dependent)</span>&rlm;</strong> نامیده می‌شود هرگاه بردارهای متمایز مانند <span
 class="math inline">\(u_1, \dots, u_n\)</span> در <span
 class="math inline">\(S\)</span> و اسکالرهایی مانند <span
 class="math inline">\(c_1, \dots, c_n\)</span> در <span
@@ -3650,11 +3661,12 @@ class="math inline">\(\mathbb{R}^3\)</span> به فضای برداری کلی ا
 منظور نیازمند تعاریفی هستیم:</p>
 <p><strong>۱-۴- تعریف پایه &lrm;<span class="en-term" dir="ltr">(Definition of Basis)</span>&rlm;:</strong> فرض کنید
 <span class="math inline">\(V\)</span> فضای برداری روی میدان <span
-class="math inline">\(F\)</span> باشد. یک ** پایه &lrm;<span class="en-term" dir="ltr">(Basis)</span>&rlm;** برای <span
-class="math inline">\(V\)</span> زیرمجموعه‌ای از بردارهای <span
-class="math inline">\(V\)</span> است که هم ** مستقل خطی &lrm;<span class="en-term" dir="ltr">(Linearly
-Independent)</span>&rlm;** باشد و هم فضای <span class="math inline">\(V\)</span> را
-** پدید آورد (Spans <span class="math inline">\(V\)</span>)**.</p>
+class="math inline">\(F\)</span> باشد. یک <strong>پایه &lrm;<span class="en-term" dir="ltr">(Basis)</span>&rlm;</strong>
+برای <span class="math inline">\(V\)</span> زیرمجموعه‌ای از بردارهای
+<span class="math inline">\(V\)</span> است که هم <strong>مستقل خطی
+&lrm;<span class="en-term" dir="ltr">(Linearly Independent)</span>&rlm;</strong> باشد و هم فضای <span
+class="math inline">\(V\)</span> را <strong>پدید آورد (Spans <span
+class="math inline">\(V\)</span>)</strong>.</p>
 <p><strong>۲-۴- مثال‌های پایه &lrm;<span class="en-term" dir="ltr">(Examples of Bases)</span>&rlm;:</strong></p>
 <ul>
 <li><p><strong>الف)</strong> مجموعه <span class="math inline">\(S =
@@ -3663,8 +3675,8 @@ class="math inline">\(e_i\)</span> بردار با مؤلفه <span
 class="math inline">\(1\)</span> در جایگاه <span
 class="math inline">\(i\)</span>-ام و <span
 class="math inline">\(0\)</span> در سایر جایگاه‌هاست، پایه‌ای برای <span
-class="math inline">\(F^n\)</span> است که به آن ** پایه استاندارد
-&lrm;<span class="en-term" dir="ltr">(Standard Basis)</span>&rlm;** می‌گوییم.</p></li>
+class="math inline">\(F^n\)</span> است که به آن <strong>پایه استاندارد
+&lrm;<span class="en-term" dir="ltr">(Standard Basis)</span>&rlm;</strong> می‌گوییم.</p></li>
 <li><p><strong>ب)</strong> مجموعه تهی &lrm;<span class="en-term" dir="ltr">(Empty Set)</span>&rlm; <span
 class="math inline">\(\emptyset\)</span> پایه فضای برداری صفر <span
 class="math inline">\(\{0\}\)</span> روی میدان <span
@@ -3705,9 +3717,9 @@ class="math inline">\(0\)</span> در غیر این صورت)، یک پایه ا
   </button>
 </div></li>
 <li><p><strong>و)</strong> فضای چندجمله‌ای‌های <span
-class="math inline">\(F[x]\)</span> دارای ** پایه نامتناهی &lrm;<span class="en-term" dir="ltr">(Infinite
-Basis)</span>&rlm;** به صورت <span class="math inline">\(\{1, x, x^2,
-\dots\}\)</span> است.</p></li>
+class="math inline">\(F[x]\)</span> دارای <strong>پایه نامتناهی
+&lrm;<span class="en-term" dir="ltr">(Infinite Basis)</span>&rlm;</strong> به صورت <span class="math inline">\(\{1, x,
+x^2, \dots\}\)</span> است.</p></li>
 </ul>
 <p><strong>۳-۴- قضیه نمایش یکتا &lrm;<span class="en-term" dir="ltr">(Unique Representation
 Theorem)</span>&rlm;:</strong> فرض کنید <span class="math inline">\(B = \{v_1,
@@ -3744,13 +3756,13 @@ class="math inline">\(F^n\)</span> به صورت <span class="math inline">\(x
 (ایزومورف یا هم‌ریخت &lrm;<span class="en-term" dir="ltr">(Isomorphic)</span>&rlm;) هستند.</p>
 <p><strong>۴-۴- تعریف پایه مرتب &lrm;<span class="en-term" dir="ltr">(Definition of Ordered Basis)</span>&rlm;:</strong>
 فرض کنید <span class="math inline">\(V\)</span> یک فضای برداری روی میدان
-<span class="math inline">\(F\)</span> باشد. یک ** پایه مرتب &lrm;<span class="en-term" dir="ltr">(Ordered
-Basis)</span>&rlm;** برای <span class="math inline">\(V\)</span> یک پایه متناهی
-&lrm;<span class="en-term" dir="ltr">(Finite Basis)</span>&rlm; با ترتیب معین است؛ به عبارت دیگر یک پایه مرتب برای <span
-class="math inline">\(V\)</span> یک دنباله متناهی &lrm;<span class="en-term" dir="ltr">(Finite Sequence)</span>&rlm; از
-عناصر مستقل خطی از <span class="math inline">\(V\)</span> است که <span
-class="math inline">\(V\)</span> را تولید می‌کنند و عناصر آن به ترتیب
-معینی شماره‌گذاری می‌شوند.</p>
+<span class="math inline">\(F\)</span> باشد. یک <strong>پایه مرتب
+&lrm;<span class="en-term" dir="ltr">(Ordered Basis)</span>&rlm;</strong> برای <span class="math inline">\(V\)</span> یک
+پایه متناهی &lrm;<span class="en-term" dir="ltr">(Finite Basis)</span>&rlm; با ترتیب معین است؛ به عبارت دیگر یک پایه مرتب
+برای <span class="math inline">\(V\)</span> یک دنباله متناهی &lrm;<span class="en-term" dir="ltr">(Finite
+Sequence)</span>&rlm; از عناصر مستقل خطی از <span class="math inline">\(V\)</span>
+است که <span class="math inline">\(V\)</span> را تولید می‌کنند و عناصر آن
+به ترتیب معینی شماره‌گذاری می‌شوند.</p>
 <ul>
 <li><p>در <span class="math inline">\(\mathbb{R}^3\)</span> ، دنباله‌های
 <span class="math inline">\((e_1, e_2, e_3) \neq (e_2, e_1,
@@ -3772,8 +3784,8 @@ Coordinate Vector)</span>&rlm;:</strong> فرض کنید <span class="math inlin
 class="math inline">\(n\)</span>-تایی یکتای <span
 class="math inline">\((a_1, \dots, a_n)\)</span> از اسکالرها وجود دارد
 که <span class="math inline">\(x = \sum_{i=1}^{n} a_i u_i\)</span>.
-ماتریس ستونی &lrm;<span class="en-term" dir="ltr">(Column Matrix)</span>&rlm; زیر را ** ماتریس مختصات یا بردار مختصات
-&lrm;<span class="en-term" dir="ltr">(Coordinate Matrix / Coordinate Vector)</span>&rlm;** بردار <span
+ماتریس ستونی &lrm;<span class="en-term" dir="ltr">(Column Matrix)</span>&rlm; زیر را <strong>ماتریس مختصات یا بردار
+مختصات &lrm;<span class="en-term" dir="ltr">(Coordinate Matrix / Coordinate Vector)</span>&rlm;</strong> بردار <span
 class="math inline">\(x\)</span> نسبت به پایه مرتب <span
 class="math inline">\(B\)</span> می‌نامیم و با <span
 class="math inline">\([x]_B\)</span> نشان می‌دهیم:</p>
@@ -4916,12 +4928,12 @@ class="math inline">\(\text{im}(D) = \mathbb{R}[x]\)</span>.</p></li>
 <li><p><strong>۳-۹- قضیه &lrm;<span class="en-term" dir="ltr">(Theorem)</span>&rlm;:</strong> فرض کنید <span
 class="math inline">\(T: V \to W\)</span> تبدیل خطی &lrm;<span class="en-term" dir="ltr">(Linear
 transformation)</span>&rlm; از <span class="math inline">\(V\)</span> در <span
-class="math inline">\(W\)</span> باشد؛ در این صورت:</p>
+class="math inline">\(W\)</span> باشد؛ در این صورت <span
+class="math inline">\(T\)</span> یک‌به‌یک &lrm;<span class="en-term" dir="ltr">(Injective)</span>&rlm; است اگر و تنها
+اگر:</p>
 <div class="math-display-container">
-  <div class="math-display-scroll"><span class="math display">\[T \text{ یک‌به‌یک است (Injective)}
-\Longleftrightarrow \ker(T) = \{0\}\]</span></div>
-  <button class="copy-math-btn" data-latex="T \text{ یک‌به‌یک است (Injective)}
-\Longleftrightarrow \ker(T) = \{0\}" onclick="copyFormula(this)" title="کپی فرمول LaTeX">
+  <div class="math-display-scroll"><span class="math display">\[\ker(T) = \{0\}\]</span></div>
+  <button class="copy-math-btn" data-latex="\ker(T) = \{0\}" onclick="copyFormula(this)" title="کپی فرمول LaTeX">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
     <span>LaTeX</span>
   </button>
@@ -5872,7 +5884,8 @@ j\text{-ام } A = A_j" onclick="copyFormula(this)" title="کپی فرمول LaT
     <span>LaTeX</span>
   </button>
 </div>
-<p><strong>۱۵-۱۴- مثال &lrm;<span class="en-term" dir="ltr">(Example)</span>&rlm;:</strong> ** (الف)** فرض کنید:</p>
+<p><strong>۱۵-۱۴- مثال &lrm;<span class="en-term" dir="ltr">(Example)</span>&rlm;:</strong> <strong>(الف)</strong> فرض
+کنید:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[A = \begin{pmatrix} 2 &amp; 4 &amp; 6
 &amp; 4 &amp; 2 \\ 1 &amp; 2 &amp; 1 &amp; 1 &amp; 5 \\ 2 &amp; 4 &amp;
@@ -6164,11 +6177,11 @@ x_1 - x_2 + 2x_3 = 4 \end{cases} \implies \begin{pmatrix} 2 &amp;amp; 3
 class="math inline">\(S&#39; = \begin{pmatrix} 5 \\ 2 \\ 2
 \end{pmatrix}\)</span> جواب نیست.</p>
 <p><strong>۱۶-۳- تعریف &lrm;<span class="en-term" dir="ltr">(Definition)</span>&rlm;:</strong> دستگاه معادلات خطی <span
-class="math inline">\(AX = B\)</span> را ** همگن** &lrm;<span class="en-term" dir="ltr">(Homogeneous)</span>&rlm; گوییم
-هرگاه <span class="math inline">\(B = 0\)</span>. در غیر این صورت دستگاه
-را ** ناهمگن** &lrm;<span class="en-term" dir="ltr">(Non-homogeneous / Inhomogeneous)</span>&rlm; گوییم. هر دستگاه همگن
-حداقل یک جواب صفر دارد؛ آن را ** جواب بدیهی** &lrm;<span class="en-term" dir="ltr">(Trivial Solution)</span>&rlm;
-می‌نامیم.</p>
+class="math inline">\(AX = B\)</span> را <strong>همگن</strong>
+&lrm;<span class="en-term" dir="ltr">(Homogeneous)</span>&rlm; گوییم هرگاه <span class="math inline">\(B = 0\)</span>. در
+غیر این صورت دستگاه را <strong>ناهمگن</strong> &lrm;<span class="en-term" dir="ltr">(Non-homogeneous /
+Inhomogeneous)</span>&rlm; گوییم. هر دستگاه همگن حداقل یک جواب صفر دارد؛ آن را
+<strong>جواب بدیهی</strong> &lrm;<span class="en-term" dir="ltr">(Trivial Solution)</span>&rlm; می‌نامیم.</p>
 <h2 id="صفحه-۸۱" class="heading-linked">
   <span class="heading-fa">صفحه ۸۱</span>
   
@@ -6275,9 +6288,9 @@ x_1 - x_2 - x_3 = -4 \end{cases}" onclick="copyFormula(this)" title="کپی فر
 class="math inline">\(A\)</span> و <span
 class="math inline">\(B\)</span> به ترتیب ماتریس‌های <span
 class="math inline">\(m \times n\)</span> و <span
-class="math inline">\(m \times p\)</span> باشند. ** ماتریس
-افزوده**&lrm;<span class="en-term" dir="ltr">(Augmented Matrix)</span>&rlm; <span class="math inline">\(A\)</span> و
-<span class="math inline">\(B\)</span> ، ماتریس <span
+class="math inline">\(m \times p\)</span> باشند. <strong>ماتریس
+افزوده</strong>&lrm;<span class="en-term" dir="ltr">(Augmented Matrix)</span>&rlm; <span class="math inline">\(A\)</span>
+و <span class="math inline">\(B\)</span> ، ماتریس <span
 class="math inline">\(m \times (n+p)\)</span> به صورت:</p>
 <div class="math-display-container">
   <div class="math-display-scroll"><span class="math display">\[(A_1, \dots, A_n, B_1, \dots,
@@ -6411,8 +6424,8 @@ A_{1n}x_n) + \cdots + \lambda_m(A_{m1}x_1 + \cdots + A_{mn}x_n) =
 می‌آید.</p></li>
 </ul>
 <p><strong>۱۶-۸- تعریف &lrm;<span class="en-term" dir="ltr">(Definition)</span>&rlm;:</strong> دو دستگاه معادلات خطی را
-** هم‌ارز** &lrm;<span class="en-term" dir="ltr">(Equivalent)</span>&rlm; گوییم هرگاه مجموعه جواب‌های &lrm;<span class="en-term" dir="ltr">(Solution Sets)</span>&rlm; آن‌ها
-یکی باشد.</p>
+<strong>هم‌ارز</strong> &lrm;<span class="en-term" dir="ltr">(Equivalent)</span>&rlm; گوییم هرگاه مجموعه جواب‌های &lrm;<span class="en-term" dir="ltr">(Solution
+Sets)</span>&rlm; آن‌ها یکی باشد.</p>
 <p><strong>۱۶-۹- قضیه &lrm;<span class="en-term" dir="ltr">(Theorem)</span>&rlm;:</strong> فرض کنید <span
 class="math inline">\(AX = B\)</span> یک دستگاه از <span
 class="math inline">\(m\)</span> معادله خطی <span
@@ -7205,14 +7218,15 @@ Algebra)</span>&rlm; مهم‌تر از جایگاه امروزشان بود. ب
 دترمینان <span class="math inline">\(A\)</span> صفر باشد، <span
 class="math inline">\(A\)</span> <strong>تکین</strong> &lrm;<span class="en-term" dir="ltr">(Singular)</span>&rlm; است.
 اگر <span class="math inline">\(\det(A) \neq 0\)</span> باشد، <span
-class="math inline">\(A\)</span> ** وارون‌پذیر** &lrm;<span class="en-term" dir="ltr">(Invertible /
-Non-singular)</span>&rlm; است (در فرمول <span class="math inline">\(A^{-1}\)</span>
-، عبارت <span class="math inline">\(\frac{1}{\det(A)}\)</span> وجود
-دارد). مهم‌ترین کاربرد این موضوع بررسی وارون‌پذیری خانواده ماتریس‌هایی به
-صورت <span class="math inline">\(A - \lambda I\)</span> است که در آن‌ها
-پارامتر <span class="math inline">\(\lambda\)</span> از همه درایه‌های قطر
-اصلی &lrm;<span class="en-term" dir="ltr">(Main Diagonal Entries)</span>&rlm; کم می‌شود و مسئله، پیدا کردن **
-ویژه‌مقدارهایی** &lrm;<span class="en-term" dir="ltr">(Eigenvalues)</span>&rlm; است که به ازای آن‌ها <span
+class="math inline">\(A\)</span> <strong>وارون‌پذیر</strong> &lrm;<span class="en-term" dir="ltr">(Invertible
+/ Non-singular)</span>&rlm; است (در فرمول <span
+class="math inline">\(A^{-1}\)</span> ، عبارت <span
+class="math inline">\(\frac{1}{\det(A)}\)</span> وجود دارد). مهم‌ترین
+کاربرد این موضوع بررسی وارون‌پذیری خانواده ماتریس‌هایی به صورت <span
+class="math inline">\(A - \lambda I\)</span> است که در آن‌ها پارامتر
+<span class="math inline">\(\lambda\)</span> از همه درایه‌های قطر اصلی
+&lrm;<span class="en-term" dir="ltr">(Main Diagonal Entries)</span>&rlm; کم می‌شود و مسئله، پیدا کردن
+<strong>ویژه‌مقدارهایی</strong> &lrm;<span class="en-term" dir="ltr">(Eigenvalues)</span>&rlm; است که به ازای آن‌ها <span
 class="math inline">\(\det(A - \lambda I) = 0\)</span> است.</p></li>
 <li><p>تعبیر هندسی (حجم / &lrm;<span class="en-term" dir="ltr">Volume</span>&rlm;): قدرمطلق دترمینان <span
 class="math inline">\(A\)</span> برابر است با حجم جعبه‌ای (متوازی‌السطوح /
