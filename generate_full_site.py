@@ -600,7 +600,7 @@ def build():
 
     search_index_json = json.dumps(search_index, ensure_ascii=False)
 
-    print("7. Assembling minimalist dark & cold HTML document...")
+    print("7. Assembling Vercel Geist HTML document...")
     full_html = f'''<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -620,7 +620,10 @@ def build():
     }} catch(e) {{}}
   </script>
 
-  <!-- Typography: Vazirmatn -->
+  <!-- Typography: Geist & Geist Mono (Vercel), Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
 
@@ -657,68 +660,104 @@ def build():
 
   <style>
     /* ----------------------------------------------------
-       Minimalist Dark & Cold Theme with Vibrant Orange & Yellow
-       Refined Editorial Aesthetic (No AI slop, no emojis)
+       Vercel Geist Design System Theme
+       Precision Monochromatic Aesthetic & Modern Typography
        ---------------------------------------------------- */
     :root {{
       color-scheme: dark light;
 
-      /* Deep cold background & surfaces */
-      --bg-base: #08090a;
-      --bg-surface: #101215;
-      --bg-surface-elevated: #16191f;
-      --bg-hover: #1c2027;
-      --bg-active: #242933;
+      /* Geist Dark (Default) Palette */
+      --bg-base: #000000;
+      --bg-surface: #0a0a0a;
+      --bg-surface-elevated: #111111;
+      --bg-hover: #171717;
+      --bg-active: #222222;
 
-      /* Crisp cold borders */
-      --border-subtle: #1c2026;
-      --border-base: #282d37;
-      --border-strong: #383f4d;
+      /* Precision Hairline Borders */
+      --border-subtle: #222222;
+      --border-base: #333333;
+      --border-strong: #444444;
 
-      /* High-contrast typography */
-      --text-main: #f0f2f5;
-      --text-secondary: #9aa0a6;
-      --text-muted: #646c77;
-      --text-faint: #434a54;
+      /* High-contrast Typography */
+      --text-main: #ededed;
+      --text-secondary: #a1a1a1;
+      --text-muted: #707070;
+      --text-faint: #444444;
 
-      /* Vibrant secondary accents */
-      --accent-orange: #ff6b00;
-      --accent-orange-hover: #ff8533;
-      --accent-orange-dim: rgba(255, 107, 0, 0.12);
+      /* Vercel Geist Accents */
+      --accent-primary: #ededed;
+      --accent-primary-invert: #000000;
+      --accent-blue: #0070f3;
+      --accent-blue-hover: #0060df;
+      --accent-blue-dim: rgba(0, 112, 243, 0.12);
 
-      --accent-yellow: #f59e0b;
-      --accent-yellow-dim: rgba(245, 158, 11, 0.12);
+      --accent-cyan: #00dfd8;
+      --accent-cyan-dim: rgba(0, 223, 216, 0.12);
+
+      --accent-purple: #7928ca;
+      --accent-purple-dim: rgba(121, 40, 202, 0.12);
+
+      --accent-amber: #f5a623;
+      --accent-amber-dim: rgba(245, 166, 35, 0.12);
+
+      --accent-green: #50e3c2;
+      --accent-green-dim: rgba(80, 227, 194, 0.12);
+
+      --accent-red: #ee0000;
+      --accent-red-dim: rgba(238, 0, 0, 0.12);
+
+      /* Typography tokens */
+      --font-sans: 'Geist', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
       /* Layout & scale */
       --header-h: 52px;
       --sidebar-w: 290px;
       --content-max-w: 840px;
       --font-scale: 15.5px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 12px;
     }}
 
-    /* Light mode fallback (clean minimal monochrome paper) */
+    /* Geist Light Mode Fallback */
     :root:has(> head > meta[name="color-scheme"][content="light"]) {{
-      --bg-base: #fbfbfb;
-      --bg-surface: #ffffff;
-      --bg-surface-elevated: #f4f4f5;
-      --bg-hover: #eaeaea;
+      --bg-base: #ffffff;
+      --bg-surface: #fafafa;
+      --bg-surface-elevated: #f5f5f5;
+      --bg-hover: #ebebeb;
       --bg-active: #dfdfdf;
 
-      --border-subtle: #e5e7eb;
-      --border-base: #d1d5db;
-      --border-strong: #9ca3af;
+      --border-subtle: #eaeaea;
+      --border-base: #dcdcdc;
+      --border-strong: #aaaaaa;
 
-      --text-main: #111827;
-      --text-secondary: #4b5563;
-      --text-muted: #6b7280;
-      --text-faint: #9ca3af;
+      --text-main: #000000;
+      --text-secondary: #666666;
+      --text-muted: #888888;
+      --text-faint: #bbbbbb;
 
-      --accent-orange: #ea580c;
-      --accent-orange-hover: #c2410c;
-      --accent-orange-dim: rgba(234, 88, 12, 0.08);
+      --accent-primary: #000000;
+      --accent-primary-invert: #ffffff;
+      --accent-blue: #0070f3;
+      --accent-blue-hover: #0051b3;
+      --accent-blue-dim: rgba(0, 112, 243, 0.08);
 
-      --accent-yellow: #d97706;
-      --accent-yellow-dim: rgba(217, 119, 6, 0.08);
+      --accent-cyan: #009990;
+      --accent-cyan-dim: rgba(0, 153, 144, 0.08);
+
+      --accent-purple: #7928ca;
+      --accent-purple-dim: rgba(121, 40, 202, 0.08);
+
+      --accent-amber: #d97706;
+      --accent-amber-dim: rgba(217, 119, 6, 0.08);
+
+      --accent-green: #059669;
+      --accent-green-dim: rgba(5, 150, 105, 0.08);
+
+      --accent-red: #dc2626;
+      --accent-red-dim: rgba(220, 38, 38, 0.08);
     }}
 
     /* Global Reset */
@@ -745,8 +784,10 @@ def build():
     body {{
       direction: rtl;
       text-align: right;
-      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       background-color: var(--bg-base);
+      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
       color: var(--text-main);
       line-height: 1.9;
       font-size: 1rem;
@@ -769,7 +810,7 @@ def build():
       left: 0;
       width: 0%;
       height: 2px;
-      background: var(--accent-orange);
+      background: var(--accent-blue);
       z-index: 1000;
       transition: width 0.08s ease-out;
     }}
@@ -779,7 +820,9 @@ def build():
       position: sticky;
       top: 0;
       height: var(--header-h);
-      background: var(--bg-base);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
       border-bottom: 1px solid var(--border-subtle);
       z-index: 900;
       display: flex;
@@ -800,14 +843,19 @@ def build():
     }}
 
     .brand-glyph {{
-      font-family: ui-monospace, monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent-yellow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-base);
-      border-radius: 4px;
-      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-md);
+      padding: 0.35rem 0.45rem;
+      line-height: 1;
+      transition: border-color 0.15s ease;
+    }}
+    .brand-wrap:hover .brand-glyph {{
+      border-color: var(--border-strong);
     }}
 
     .brand-name {{
@@ -826,7 +874,7 @@ def build():
       background: transparent;
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       padding: 0.3rem 0.6rem;
       font-size: 0.8rem;
       font-family: inherit;
@@ -850,18 +898,18 @@ def build():
     }}
 
     .search-kbd {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
       border: 1px solid var(--border-base);
       padding: 0 0.35rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       background: var(--bg-surface);
     }}
 
     .font-stepper {{
       display: flex;
       border: 1px solid var(--border-subtle);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       overflow: hidden;
     }}
 
@@ -872,7 +920,7 @@ def build():
       font-size: 0.75rem;
       color: var(--text-secondary);
       cursor: pointer;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
     }}
 
     .font-step-btn:hover {{
@@ -922,13 +970,13 @@ def build():
       font-family: inherit;
       font-size: 0.8rem;
       padding: 0.35rem 0.65rem;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       outline: none;
       transition: border-color 0.15s;
     }}
 
     .sidebar-filter:focus {{
-      border-color: var(--accent-orange);
+      border-color: var(--accent-blue);
     }}
 
     /* Minimalist TOC Group */
@@ -948,7 +996,7 @@ def build():
       padding: 0.35rem 0.4rem;
       cursor: pointer;
       user-select: none;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       transition: background 0.1s;
     }}
 
@@ -957,9 +1005,9 @@ def build():
     }}
 
     .toc-group-num {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
       font-weight: 700;
     }}
 
@@ -1006,7 +1054,7 @@ def build():
       display: block;
       text-decoration: none;
       padding: 0.3rem 0.5rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       border-right: 2px solid transparent;
       transition: all 0.1s ease;
     }}
@@ -1023,7 +1071,7 @@ def build():
       direction: ltr !important;
       text-align: left;
       line-height: 1.25;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -1049,11 +1097,11 @@ def build():
     }}
 
     .toc-link.active {{
-      background: var(--accent-orange-dim);
-      border-right-color: var(--accent-orange);
+      background: var(--accent-blue-dim);
+      border-right-color: var(--accent-blue);
     }}
     .toc-link.active .toc-link-fa {{
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       font-weight: 600;
     }}
 
@@ -1083,9 +1131,9 @@ def build():
     }}
 
     .masthead-meta {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
       letter-spacing: 0.05em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
@@ -1101,9 +1149,9 @@ def build():
     }}
 
     .masthead-subtitle-en {{
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       font-size: 1.05rem;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       font-weight: 500;
       direction: ltr !important;
       text-align: right;
@@ -1116,7 +1164,7 @@ def build():
       gap: 0.75rem 1.5rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       padding: 1rem 1.25rem;
       font-size: 0.8rem;
     }}
@@ -1143,8 +1191,8 @@ def build():
       padding: 0.85rem 1.15rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-right: 3px solid var(--accent-orange);
-      border-radius: 4px;
+      border-right: 3px solid var(--accent-blue);
+      border-radius: var(--radius-md);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -1164,7 +1212,7 @@ def build():
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       font-weight: 700;
       font-size: 0.74rem;
       letter-spacing: 0.02em;
@@ -1184,7 +1232,7 @@ def build():
       padding: 0.38rem 0.85rem;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-base);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       color: var(--text-main);
       text-decoration: none;
       font-size: 0.75rem;
@@ -1194,8 +1242,8 @@ def build():
     }}
 
     .contribution-btn:hover {{
-      border-color: var(--accent-orange);
-      color: var(--accent-orange);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
       background: var(--bg-hover);
     }}
 
@@ -1240,18 +1288,18 @@ def build():
       font-size: 0.82em;
       font-weight: 500;
       margin-right: 0.5rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
     }}
 
     .page-tag {{
       display: inline-block;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
-      color: var(--accent-yellow);
-      background: var(--accent-yellow-dim);
+      color: var(--accent-amber);
+      background: var(--accent-amber-dim);
       border: 1px solid rgba(245, 158, 11, 0.3);
       padding: 0.05rem 0.45rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       vertical-align: middle;
       margin-right: 0.5rem;
     }}
@@ -1259,7 +1307,7 @@ def build():
     .header-anchor {{
       opacity: 0;
       margin-right: 0.4rem;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       text-decoration: none;
       font-weight: 400;
       transition: opacity 0.12s;
@@ -1274,9 +1322,9 @@ def build():
       direction: ltr !important;
       unicode-bidi: isolate !important;
       display: inline !important;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       font-size: 0.9em;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: var(--font-sans);
       font-weight: 500;
       padding: 0 0.15rem;
       overflow-wrap: break-word;
@@ -1297,13 +1345,13 @@ def build():
       direction: ltr !important;
       unicode-bidi: isolate !important;
       display: inline-block;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 0.85em;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
       padding: 0.1rem 0.4rem;
-      border-radius: 3px;
-      color: var(--accent-yellow);
+      border-radius: var(--radius-sm);
+      color: var(--accent-amber);
     }}
 
     pre {{
@@ -1311,7 +1359,7 @@ def build():
       unicode-bidi: isolate !important;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       padding: 1rem 1.25rem;
       overflow-x: auto;
       margin: 1.25rem 0;
@@ -1334,7 +1382,7 @@ def build():
       margin: 1.75rem 0;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       font-size: 0.92rem;
     }}
 
@@ -1366,7 +1414,7 @@ def build():
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-right: 3px solid var(--border-strong);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       margin: 1.5rem 0;
       padding: 0.9rem 1.2rem;
     }}
@@ -1378,7 +1426,7 @@ def build():
     }}
 
     .callout-label {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -1392,31 +1440,31 @@ def build():
     }}
 
     .callout-def {{
-      border-right-color: var(--accent-yellow);
+      border-right-color: var(--accent-blue);
     }}
     .callout-def .callout-label {{
-      color: var(--accent-yellow);
+      color: var(--accent-blue);
     }}
 
     .callout-thm {{
-      border-right-color: var(--accent-orange);
+      border-right-color: var(--accent-purple);
     }}
     .callout-thm .callout-label {{
-      color: var(--accent-orange);
+      color: var(--accent-purple);
     }}
 
     .callout-lem {{
-      border-right-color: #d97706;
+      border-right-color: var(--accent-amber);
     }}
     .callout-lem .callout-label {{
-      color: #fbbf24;
+      color: var(--accent-amber);
     }}
 
     .callout-cor {{
-      border-right-color: #ea580c;
+      border-right-color: var(--accent-cyan);
     }}
     .callout-cor .callout-label {{
-      color: #fb923c;
+      color: var(--accent-cyan);
     }}
 
     .callout-example {{
@@ -1427,11 +1475,11 @@ def build():
     }}
 
     .callout-note {{
-      border-right-color: var(--accent-yellow);
-      background: var(--accent-yellow-dim);
+      border-right-color: var(--accent-amber);
+      background: var(--accent-amber-dim);
     }}
     .callout-note .callout-label {{
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
     }}
 
     .callout-proof {{
@@ -1454,7 +1502,7 @@ def build():
       padding: 1.15rem 1.25rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       display: block;
       width: 100%;
       max-width: 100%;
@@ -1489,7 +1537,7 @@ def build():
       opacity: 0;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-base);
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       padding: 0.2rem 0.45rem;
       font-size: 0.7rem;
       color: var(--text-secondary);
@@ -1497,7 +1545,7 @@ def build():
       display: flex;
       align-items: center;
       gap: 0.3rem;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       transition: all 0.12s ease;
       z-index: 5;
     }}
@@ -1507,9 +1555,9 @@ def build():
     }}
 
     .copy-math-btn:hover {{
-      background: var(--accent-orange);
+      background: var(--accent-blue);
       color: #000;
-      border-color: var(--accent-orange);
+      border-color: var(--accent-blue);
     }}
 
     mjx-container {{
@@ -1552,11 +1600,11 @@ def build():
       bottom: 2rem;
       left: 2rem;
       background: var(--bg-surface-elevated);
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       border: 1px solid var(--border-strong);
       width: 38px;
       height: 38px;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1573,9 +1621,9 @@ def build():
     }}
 
     #back-to-top:hover {{
-      background: var(--accent-orange);
+      background: var(--accent-blue);
       color: #000;
-      border-color: var(--accent-orange);
+      border-color: var(--accent-blue);
     }}
 
     /* Minimal Search Modal */
@@ -1598,7 +1646,7 @@ def build():
     .search-modal {{
       background: var(--bg-surface);
       border: 1px solid var(--border-strong);
-      border-radius: 6px;
+      border-radius: var(--radius-lg);
       width: 90%;
       max-width: 580px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -1636,7 +1684,7 @@ def build():
 
     .search-result-item {{
       padding: 0.55rem 0.85rem;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       text-decoration: none;
       color: var(--text-main);
       display: flex;
@@ -1652,13 +1700,13 @@ def build():
     }}
 
     .search-result-pill {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
       padding: 0.1rem 0.4rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       white-space: nowrap;
     }}
 
@@ -1670,7 +1718,7 @@ def build():
     }}
 
     @keyframes highlightFlash {{
-      0% {{ background-color: var(--accent-orange-dim); }}
+      0% {{ background-color: var(--accent-blue-dim); }}
       100% {{ background-color: transparent; }}
     }}
     .search-highlighted {{
@@ -1683,8 +1731,8 @@ def build():
       padding: 0.6rem 0.9rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-right: 3px solid var(--accent-yellow);
-      border-radius: 4px;
+      border-right: 3px solid var(--accent-amber);
+      border-radius: var(--radius-md);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -1696,7 +1744,7 @@ def build():
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
       font-weight: 600;
       font-size: 0.76rem;
     }}
@@ -1713,7 +1761,7 @@ def build():
       align-items: center;
       gap: 0.35rem;
       padding: 0.22rem 0.55rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-base);
       color: var(--text-secondary);
@@ -1724,22 +1772,22 @@ def build():
     }}
 
     .wiki-chip:hover {{
-      border-color: var(--accent-orange);
+      border-color: var(--accent-blue);
       color: var(--text-main);
       background: var(--bg-hover);
     }}
 
     .wiki-chip.en .wiki-lang {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.65rem;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       font-weight: 700;
     }}
 
     .wiki-chip.fa .wiki-lang {{
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-size: 0.65rem;
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
       font-weight: 700;
     }}
 
@@ -1751,7 +1799,7 @@ def build():
 
     .wiki-chip:hover .external-icon {{
       opacity: 1;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
     }}
 
     /* Sidebar Wikipedia Index */
@@ -1767,7 +1815,7 @@ def build():
       flex-direction: column;
       gap: 0.25rem;
       padding: 0.45rem 0.6rem;
-      border-radius: 4px;
+      border-radius: var(--radius-md);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       transition: border-color 0.12s;
@@ -1793,7 +1841,7 @@ def build():
     }}
 
     .wiki-sidebar-title:hover {{
-      color: var(--accent-orange);
+      color: var(--accent-blue);
     }}
 
     .wiki-sidebar-links {{
@@ -1804,29 +1852,29 @@ def build():
 
     .wiki-sidebar-link {{
       font-size: 0.68rem;
-      color: var(--accent-orange);
+      color: var(--accent-blue);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.2rem;
-      font-family: ui-monospace, monospace;
+      font-family: var(--font-mono);
       border: 1px solid var(--border-subtle);
       padding: 0.1rem 0.35rem;
-      border-radius: 3px;
+      border-radius: var(--radius-sm);
       background: var(--bg-surface-elevated);
     }}
 
     .wiki-sidebar-link.fa-link {{
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
     }}
 
     .wiki-sidebar-link:hover {{
-      border-color: var(--accent-orange);
+      border-color: var(--accent-blue);
       color: #fff;
     }}
 
     .search-result-pill.wiki-pill {{
-      color: var(--accent-yellow);
+      color: var(--accent-amber);
       border-color: rgba(245, 158, 11, 0.4);
     }}
 
@@ -1999,7 +2047,9 @@ def build():
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
       <a href="#" class="brand-wrap">
-        <span class="brand-glyph">∑</span>
+        <span class="brand-glyph" aria-hidden="true">
+          <svg width="14" height="12" viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+        </span>
         <span class="brand-name">مبانی ماتریس و جبر خطی</span>
       </a>
     </div>
@@ -2110,7 +2160,7 @@ def build():
   <div class="search-modal-backdrop" id="search-modal-backdrop" onclick="closeSearchModalOnBackdrop(event)">
     <div class="search-modal" role="dialog" aria-modal="true" aria-label="جستجو در جزوه">
       <div class="search-input-wrapper">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-orange);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <input type="text" id="modal-search-input" class="search-input-field" placeholder="جستجو در مفاهیم، قضایا، تعاریف و صفحات..." oninput="handleModalSearch(this.value)" autocomplete="off" />
         <kbd class="search-kbd" onclick="closeSearchModal()" style="cursor: pointer;">ESC</kbd>
       </div>
@@ -2191,7 +2241,7 @@ def build():
         const span = button.querySelector('span');
         const orig = span.textContent;
         span.textContent = 'کپی شد!';
-        button.style.color = 'var(--accent-orange)';
+        button.style.color = 'var(--accent-blue)';
         setTimeout(() => {{
           span.textContent = orig;
           button.style.color = '';
@@ -2379,7 +2429,7 @@ def build():
         with open(this_script_path, "r", encoding="utf-8") as src, open(other_script_path, "w", encoding="utf-8") as dst:
             dst.write(src.read())
 
-    print(f"SUCCESS! Wrote minimalist website ({len(full_html)} bytes).")
+    print(f"SUCCESS! Wrote Vercel Geist website ({len(full_html)} bytes).")
 
 if __name__ == "__main__":
     build()
