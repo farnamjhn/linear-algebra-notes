@@ -250,19 +250,53 @@ $$\begin{bmatrix} 7 & -2 & 3 \\ 1 & \frac{3}{4} & 0 \\ -1 & 3 & -\frac{2}{3} \\ 
 
 این اصول، اصول موضوع (Axioms) ما هستند و بر اساس آن‌ها نتایج و قضایا (Theorems) را ثابت می‌کنیم. توجه کنید که از یک نماد $+$ برای نمایش جمع برداری در $V$ و جمع اسکالر در میدان $F$ استفاده شده است، ولی همواره از فحوای کلام روشن است که منظور ما کدام عمل است. همچنین ضرب در $F$ و ضرب اسکالر در $V$ با یک نماد نشان داده می‌شود و بردار صفر (Zero Vector) و اسکالر صفر (Zero Scalar) هر دو با علامت $0$ نشان داده می‌شوند که معنی آن همواره با توجه به متن روشن است.
 
-**۳-۱- لم (Lemma):** فرض کنید $V$ یک فضای برداری (Vector Space) روی میدان $F$ باشد؛ در این صورت داریم:
+**۳-۱- لم / قضیه ۱-۲ (Lemma / Theorem) (خواص مقدماتی فضای برداری):** فرض کنید $V$ یک فضای برداری (Vector Space) روی میدان $F$ باشد؛ در این صورت داریم:
 
-1. **قانون حذفی جمع (Cancellation Law for Addition):** فرض کنید $u, v, w \in V$ به طوری که $u + w = v + w$ ؛ در این صورت $u = v$.
+1. **(i) قانون حذفی جمع (Cancellation Law for Addition):** فرض کنید $u, v, w \in V$ به طوری که $u + v = u + w$ (یا $u + w = v + w$)؛ در این صورت $v = w$ (یا $u = v$).
 
-2. **یکتایی (Uniqueness):** بردار صفر (Zero Vector) یکتا است و قرینه (Additive Inverse) هر بردار یکتا است.
+    - **برهان (Proof):**
 
-3. **الف)** برای هر $u \in V$ داریم: $0_F \cdot u = 0_V$. **ب)** برای هر $c \in F$ داریم: $c \cdot 0_V = 0_V$.
+        $$(-u) + (u + v) = (-u) + (u + w) \stackrel{\text{شرکت‌پذیری}}{\Longrightarrow} (-u + u) + v = (-u + u) + w \Longrightarrow 0_V + v = 0_V + w \Longrightarrow v = w$$
 
-4. برای هر $c \in F$ و $u \in V$ داریم: $(-c)u = c(-u) = -(cu)$ و به ویژه $(-1)u = -u$.
+2. **(ii) یکتایی (Uniqueness):** بردار صفر (Zero Vector) یکتا است و قرینه (Additive Inverse) هر بردار یکتا است.
 
-5. برای هر $u \in V$ داریم: $-(-u) = u$.
+    - **الف) بردار صفر یکتا است — برهان (برهان خلف):** فرض کنید دو بردار $0_1$ و $0_2$ وجود داشته باشند که برای هر $v \in V$ داشته باشیم $0_1 + v = v$ و $0_2 + v = v$. در نتیجه:
 
-6. فرض کنید $c \in F$ و $u \in V$ به طوری که $cu = 0_V$ ؛ در این صورت $c = 0_F$ یا $u = 0_V$.
+        $$\begin{cases} \text{به ازای } v = 0_2 \implies 0_1 + 0_2 = 0_2 \\ \text{به ازای } v = 0_1 \implies 0_2 + 0_1 = 0_1 \end{cases} \Longrightarrow 0_1 = 0_2$$
+
+    - **ب) بردار قرینه یکتا است — برهان (برهان خلف):** فرض کنید $u \in V$ و $u_1, u_2 \in V$ به طوری که $u + u_1 = 0_V$ و $u + u_2 = 0_V$. بنابراین $u + u_1 = u + u_2$ و بنابر قسمت (i) داریم $u_1 = u_2$.
+
+3. **(iii) برای هر $u \in V$ داریم $-(-u) = u$.**
+
+    - **برهان (Proof):** داریم $u + (-u) = 0_V$ و همچنین $(-(-u)) + (-u) = 0_V$ ؛ یعنی $u$ قرینه‌ی $-u$ است. چون قرینه‌ی $-u$ یکتا است، پس $-(-u)$ برابر $u$ است.
+
+4. **(iv) و (v) ضرب در صفر:**
+
+    - **الف) (iv) برای هر $u \in V$ داریم $0_F \cdot u = 0_V$ — برهان:** فرض کنید $u \in V$. در این صورت:
+
+        $$0_F \cdot u = (0_F + 0_F) \cdot u \stackrel{\text{خواص ضرب اسکالر}}{=} 0_F \cdot u + 0_F \cdot u \Longrightarrow 0_V + 0_F \cdot u = 0_F \cdot u + 0_F \cdot u \stackrel{\text{طبق (i)}}{\Longrightarrow} 0_F \cdot u = 0_V$$
+
+    - **ب) (v) برای هر $\alpha \in F$ داریم $\alpha \cdot 0_V = 0_V$ — برهان:** فرض کنید $\alpha \in F$. در این صورت:
+
+        $$\alpha \cdot (0_V + 0_V) = \alpha \cdot 0_V \stackrel{\text{خاصیت ضرب اسکالر}}{\Longrightarrow} \alpha \cdot 0_V + \alpha \cdot 0_V = \alpha \cdot 0_V = \alpha \cdot 0_V + 0_V$$
+
+        مطابق (i) و خاصیت جمع برداری داریم: $\alpha \cdot 0_V = 0_V$.
+
+5. **(vi) برای هر $\alpha \in F$ و هر $u \in V$ داریم $(-\alpha)u = -(\alpha u) = \alpha(-u)$ ؛ به ویژه داریم $(-1_F)u = -u$.**
+
+    - **برهان (Proof):** فرض کنید $\alpha \in F$ و $u \in V$.
+
+        - **الف)** $(-\alpha)u + \alpha u \stackrel{\text{خاصیت ضرب اسکالر}}{=} (-\alpha + \alpha)u = 0_F \cdot u \stackrel{\text{(iv)}}{=} 0_V$ ؛ یعنی $(-\alpha)u$ قرینه‌ی $\alpha u$ است. بنابراین $(-\alpha)u = -(\alpha u)$.
+
+        - **ب)** $\alpha(-u) + \alpha u = \alpha(-u + u) = \alpha \cdot 0_V \stackrel{\text{(v)}}{=} 0_V$ ؛ یعنی $\alpha(-u)$ قرینه‌ی $\alpha u$ است. بنابراین $\alpha(-u) = -(\alpha u)$.
+
+        - **ج) حالت خاص:** $(-1_F)u \stackrel{\text{الف}}{=} -(1_F \cdot u) \stackrel{\text{خاصیت ضرب اسکالر}}{=} -u$.
+
+6. **(vii) فرض کنید $\alpha \in F$ و $u \in V$ به طوری که $\alpha u = 0_V$ ؛ در این صورت $\alpha = 0_F$ یا $u = 0_V$.**
+
+    - **برهان (Proof):** فرض کنید $\alpha \neq 0_F$ (اگر $\alpha = 0_F$ باشد که گزاره درست می‌شود). در این صورت $\alpha$ در میدان $F$ دارای وارون ضربی ($\alpha^{-1}$) است. بنابراین:
+
+        $$\alpha^{-1}(\alpha u) = \alpha^{-1}(0_V) \stackrel{\text{خاصیت ضرب اسکالر و (v)}}{\Longrightarrow} (\alpha^{-1}\alpha)u = 0_V \Longrightarrow 1_F \cdot u = 0_V \stackrel{\text{خاصیت ضرب اسکالر}}{\Longrightarrow} u = 0_V$$
 
 **تعمیم شرکت‌پذیری (Generalized Associativity):** همه روش‌های ممکن از جمع $n$ بردار با هم تشکیل برداری می‌دهد که به طور یکتا تعریف شده است و با استقراء ریاضی (Mathematical Induction) روی $n$ می‌توان جمع $n$ بردار را تعریف کرد. فرض کنید $u_1, \dots, u_n$ و $v_1, \dots, v_n$ بردارهایی از $V$ و $\lambda_1, \dots, \lambda_n, \mu_1, \dots, \mu_n$ اسکالرهایی از $F$ باشند:
 
@@ -296,11 +330,37 @@ $$v = c_1 u_1 + \dots + c_n u_n = \sum_{i=1}^{n} c_i u_i$$
 
 4. وجود قرینه جمعی (Additive Inverse) برای هر بردار در $W$.
 
-**۲-۲- قضیه آزمون زیرفضا (Subspace Test Theorem):** فرض کنید $W$ زیرمجموعه غیرتهی (Non-empty Subset) از فضای برداری $V$ باشد. در این صورت $W$ یک زیرفضای (Subspace) $V$ است اگر و تنها اگر برای هر $u, v \in W$ و هر اسکالر $c \in F$ داشته باشیم:
+**۲-۲- قضیه آزمون زیرفضا / محک فشرده زیرفضا (Subspace Test Theorem):** فرض کنید $W$ زیرمجموعه غیرتهی (Non-empty Subset) از فضای برداری $V$ روی میدان $F$ باشد. در این صورت $W$ یک زیرفضای (Subspace) $V$ است اگر و تنها اگر برای هر $u, v \in W$ و هر اسکالر $c \in F$ داشته باشیم:
 
 $$cu + v \in W$$
 
 (یا به طور معادل: ۱. $0 \in W$ ، ۲. به ازای هر $u, v \in W$ داشته باشیم $u + v \in W$ ، و ۳. به ازای هر $c \in F$ و $u \in W$ داشته باشیم $cu \in W$.)
+
+- **برهان (Proof):**
+
+    - $(\Longrightarrow)$ واضح است (از بسته بودن زیرفضا نسبت به جمع و ضرب اسکالر نتیجه می‌شود).
+
+    - $(\Longleftarrow)$
+
+        - **(اول) $W$ تحت عمل جمع برداری بسته است:** فرض کنید $u, v \in W$. در این صورت با قرار دادن $c = 1_F$ داریم:
+
+            $$u + v = 1_F \cdot u + v \in W$$
+
+        - **(دوم) $0_V \in W$:** چون $W$ ناتهی است، پس $w_0 \in W$ وجود دارد. لذا طبق فرض (به ازای $c = -1_F$) داریم:
+
+            $$(-1_F)w_0 + w_0 \in W \stackrel{(-1_F)w_0 = -w_0}{\Longrightarrow} -w_0 + w_0 \in W \Longrightarrow 0_V \in W$$
+
+        - **(سوم) برای هر $x \in W$ داریم $-x \in W$:** فرض کنید $x \in W$. در این صورت طبق فرض و (دوم) داریم:
+
+            $$(-1_F)x + 0_V \in W \stackrel{(-1_F)x = -x}{\Longrightarrow} -x \in W$$
+
+        - **(چهارم) برای هر $c \in F$ و $x \in W$ داریم $cx \in W$:** زیرا $cx = cx + 0_V \in W$. همچنین خاصیت شرکت‌پذیری، جابه‌جایی و چهار خاصیت ضرب اسکالر از $V$ به $W$ القا می‌شوند.
+
+- **مثال (زیرمجموعه‌ای که زیرفضا نیست):** مجموعه‌ی $W = \{(x, y) \in \mathbb{R}^2 \mid x \ge 0, \, y \ge 0\}$ زیرفضای $\mathbb{R}^2$ نیست:
+
+    1. $(a, b), (c, d) \in W \implies (a+c, b+d) \in W$ (تحت جمع برداری بسته است).
+
+    2. اما برای هر $\alpha \in \mathbb{R}$ و $(a, b) \in W$ ، الزاماً $(\alpha a, \alpha b) \in W$ نیست (به ازای $\alpha < 0$ برقرار نیست).
 
 **۳-۲- مثال‌های زیرفضا (Examples of Subspaces):**
 
@@ -320,19 +380,55 @@ $$cu + v \in W$$
 
     - **(iii)** مجموعه جواب‌های معادله دیفرانسیل همگن (Homogeneous Differential Equation) $y'' + my = 0$.
 
-6. **درجه یک چندجمله‌ای (Degree of a Polynomial)** ناصفر را بزرگترین توان متغیر $x$ که ضریب آن ناصفر است تعریف می‌کنیم. مجموعه چندجمله‌ای‌های با درجه کمتر یا مساوی $n$ (به همراه چندجمله‌ای صفر) یک زیرفضای $F[x]$ است که آن را با $F_n[x]$ نشان می‌دهیم. همچنین $F[x]$ را می‌توان به عنوان زیرفضایی از فضای توابع $F(F, F)$ در نظر گرفت.
+6. **تعریف ۴-۲ (درجه یک چندجمله‌ای / Degree of a Polynomial):** درجه یک چندجمله‌ای ناصفر را بزرگترین توان متغیر $x$ که ضریب آن ناصفر است تعریف می‌کنیم:
 
-**۴-۲- قضیه اشتراک زیرفضاها (Intersection of Subspaces Theorem):** فرض کنید $V$ فضای برداری روی میدان $F$ باشد و $\{W_i\}_{i \in I}$ یک خانواده از زیرفضاهای (Subspaces) $V$ باشد؛ در این صورت اشتراک (Intersection) آن‌ها یعنی $\bigcap_{i \in I} W_i$ نیز زیرفضای $V$ است.
+    $$\deg\left(\sum_{i=0}^{\infty} a_i x^i\right) = \max\{i \mid a_i \neq 0\}$$
+
+    چون چندجمله‌ای ناصفر است، پس مجموعه $\{i \mid a_i \neq 0\}$ ناتهی و متناهی است. درجه‌ی چندجمله‌ای صفر را $-\infty$ تعریف می‌کنیم (قرارداد: برای هر عدد طبیعی $n$ داریم $-\infty < n$). مجموعه چندجمله‌ای‌های با درجه کمتر یا مساوی $n$ (به همراه چندجمله‌ای صفر) یک زیرفضای $F[x]$ است که آن را با $F_n[x]$ نشان می‌دهیم. همچنین $F[x]$ را می‌توان به عنوان زیرفضایی از فضای توابع $F(F, F)$ در نظر گرفت.
+
+**۴-۲ (یا ۵-۲)- قضیه اشتراک زیرفضاها (Intersection of Subspaces Theorem):** فرض کنید $V$ فضای برداری روی میدان $F$ باشد و $\{W_i\}_{i \in I}$ یک خانواده از زیرفضاهای (Subspaces) $V$ باشد؛ در این صورت اشتراک (Intersection) آن‌ها یعنی $\bigcap_{i \in I} W_i$ نیز زیرفضای $V$ است.
+
+- **برهان (Proof):** توجه کنید برای هر $i \in I$ داریم $0_V \in W_i$ ، پس $0_V \in \bigcap_{i \in I} W_i \neq \emptyset$. فرض کنید $u, v \in \bigcap_{i \in I} W_i$ و $c \in F$. در این صورت:
+
+    $$u, v \in W_i \quad (\forall i \in I) \stackrel{W_i \text{ زیرفضای } V}{\Longrightarrow} cu + v \in W_i \quad (\forall i \in I) \Longrightarrow cu + v \in \bigcap_{i \in I} W_i$$
+
+    حکم از قضیه‌ی محک فشرده زیرفضا (۲-۲) نتیجه می‌شود.
 
 **۵-۲- تعریف زیرفضای پدیدآمده یا اسپن (Definition of Span):** فرض کنید $V$ یک فضای برداری روی میدان $F$ باشد و $S \subseteq V$. **زیرفضای پدیدآمده توسط $S$ (Subspace Spanned by $S$ / Span of $S$)** را کوچکترین زیرفضایی از $V$ که شامل $S$ است تعریف می‌کنیم و آن را با $\text{Span}(S)$ نشان می‌دهیم. به این معنی که $\text{Span}(S)$ زیرفضای $V$ است که شامل $S$ می‌باشد ($S \subseteq \text{Span}(S)$) و اگر $W$ زیرفضای دیگری از $V$ باشد که شامل $S$ است، آنگاه $\text{Span}(S) \subseteq W$. زیرفضای پدیدآمده توسط مجموعه تهی (Empty Set) $\emptyset$ ، همان زیرفضای صفر (Zero Subspace) $\{0\}$ است ($\text{Span}(\emptyset) = \{0\}$).
 
 **۶-۲- لم (Lemma):** فرض کنید $V$ یک فضای برداری روی میدان $F$ باشد و $S \subseteq V$ ؛ در این صورت زیرفضای پدیدآمده توسط $S$ وجود دارد و برابر است با اشتراک تمام زیرفضاهای شامل $S$:
 
-$$\text{Span}(S) = \bigcap_{\substack{S \subseteq W \\ W \text{ زیرفضای } V}} W$$
+$$\text{Span}(S) = \bigcap_{\substack{W \le V \\ S \subseteq W}} W$$
+
+*(که در آن $W \le V$ به معنای «$W$ زیرفضای $V$ است» می‌باشد).*
+
+- **برهان (Proof):** قرار دهید $\Sigma = \{W \le V \mid S \subseteq W\}$ (مجموعه زیرفضاهای $V$ شامل $S$). توجه کنید $V \in \Sigma$ پس $\Sigma \neq \emptyset$. مطابق قضیه اشتراک زیرفضاها (۴-۲ / ۵-۲)، $\bigcap_{W \in \Sigma} W$ یک زیرفضای $V$ است. واضح است که این اشتراک شامل $S$ است و کوچک‌ترین زیرفضایی از $V$ است که شامل $S$ می‌باشد (زیرا اگر $W'$ هر زیرفضای شامل $S$ باشد، آنگاه $W' \in \Sigma$ و در نتیجه $\bigcap_{W \in \Sigma} W \subseteq W'$). پس طبق تعریف، برابر $\text{Span}(S)$ است.
 
 **۷-۲- قضیه (Theorem):** فرض کنید $V$ یک فضای برداری روی میدان $F$ باشد و $\emptyset \neq S \subseteq V$ ؛ در این صورت $\text{Span}(S)$ برابر است با مجموعه همه ترکیبات خطی (Linear Combinations) ممکن از بردارهای $S$:
 
 $$\text{Span}(S) = \left\{ \sum_{i=1}^{n} \alpha_i u_i \;\middle|\; n \in \mathbb{N}, \, \alpha_i \in F, \, u_i \in S \right\}$$
+
+- **برهان (Proof):** قرار دهید:
+
+    $$\Sigma = \left\{ \sum_{i=1}^{n} \alpha_i v_i \;\middle|\; n \in \mathbb{N}, \, \alpha_i \in F, \, v_i \in S \right\}$$
+
+    - **(i) $\Sigma$ یک زیرفضای $V$ است:** چون $S \neq \emptyset$ ، پس $\Sigma \neq \emptyset$. فرض کنید $\sum_{i=1}^{m} \beta_i u_i \in \Sigma$ و $\sum_{i=1}^{n} \alpha_i v_i \in \Sigma$ و $c \in F$. در این صورت:
+
+        $$c\left(\sum_{i=1}^{m} \beta_i u_i\right) + \left(\sum_{i=1}^{n} \alpha_i v_i\right) = \sum_{i=1}^{m} (c\beta_i) u_i + \sum_{i=1}^{n} \alpha_i v_i$$
+
+        این عنصر به شکل عناصر $\Sigma$ است (چرا که $u_i, v_i \in S$ و $\alpha_i, c\beta_i \in F$ و تعداد جملات $n+m \in \mathbb{N}$ است). پس $\Sigma$ زیرفضای $V$ است.
+
+    - **(ii) $S \subseteq \Sigma$:** فرض کنید $x \in S$. در این صورت $x = 1_F \cdot x \in \Sigma$.
+
+        از (i) و (ii) می‌فهمیم که $\Sigma$ زیرفضای شامل $S$ است؛ بنابراین طبق تعریفِ $\text{Span}(S)$ (کوچک‌ترین زیرفضای شامل $S$) داریم:
+
+        $$\text{Span}(S) \subseteq \Sigma$$
+
+    - **(iii) اگر $W$ یک زیرفضای $V$ باشد که شامل $S$ است، آنگاه $\Sigma \subseteq W$:** فرض کنید $x \in \Sigma$. در این صورت عناصر $\alpha_1, \dots, \alpha_n \in F$ و عناصر $v_1, \dots, v_n \in S$ وجود دارند که $x = \sum_{i=1}^{n} \alpha_i v_i$. چون $S \subseteq W$ پس $v_1, \dots, v_n \in W$. بنابراین با توجه به بسته بودن $W$ نسبت به ضرب اسکالر و جمع، داریم:
+
+        $$x = \sum_{i=1}^{n} \alpha_i v_i \in W$$
+
+        از آنجا که $\text{Span}(S)$ خود یک زیرفضای شامل $S$ است، با قرار دادن $W = \text{Span}(S)$ در (iii) داریم $\Sigma \subseteq \text{Span}(S)$. در نتیجه $\text{Span}(S) = \Sigma$.
 
 **۸-۲- تعریف مجموعه مولد (Definition of Spanning Set / Generator):** یک زیرمجموعه $S$ از فضای برداری $V$ را **مولد (Spanning Set / Generator)** فضای $V$ گوییم هرگاه $\text{Span}(S) = V$.
 
@@ -356,13 +452,21 @@ $$\text{Span}(S) = \left\{ \sum_{i=1}^{n} \alpha_i u_i \;\middle|\; n \in \mathb
 
 8. مجموعه چندجمله‌ای‌های $\{x^2 + x + 1, x^2 - x + 2, x^2 + 1\}$ مولد فضای $\mathbb{R}_2[x]$ است، زیرا هر چندجمله‌ای $ax^2 + bx + c \in \mathbb{R}_2[x]$ به صورت ترکیب خطی (Linear Combination) از این سه چندجمله‌ای نوشته می‌شود.
 
-**۱۰-۲- قضیه (Theorem):** فرض کنید $V$ یک فضای برداری روی میدان $F$ باشد و $X, Y$ دو زیرمجموعه ناتهی از $V$ باشند؛ در این صورت:
+**۱۰-۲- قضیه / لم ۸-۲ (Theorem / Lemma):** فرض کنید $V$ یک فضای برداری روی میدان $F$ باشد و $X, Y$ دو زیرمجموعه ناتهی از $V$ باشند؛ در این صورت:
 
 - **الف)** $X \subseteq \text{Span}(X)$ و $\text{Span}(\text{Span}(X)) = \text{Span}(X)$.
 
 - **ب)** اگر هر عضو $X$ ترکیب خطی از عناصر $Y$ باشد ($X \subseteq \text{Span}(Y)$)، آنگاه $\text{Span}(X) \subseteq \text{Span}(Y)$ ؛ به ویژه اگر $X \subseteq Y$ آنگاه $\text{Span}(X) \subseteq \text{Span}(Y)$.
 
 - **ج)** $\text{Span}(X) = \text{Span}(Y)$ اگر و تنها اگر هر عضو $X$ ترکیب خطی از عناصر $Y$ باشد و هر عضو $Y$ ترکیب خطی از عناصر $X$ باشد.
+
+- **برهان (Proof):**
+
+    - **الف و ب)** طبق تعریف، $\text{Span}(X)$ کوچک‌ترین زیرفضای $V$ شامل $X$ است. از طرف دیگر، $\text{Span}(Y)$ یک زیرفضای $V$ است که طبق فرض شامل $X$ است ($X \subseteq \text{Span}(Y)$). در نتیجه:
+
+        $$\text{Span}(X) \subseteq \text{Span}(Y)$$
+
+    - **ج)** با استفاده از قسمت (ب) در دو جهت به راحتی نتیجه می‌شود.
 
 **۱۱-۲- تعریف مجموع زیرمجموعه‌ها (Sum of Subsets):** فرض کنید $S_1$ و $S_2$ زیرمجموعه‌هایی از فضای برداری $V$ باشند؛ مجموعه زیر را **مجموع زیرمجموعه‌های (Sum of Subsets)** $S_1$ و $S_2$ می‌نامیم و با $S_1 + S_2$ نشان می‌دهیم:
 
@@ -386,19 +490,65 @@ $$S_1 + S_2 = \{ v_1 + v_2 \mid v_1 \in S_1, \, v_2 \in S_2 \}$$
 
 یک مجموعه $S$ از بردارها که زیرفضای $W$ از فضای برداری $V$ را پدید می‌آورد ممکن است زوائدی داشته باشد؛ بدین مفهوم که ممکن است اعضای خاصی از $S$ را بتوان حذف کرد و زیرمجموعه‌ای به دست آورد که همان زیرفضای $W$ را پدید آورد. توصیف $W$ به عنوان ترکیب‌های خطی (Linear Combinations) از عناصر $S$ وقتی مفید و بهینه است که هیچ یک از عناصر $S$ قابل حذف نباشند؛ به عبارت دیگر هیچ یک از عناصر $S$ ترکیب خطی دیگران نباشد.
 
-به عنوان مثال مجموعه بردارهای $S = \{(1, 1), (1, 2), (2, 3)\}$ در $\mathbb{R}^2$ را در نظر بگیریم. این بردارها $\mathbb{R}^2$ را پدید می‌آورند، ولی اگر هر عضوی از این مجموعه را حذف کنیم، دو بردار باقی‌مانده همچنان $\mathbb{R}^2$ را پدید می‌آورند. فرض کنید بردار $u \in S$ ترکیب خطی از بردارهای $S - \{u\}$ باشد؛ در این صورت $\text{Span}(S) = \text{Span}(S - \{u\})$ ، یعنی می‌توان به جای $S$ مجموعه کوچکتری گذاشت. برعکس، اگر $u \in S$ برداری باشد که $\text{Span}(S - \{u\}) = \text{Span}(S)$ ، آنگاه $u \in \text{Span}(S - \{u\})$ و در نتیجه $u$ ترکیب خطی از عناصر $S - \{u\}$ است:
+به عنوان مثال مجموعه بردارهای $S = \{(1, 1), (1, 2), (2, 3)\}$ در $\mathbb{R}^2$ را در نظر بگیریم. این بردارها $\mathbb{R}^2$ را پدید می‌آورند، ولی اگر هر عضوی از این مجموعه را حذف کنیم، دو بردار باقی‌مانده همچنان $\mathbb{R}^2$ را پدید می‌آورند.
 
-$$\text{Span}(S - \{u\}) = \text{Span}(S) \iff u \in \text{Span}(S - \{u\})$$
+**۹-۲- لم (Lemma):** فرض کنید $V$ فضای برداری روی میدان $F$ باشد، $S \subseteq V$ و $u \in S$. در این صورت:
 
-**۱-۳- قضیه (Theorem):** فرض کنید $S$ یک زیرمجموعه از فضای برداری $V$ روی میدان $F$ باشد. در این صورت برداری چون $u \in S$ وجود دارد که می‌توان آن را به شکل ترکیب خطی (Linear Combination) از بردارهای $S - \{u\}$ بیان کرد اگر و تنها اگر بردارهای متمایز (Distinct Vectors) $u_1, \dots, u_n$ متعلق به $S$ و اسکالرهایی چون $c_1, \dots, c_n$ متعلق به $F$ که همگی با هم صفر نباشند وجود داشته باشند به طوری که:
+$$\text{Span}(S) = \text{Span}(S - \{u\}) \Longleftrightarrow u \text{ ترکیب خطی از عناصر } S - \{u\} \text{ باشد } (u \in \text{Span}(S - \{u\}))$$
 
-$$c_1 u_1 + c_2 u_2 + \dots + c_n u_n = 0$$
+- **برهان (Proof):**
+
+    - $(\Longrightarrow)$ چون $u \in S$ و $S \subseteq \text{Span}(S)$ ، پس $u \in \text{Span}(S)$. طبق فرض $\text{Span}(S) = \text{Span}(S - \{u\})$ ، در نتیجه $u \in \text{Span}(S - \{u\})$ ؛ یعنی $u$ ترکیب خطی از عناصر $S - \{u\}$ است.
+
+    - $(\Longleftarrow)$
+
+        - **(اول) ثابت می‌کنیم $\text{Span}(S - \{u\}) \subseteq \text{Span}(S)$:** می‌دانیم $S - \{u\} \subseteq S \subseteq \text{Span}(S)$. پس $S - \{u\} \subseteq \text{Span}(S)$ و در نتیجه:
+
+            $$\text{Span}(S - \{u\}) \subseteq \text{Span}(S)$$
+
+            *(نکته کلی: $X \subseteq Y \implies \text{Span}(X) \subseteq \text{Span}(Y)$).*
+
+        - **(دوم) ثابت می‌کنیم $\text{Span}(S) \subseteq \text{Span}(S - \{u\})$:** بدین منظور با توجه به قضیه ۱۰-۲ (لم ۸-۲)، کافی است ثابت کنیم $S \subseteq \text{Span}(S - \{u\})$. فرض کنید $x \in S$. دو حالت داریم:
+
+            1. $x \neq u$: در نتیجه $x \in S - \{u\} \subseteq \text{Span}(S - \{u\})$.
+
+            2. $x = u$: طبق فرض داریم $x = u \in \text{Span}(S - \{u\})$.
+
+            در هر دو حالت $x \in \text{Span}(S - \{u\})$ ، پس $\text{Span}(S) \subseteq \text{Span}(S - \{u\})$.
+
+**۱-۳ (یا ۲-۳)- قضیه (Theorem):** فرض کنید $S$ یک زیرمجموعه از فضای برداری $V$ روی میدان $F$ باشد. در این صورت برداری چون $u \in S$ وجود دارد که می‌توان آن را به شکل ترکیب خطی (Linear Combination) از بردارهای $S - \{u\}$ بیان کرد اگر و تنها اگر بردارهای متمایز (Distinct Vectors) $v_1, \dots, v_m$ متعلق به $S$ و اسکالرهایی چون $\alpha_1, \dots, \alpha_m$ متعلق به $F$ که همگی با هم صفر نباشند وجود داشته باشند به طوری که:
+
+$$\sum_{i=1}^{m} \alpha_i v_i = 0_V$$
+
+- **برهان (Proof):**
+
+    - $(\Longrightarrow)$ فرض کنید $u \in S$ ترکیب خطی از عناصر $S - \{u\}$ باشد. پس عناصر متمایز $w_1, \dots, w_t$ متعلق به $S - \{u\}$ و عناصر $\lambda_1, \dots, \lambda_t$ متعلق به $F$ وجود دارند به طوری که:
+
+        $$\sum_{i=1}^{t} \lambda_i w_i = u \Longrightarrow \sum_{i=1}^{t} \lambda_i w_i + (-1_F)u = 0_V$$
+
+        بنابراین بردارهای متمایز $w_1, \dots, w_t, u$ متعلق به $S$ وجود دارند که یک ترکیب خطی از آن‌ها صفر است، ولی همه ضرایب ترکیب خطی با هم صفر نیستند (چون ضریب $u$ برابر $-1_F \neq 0_F$ است).
+
+    - $(\Longleftarrow)$ فرض کنید $\sum_{i=1}^{m} \alpha_i v_i = 0_V$ و همه $\alpha_i$ ها صفر نباشند. با تغییر اندیس‌گذاری می‌توان فرض کرد که $\alpha_1 \neq 0_F$. در این صورت:
+
+        $$\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_m v_m = 0_V$$
+
+        $$\Longrightarrow \alpha_1^{-1}(\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_m v_m) = \alpha_1^{-1}(0_V) = 0_V$$
+
+        $$\Longrightarrow (\alpha_1^{-1}\alpha_1)v_1 + (\alpha_1^{-1}\alpha_2)v_2 + \dots + (\alpha_1^{-1}\alpha_m)v_m = 0_V$$
+
+        $$\Longrightarrow v_1 + (\alpha_1^{-1}\alpha_2)v_2 + \dots + (\alpha_1^{-1}\alpha_m)v_m = 0_V$$
+
+        $$\Longrightarrow v_1 = (-\alpha_1^{-1}\alpha_2)v_2 + \dots + (-\alpha_1^{-1}\alpha_m)v_m \Longrightarrow v_1 \in \text{Span}(S - \{v_1\})$$
 
 **۲-۳- تعریف وابستگی و استقلال خطی (Definition of Linear Dependence and Independence):** فرض کنید $V$ فضای برداری روی میدان $F$ باشد. زیرمجموعه $S$ از $V$ **وابسته خطی (Linearly Dependent)** نامیده می‌شود هرگاه بردارهای متمایز مانند $u_1, \dots, u_n$ در $S$ و اسکالرهایی مانند $c_1, \dots, c_n$ در $F$ که همه آن‌ها با هم صفر نباشند (حداقل یک $c_i \neq 0$) یافت شوند به طوری که:
 
 $$\sum_{i=1}^{n} c_i u_i = 0$$
 
-به مجموعه‌ای که وابسته خطی نباشد، **مستقل خطی (Linearly Independent)** می‌نامیم (قرارداد می‌کنیم که مجموعه تهی (Empty Set) $\emptyset$ مستقل خطی است). اگر $S = \{u_1, \dots, u_n\}$ باشد، به جای این که بگوییم مجموعه $S$ وابسته (یا مستقل) خطی است، می‌گوییم بردارهای $u_1, \dots, u_n$ وابسته (یا مستقل) خطی هستند.
+به مجموعه‌ای که وابسته خطی نباشد، **مستقل خطی (Linearly Independent)** می‌نامیم (قرارداد می‌کنیم که مجموعه تهی (Empty Set) $\emptyset$ مستقل خطی است). یعنی گوییم $S \subseteq V$ مستقل خطی است هرگاه برای هر زیرمجموعه متناهی از عناصر متمایز $x_1, \dots, x_n \in S$ در گزاره زیر صدق کند:
+
+$$\sum_{i=1}^{n} \alpha_i x_i = 0_V \quad (n \in \mathbb{N}, \, \alpha_i \in F, \, x_i \in S) \Longrightarrow \alpha_i = 0_F \quad (1 \le i \le n)$$
+
+اگر $S = \{u_1, \dots, u_n\}$ باشد، به جای این که بگوییم مجموعه $S$ وابسته (یا مستقل) خطی است، می‌گوییم بردارهای $u_1, \dots, u_n$ وابسته (یا مستقل) خطی هستند.
 
 - **نکته ۱:** بردارهای $u_1, \dots, u_n$ وابسته خطی (Linearly Dependent) هستند اگر و تنها اگر اسکالرهایی مانند $c_1, \dots, c_n \in F$ وجود داشته باشند که $\sum_{i=1}^{n} c_i u_i = 0$ و همگی $c_i$ ها با هم صفر نباشند.
 
@@ -424,9 +574,23 @@ $$\sum_{i=1}^{n} c_i u_i = 0$$
 
 7. آیا چندجمله‌ای‌های $x^2 + 2x + 1$ ، $x^2 + 2$ و $x^2 + x$ در $\mathbb{R}_2[x]$ مستقل خطی هستند؟
 
-**۴-۳- تذکر (Remarks):**
+**۴-۳- تذکر و گزاره (Remarks & Proposition):**
 
-1. دو بردار متمایز $u_1$ و $u_2$ از فضای برداری $V$ وابسته خطی (Linearly Dependent) هستند اگر و تنها اگر یکی از آن‌ها مضرب اسکالر (Scalar Multiple) دیگری باشد.
+1. **گزاره:** دو بردار متمایز $v_1$ و $v_2$ از فضای برداری $V$ وابسته خطی (Linearly Dependent) هستند اگر و تنها اگر یکی از آن‌ها مضرب اسکالر (Scalar Multiple) دیگری باشد.
+
+    - **برهان (Proof):**
+
+        - $(\Longrightarrow)$ در این صورت اسکالرهای $\alpha_1$ و $\alpha_2$ (نه هر دو صفر) وجود دارند که $\alpha_1 v_1 + \alpha_2 v_2 = 0_V$. فرض کنید $\alpha_1 \neq 0_F$. در این صورت:
+
+            $$\alpha_1^{-1}(\alpha_1 v_1 + \alpha_2 v_2) = \alpha_1^{-1} 0_V \stackrel{\text{خاصیت ضرب اسکالر}}{\Longrightarrow} (\alpha_1^{-1}\alpha_1)v_1 + (\alpha_1^{-1}\alpha_2)v_2 = 0_V$$
+
+            $$\Longrightarrow 1_F v_1 + (\alpha_1^{-1}\alpha_2)v_2 = 0_V \Longrightarrow v_1 = (-(\alpha_1^{-1}\alpha_2))v_2$$
+
+        - $(\Longleftarrow)$ فرض کنید $\beta \in F$ وجود داشته باشد به طوری که $v_1 = \beta v_2$. در این صورت:
+
+            $$1_F v_1 + (-\beta)v_2 = 0_V$$
+
+            در نتیجه یک ترکیب خطی از $v_1$ و $v_2$ داریم که برابر صفر است ولی یکی از ضرایب ($1_F$) مخالف $0_F$ است؛ پس وابسته خطی هستند.
 
 2. هر مجموعه‌ای که شامل یک زیرمجموعه وابسته خطی باشد، خود وابسته خطی است (به طور مثال اگر دو عضو یک دنباله از بردارها با هم برابر باشند، آن خانواده وابسته خطی است).
 
@@ -464,9 +628,29 @@ $$\sum_{i=1}^{n} c_i u_i = 0$$
 
 - **و)** فضای چندجمله‌ای‌های $F[x]$ دارای **پایه نامتناهی (Infinite Basis)** به صورت $\{1, x, x^2, \dots\}$ است.
 
-**۳-۴- قضیه نمایش یکتا (Unique Representation Theorem):** فرض کنید $B = \{v_1, \dots, v_n\}$ زیرمجموعه‌ای از فضای برداری $V$ باشد. در این صورت $B$ یک پایه (Basis) برای $V$ است اگر و تنها اگر برای هر بردار $x \in V$ ، اسکالرهای یکتای (Unique Scalars) $c_1, \dots, c_n \in F$ وجود داشته باشند به طوری که:
+**۳-۴ (یا ۴-۲)- قضیه نمایش یکتا / مشخصه پایه با نمایش یکتا (Unique Representation Theorem):** فرض کنید $S = \{v_1, \dots, v_n\}$ زیرمجموعه‌ای از فضای برداری $V$ باشد. در این صورت $S$ یک پایه (Basis) برای $V$ است اگر و تنها اگر برای هر بردار $x \in V$ ، اسکالرهای یکتای (Unique Scalars) $c_1, \dots, c_n \in F$ وجود داشته باشند به طوری که:
 
-$$x = c_1 v_1 + \dots + c_n v_n$$
+$$x = c_1 v_1 + \dots + c_n v_n = \sum_{i=1}^{n} c_i v_i$$
+
+- **برهان (Proof):**
+
+    - $(\Longrightarrow)$ فرض کنید $S$ پایه باشد (یعنی مولد و مستقل خطی است).
+
+        - **(وجود):** فرض کنید $v \in V$. چون $S$ مولد $V$ است، پس عناصر $\alpha_1, \dots, \alpha_n \in F$ وجود دارند که $v = \sum_{i=1}^{n} \alpha_i v_i$.
+
+        - **(یکتایی):** فرض کنید $v \in V$ و عناصر $a_1, \dots, a_n$ و $b_1, \dots, b_n$ متعلق به $F$ وجود دارند که $v = \sum_{i=1}^{n} a_i v_i$ و $v = \sum_{i=1}^{n} b_i v_i$. در این صورت:
+
+            $$\sum_{i=1}^{n} a_i v_i = \sum_{i=1}^{n} b_i v_i \Longrightarrow \sum_{i=1}^{n} (a_i - b_i) v_i = 0_V \stackrel{S \text{ مستقل خطی است}}{\Longrightarrow} a_i - b_i = 0_F \quad (1 \le i \le n) \Longrightarrow a_i = b_i \quad (1 \le i \le n)$$
+
+    - $(\Longleftarrow)$
+
+        - **(اول: مولد بودن):** طبق فرض برای هر $x \in V$ اسکالرهایی وجود دارند که $x = \sum_{i=1}^{n} c_i v_i \in \text{Span}(S)$ ، پس $V = \text{Span}(S)$.
+
+        - **(دوم: استقلال خطی):** فرض کنید $\beta_1, \dots, \beta_n \in F$ باشند به طوری که $\sum_{i=1}^{n} \beta_i v_i = 0_V$. از طرفی می‌دانیم برای بردار $0_V \in V$ داریم $\sum_{i=1}^{n} 0_F v_i = 0_V$. در این صورت، طبق یکتایی نمایش در فرض داریم:
+
+            $$\beta_i = 0_F \quad (1 \le i \le n)$$
+
+            پس $S$ مستقل خطی و در نتیجه پایه است.
 
 حال می‌توانیم مفهوم مختصات (Coordinates) را در فضای برداری کلی تعریف کنیم. هر بردار $x$ در $V$ را یک $n$-تایی مرتب (Ordered $n$-tuple) $(c_1, \dots, c_n)$ از اسکالرها مشخص می‌کند و برعکس، هر $n$-تایی مرتب از اسکالرها یک بردار از $V$ را مشخص می‌کند. بنابراین یک **تناظر دوسویی (One-to-One Correspondence / Bijection)** بین $V$ و $F^n$ به صورت $x = \sum_{i=1}^{n} c_i v_i \longleftrightarrow (c_1, \dots, c_n)$ برقرار است و به نظر می‌آید که $V$ و $F^n$ از نظر ساختار جبری شبیه هم (ایزومورف یا هم‌ریخت (Isomorphic)) هستند.
 
@@ -526,21 +710,105 @@ $$[x]_B = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}$$
 
     - مجموعه $S \cup \{v\}$ وابسته خطی (Linearly dependent) است $\Longleftrightarrow v \in \text{span}(S)$.
 
-- **۲-۵- قضیه (Theorem):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $S \subseteq X \subseteq V$ به طوری که $V = \text{span}(X)$ و $S$ مستقل خطی (Linearly independent) است؛ در این صورت یک پایه (Basis) مانند $B$ برای $V$ وجود دارد به طوری که $S \subseteq B \subseteq X$.
+    - **برهان (Proof):**
+
+        - $(\Longleftarrow)$ فرض کنید $v \in \text{span}(S)$. طبق تعریف، عناصر متمایز $x_1, \dots, x_t$ متعلق به $S$ و اسکالرهای $\lambda_1, \dots, \lambda_t$ متعلق به $F$ وجود دارند به طوری که:
+
+            $$\sum_{i=1}^{t} \lambda_i x_i = v \Longrightarrow \sum_{i=1}^{t} \lambda_i x_i + (-1_F)v = 0_V$$
+
+            بنابراین یک ترکیب خطی از عناصر $S \cup \{v\}$ وجود دارد که برابر صفر است ولی همه ضرایب آن با هم صفر نیستند (چون ضریب $v$ برابر $-1_F \neq 0_F$ است). یعنی $S \cup \{v\}$ وابسته خطی است.
+
+        - $(\Longrightarrow)$ فرض کنید $S \cup \{v\}$ وابسته خطی باشد. پس عناصر متمایز $y_1, y_2, \dots, y_s$ متعلق به $S \cup \{v\}$ و عناصر $\mu_1, \mu_2, \dots, \mu_s$ متعلق به $F$ وجود دارند به طوری که:
+
+            $$\sum_{i=1}^{s} \mu_i y_i = 0_V$$
+
+            و همه $\mu_i$ ها با هم صفر نیستند. دو حالت داریم:
+
+            - **حالت اول:** $\{y_1, y_2, \dots, y_s\} \subseteq S$. این حالت امکان ندارد؛ زیرا $S$ مستقل خطی است، پس باید $\mu_1 = \mu_2 = \dots = \mu_s = 0_F$ باشد، در حالی که همه $\mu_i$ ها با هم صفر نیستند.
+
+            - **حالت دوم:** $\{y_1, y_2, \dots, y_s\} \not\subseteq S$. در این صورت یکی از $y_i$ ها با $v$ برابر است. با تغییر اندیس‌گذاری می‌توان فرض کرد که $y_s = v$ (و $y_1, \dots, y_{s-1} \in S$). در نتیجه داریم:
+
+                $$\sum_{i=1}^{s-1} \mu_i y_i + \mu_s v = 0_V$$
+
+                مجدداً دو حالت برای $\mu_s$ داریم:
+
+                - **حالت (i):** $\mu_s = 0_F$. این حالت امکان ندارد؛ زیرا اگر $\mu_s = 0_F$ باشد، آنگاه:
+
+                    $$\sum_{i=1}^{s-1} \mu_i y_i = 0_V \stackrel{S \text{ مستقل خطی است}}{\Longrightarrow} \mu_1 = \mu_2 = \dots = \mu_{s-1} = 0_F$$
+
+                    در حالی که همه $\mu_i$ ها با هم صفر نیستند.
+
+                - **حالت (ii):** $\mu_s \neq 0_F$. در این صورت $\mu_s$ وارون‌پذیر است و داریم:
+
+                    $$\mu_s^{-1}\left(\sum_{i=1}^{s-1} \mu_i y_i + \mu_s v\right) = \mu_s^{-1} 0_V \Longrightarrow \sum_{i=1}^{s-1} (\mu_s^{-1}\mu_i) y_i + (\mu_s^{-1}\mu_s)v = 0_V$$
+
+                    $$\Longrightarrow \sum_{i=1}^{s-1} (\mu_s^{-1}\mu_i) y_i + 1_F \cdot v = 0_V \Longrightarrow v = \sum_{i=1}^{s-1} (-(\mu_s^{-1}\mu_i)) y_i \Longrightarrow v \in \text{span}(S)$$
+
+- **۲-۵- قضیه (Theorem) (وجود پایه / قضیه توسیع به پایه):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $X' \subseteq X'' \subseteq V$ (یا $S \subseteq X \subseteq V$) به طوری که $V = \text{span}(X'')$ و $X'$ مستقل خطی (Linearly independent) است؛ در این صورت یک پایه (Basis) مانند $X$ برای $V$ وجود دارد به طوری که $X' \subseteq X \subseteq X''$.
 
     - (نکته: پایه (Basis)، یک مجموعه مولد مینیمال (Minimal spanning set) یا یک مجموعه مستقل خطی ماکسیمال (Maximal linearly independent set) است.)
 
-    - **برهان (Proof):** در حالتی که $X$ متناهی (Finite) است حکم را ثابت می‌کنیم؛ یا به $S$ عضو اضافه می‌کنیم که پایه (Basis) شود و یا از $X$ کم می‌کنیم که پایه شود.
+    - **برهان (Proof):** در حالتی که $X''$ متناهی (Finite) است می‌توان به $X'$ عضو اضافه کرد که پایه شود و یا از $X''$ کم کرد که پایه شود. در حالت کلی با استفاده از لم زورن (Zorn's Lemma) حکم را ثابت می‌کنیم. مجموعه زیر را در نظر بگیرید:
+
+        $$\Sigma = \{ Y \subseteq V \mid X' \subseteq Y \subseteq X'' \text{ و } Y \text{ مستقل خطی است} \}$$
+
+        داریم $X' \in \Sigma$ پس $\Sigma \neq \emptyset$. زوج $(\Sigma, \subseteq)$ یک مجموعه جزئاً مرتب است.
+
+        - **(۱) با استفاده از لم زورن ثابت می‌کنیم $(\Sigma, \subseteq)$ دارای عضو ماکسیمال است:** بدین منظور باید ثابت کنیم که هر زنجیر در $(\Sigma, \subseteq)$ دارای کران بالا در $\Sigma$ است. فرض کنید $B$ یک زنجیر ناتهی در $\Sigma$ باشد. قرار دهید:
+
+            $$C = \bigcup_{A \in B} A$$
+
+            ادعا می‌کنیم $C$ یک کران بالای $B$ در $\Sigma$ است؛ زیرا:
+
+            - **(i)** به وضوح برای هر $A \in B$ داریم $A \subseteq C$.
+
+            - **(ii)** چون برای هر $A \in B$ داریم $X' \subseteq A \subseteq X''$ ، پس $X' \subseteq C \subseteq X''$.
+
+            - **(iii) $C$ مستقل خطی است:** فرض کنید $x_1, \dots, x_t$ عناصر متمایز از $C$ و $\lambda_1, \dots, \lambda_t$ عناصر $F$ باشند به طوری که:
+
+                $$\sum_{i=1}^{t} \lambda_i x_i = 0_V$$
+
+                برای هر $1 \le i \le t$ ، چون $x_i \in C = \bigcup_{A \in B} A$ ، عنصر $A_i \in B$ وجود دارد که $x_i \in A_i$. چون $B$ یک زنجیر است، پس اندیس $k$ ($1 \le k \le t$) وجود دارد که:
+
+                $$A_i \subseteq A_k \quad (1 \le i \le t) \qquad (*)$$
+
+                *(خارج از برهان — اثبات $(*)$ با استقرا روی $t$: برای $t=1$ حکم واضح است. فرض کنید $s \ge 2$ و حکم برای $s-1$ برقرار باشد. فرض کنید $Y_1, \dots, Y_{s-1}, Y_s \in B$. طبق فرض استقرا اندیس $j$ ($1 \le j \le s-1$) وجود دارد که $Y_i \subseteq Y_j$ ($1 \le i \le s-1$). برای $Y_j$ و $Y_s$ ، چون $B$ زنجیر است، داریم $Y_j \subseteq Y_s$ یا $Y_s \subseteq Y_j$. اگر $Y_j \subseteq Y_s$ آنگاه $Y_i \subseteq Y_s$ ($1 \le i \le s$)، و اگر $Y_s \subseteq Y_j$ آنگاه $Y_i \subseteq Y_j$ ($1 \le i \le s$)).*
+
+                بنابراین $x_1, x_2, \dots, x_t \in A_k$. چون $A_k \in B \subseteq \Sigma$ مستقل خطی است، پس:
+
+                $$\lambda_1 = \lambda_2 = \dots = \lambda_t = 0_F$$
+
+                پس $C$ مستقل خطی است.
+
+            از (i)، (ii) و (iii) نتیجه می‌شود که $C \in \Sigma$ و کران بالای $B$ است. طبق لم زورن $(\Sigma, \subseteq)$ دارای عنصر ماکسیمال است؛ آن را $X$ می‌نامیم. چون $X \in \Sigma$ مستقل خطی است و $X' \subseteq X \subseteq X''$ ، پس کافی است ثابت کنیم $\text{span}(X) = V$.
+
+        - **(۲) اثبات مولد بودن ($\text{span}(X) = V$) با برهان خلف:** فرض کنید $\text{span}(X) \neq V$. سعی می‌کنیم به یک تناقض برسیم. داریم:
+
+            $$\text{span}(X) \neq \text{span}(X'') = V \Longrightarrow \text{span}(X'') \not\subseteq \text{span}(X)$$
+
+            $$\stackrel{\text{لم ۸-۲ (قضیه ۱۰-۲)}}{\Longrightarrow} X'' \not\subseteq \text{span}(X) \Longrightarrow \exists x \in X'' : x \notin \text{span}(X)$$
+
+            چون $x \notin \text{span}(X)$ ، طبق لم ۱-۵ مجموعه $X \cup \{x\}$ مستقل خطی است. همچنین چون $X \subseteq X''$ و $x \in X''$ ، داریم $X' \subseteq X \cup \{x\} \subseteq X''$. بنابراین:
+
+            $$X \cup \{x\} \in \Sigma$$
+
+            از طرفی چون $x \notin \text{span}(X)$ پس $x \notin X$ و در نتیجه $X \subsetneq X \cup \{x\}$. این مطلب با ماکسیمال بودن $X$ در $(\Sigma, \subseteq)$ تناقض دارد. بنابراین فرض خلف نادرست است و $\text{span}(X) = V$.
 
 - **۳-۵- نتیجه (Corollary):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد؛ در این صورت:
 
     - **الف)** $V$ دارای پایه (Basis) است.
 
+        - **برهان:** در قضیه ۲-۵ به جای $X'$ مجموعه $\emptyset$ و به جای $X''$ مجموعه $V$ را قرار دهید.
+
     - **ب)** هر زیرمجموعه مستقل خطی (Linearly independent subset) از $V$ مشمول در یک پایه (Basis) از $V$ است.
+
+        - **برهان:** فرض کنید $Y$ یک زیرمجموعه مستقل خطی از $V$ باشد؛ در قضیه ۲-۵ به جای $X'$ مجموعه $Y$ و به جای $X''$ مجموعه $V$ را قرار دهید.
 
     - **ج)** هر زیرمجموعه مولد (Spanning subset) از $V$ شامل یک پایه (Basis) از $V$ است.
 
-- **۴-۵- نتیجه (Corollary):** فرض کنید $V$ یک فضای برداری (Vector space) باشد که توسط تعداد متناهی (Finite) بردار (Vector) پدید می‌آید (Spanned)؛ در این صورت $V$ دارای پایه متناهی (Finite basis) است.
+        - **برهان:** فرض کنید $Z$ یک مولد $V$ باشد؛ در قضیه ۲-۵ به جای $X'$ مجموعه $\emptyset$ و به جای $X''$ مجموعه $Z$ را قرار دهید.
+
+- **۴-۵- نتیجه (Corollary) (یا ۳-۵ د):** فرض کنید $V$ یک فضای برداری (Vector space) باشد که توسط تعداد متناهی (Finite) بردار (Vector) پدید می‌آید (دارای مجموعه مولد متناهی است)؛ در این صورت $V$ دارای پایه متناهی (Finite basis) است (طبق قسمت ج نتیجه ۳-۵).
 
 ## (۶) بعد و قضیه جایگزینی (Dimension and Replacement Theorem) — صفحات ۲۸ تا ۳۱
 
@@ -550,45 +818,81 @@ $$[x]_B = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}$$
 
 فرض کنید $V$ دارای پایه (Basis) $\{v_1, v_2, \dots, v_n\}$ باشد؛ آیا ممکن است $V$ دارای پایه دیگری با کمتر از $n$ عضو (Element) باشد؟
 
-- **۱-۶- قضیه جایگزینی (Replacement Theorem):** فرض کنید $V$ فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $V$ دارای مجموعه مولد (Spanning set) $n$ عضوی $G$ باشد و $L$ یک زیرمجموعه مستقل خطی (Linearly independent subset) از $V$ باشد که $m$ عضو دارد؛ در این صورت $m \le n$ و زیرمجموعه $H \subseteq G$ وجود دارد که $H$ دارای $n - m$ عضو است و $\text{span}(H \cup L) = V$. (عناصری از $G$ را به $L$ اضافه می‌کنیم تا به یک مجموعه مولد (Spanning set) تبدیل شود.)
+- **۱-۶- قضیه جایگزینی (Replacement Theorem):** فرض کنید $V$ فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $V$ دارای مجموعه مولد (Spanning set) $n$ عضوی $G = \{g_1, g_2, \dots, g_n\}$ باشد ($|G| = n \ge 0$ و $\text{span}(G) = V$) و $L = \{l_1, l_2, \dots, l_m\}$ یک زیرمجموعه مستقل خطی (Linearly independent subset) از $V$ باشد که $m$ عضو دارد ($|L| = m \ge 0$)؛ در این صورت:
 
-- **برهان (Proof):** با استقرا (Mathematical induction) روی $m$ حکم را ثابت می‌کنیم.
+    1. $m \le n$
 
-    - **پایه استقرا (Base case):** فرض کنید $m = 0$ ؛ در این صورت $L = \emptyset$ و $H$ را می‌توان خود $G$ در نظر گرفت.
+    2. زیرمجموعه $H \subseteq G$ وجود دارد که $H$ دارای $n - m$ عضو است ($|H| = n - m$) و $\text{span}(H \cup L) = V$. (عناصری از $G$ را به $L$ اضافه می‌کنیم تا به یک مجموعه مولد (Spanning set) تبدیل شود.)
 
-    - **گام استقرا (Inductive step):** فرض کنید $m \ge 1$ و حکم برای $m - 1$ برقرار باشد؛ یعنی اگر مجموعه مستقل خطی (Linearly independent set) $(m - 1)$ عضوی مانند $L'$ وجود داشته باشد، آنگاه $m - 1 \le n$ و زیرمجموعه $H' \subseteq G$ با $n - (m - 1)$ عضو وجود دارد که $\text{span}(H' \cup L') = V$.
+- **توجیه برهان (ایده شهودی):** عناصر $L$ را یکی‌یکی به جای عناصر $G$ جایگذاری می‌کنیم:
 
-    - حال فرض کنید $L = \{v_1, v_2, \dots, v_{m-1}, v_m\}$ یک مجموعه مستقل خطی (Linearly independent set) $m$ عضوی باشد. در این صورت $L' = \{v_1, \dots, v_{m-1}\}$ یک مجموعه مستقل خطی است؛ در نتیجه طبق فرض استقرا (Induction hypothesis) داریم $m - 1 \le n$ و یک زیرمجموعه $H' = \{u_1, u_2, \dots, u_{n-m+1}\} \subseteq G$ وجود دارد به طوری که:
+    - **(قدم اول):** اگر $G = \emptyset$ ، آنگاه $V = \text{span}(\emptyset) = \{0_V\}$. در این صورت اگر $m \ge 1$ باشد، این حالت امکان ندارد چون $L$ زیرمجموعه مستقل خطی ناتهی از $\{0_V\}$ نخواهد بود. پس اگر $m \ge 1$ باشد، حتماً $n \ge 1$. حال چون $l_1 \in V = \text{span}(G)$ ، داریم:
 
-        $$\text{span}(\{v_1, \dots, v_{m-1}\} \cup \{u_1, u_2, \dots, u_{n-m+1}\}) = V$$
+        $$\exists \lambda_1, \dots, \lambda_n \in F : \sum_{i=1}^{n} \lambda_i g_i = l_1$$
+
+        چون $\{l_1\}$ مستقل خطی است ($l_1 \neq 0_V$)، پس یکی از $\lambda_i$ ها ناصفر است. با تغییر اندیس‌گذاری فرض کنید $\lambda_n \neq 0_F$. در این صورت:
+
+        $$g_n = \sum_{i=1}^{n-1} (-\lambda_n^{-1}\lambda_i) g_i + \lambda_n^{-1} l_1 \Longrightarrow g_n \in \text{span}(\{g_1, g_2, \dots, g_{n-1}, l_1\})$$
+
+        $$\Longrightarrow \{g_1, g_2, \dots, g_n\} \subseteq \text{span}(\{g_1, g_2, \dots, g_{n-1}, l_1\})$$
+
+        $$\Longrightarrow V = \text{span}(G) \subseteq \text{span}(\{g_1, g_2, \dots, g_{n-1}, l_1\}) \Longrightarrow V = \text{span}(\{g_1, \dots, g_{n-1}, l_1\})$$
+
+    - **(قدم دوم):** حال $l_2 \in V = \text{span}(\{g_1, g_2, \dots, g_{n-1}, l_1\})$ ، پس:
+
+        $$\exists \mu_1, \dots, \mu_{n-1}, \mu \in F : \sum_{i=1}^{n-1} \mu_i g_i + \mu l_1 = l_2$$
+
+        اگر $n - 1 = 0$ باشد، آنگاه $\mu l_1 = l_2$ و در نتیجه $\{l_1, l_2\}$ وابسته خطی است، در حالی که $L$ مستقل خطی است. بنابراین $n - 1 > 0$ (یعنی $n \ge 2$). همچنین یکی از $\mu_i$ ها ($1 \le i \le n-1$) ناصفر است، زیرا در غیر این صورت مجدداً $\mu l_1 = l_2$ که تناقض است. با تغییر اندیس‌گذاری می‌توان فرض کرد که $\mu_{n-1} \neq 0_F$. در این صورت:
+
+        $$g_{n-1} = \sum_{i=1}^{n-2} (-\mu_{n-1}^{-1}\mu_i) g_i + (-\mu_{n-1}^{-1}\mu) l_1 + \mu_{n-1}^{-1} l_2 \Longrightarrow g_{n-1} \in \text{span}(\{g_1, g_2, \dots, g_{n-2}, l_1, l_2\})$$
+
+        $$\Longrightarrow \{g_1, g_2, \dots, g_{n-1}, l_1\} \subseteq \text{span}(\{g_1, \dots, g_{n-2}, l_1, l_2\})$$
+
+        $$\Longrightarrow V = \text{span}(\{g_1, \dots, g_{n-1}, l_1\}) \subseteq \text{span}(\{g_1, \dots, g_{n-2}, l_1, l_2\}) \Longrightarrow V = \text{span}(\{g_1, \dots, g_{n-2}, l_1, l_2\})$$
+
+        و به همین ترتیب ادامه می‌دهیم.
+
+- **برهان دقیق (Proof) (با استقرا روی $m$):** با استقرا (Mathematical induction) روی $m$ حکم را ثابت می‌کنیم.
+
+    - **پایه استقرا (Base case):** فرض کنید $m = 0$ ($L = \emptyset$)؛ در این صورت به وضوح $0 = m \le n$ و $H$ را می‌توان خود $G$ در نظر گرفت ($|H| = n - 0 = n$ و $\text{span}(G \cup \emptyset) = V$).
+
+    - **گام استقرا (Inductive step):** فرض کنید $m \ge 1$ و حکم برای حالت $m - 1$ برقرار باشد؛ یعنی اگر مجموعه مستقل خطی (Linearly independent set) $(m - 1)$ عضوی مانند $L'$ از $V$ وجود داشته باشد، آنگاه $m - 1 \le n$ و زیرمجموعه $H' \subseteq G$ با $|H'| = n - (m - 1) = n - m + 1$ عضو وجود دارد که $\text{span}(H' \cup L') = V$.
+
+    - حال فرض کنید $L = \{l_1, \dots, l_{m-1}, l_m\}$ یک زیرمجموعه مستقل خطی $m$ عضوی از $V$ باشد و $G = \{g_1, g_2, \dots, g_n\}$. قرار دهید $L' = \{l_1, \dots, l_{m-1}\}$ که زیرمجموعه مستقل خطی $m-1$ عضوی از $V$ است؛ در نتیجه طبق فرض استقرا (Induction hypothesis) داریم:
+
+        $$m - 1 \le n \quad \text{و} \quad \exists H' = \{h_1, \dots, h_{n-m+1}\} \subseteq G : \text{span}(H' \cup L') = V, \quad |H'| = n - m + 1$$
 
 ### صفحه ۲۹
 
-- چون $v_m \in V$ ، بنابراین اسکالرهای (Scalars) $\alpha_1, \dots, \alpha_{m-1}, \beta_1, \dots, \beta_{n-m+1}$ متعلق به میدان (Field) $F$ وجود دارند که:
+- چون $l_m \in V = \text{span}(H' \cup L')$ ، بنابراین اسکالرهای (Scalars) $\lambda_1, \dots, \lambda_{n-m+1}, \mu_1, \dots, \mu_{m-1}$ متعلق به میدان (Field) $F$ وجود دارند که:
 
-    $$v_m = \alpha_1 v_1 + \dots + \alpha_{m-1} v_{m-1} + \beta_1 u_1 + \dots + \beta_{n-m+1} u_{n-m+1}$$
+    $$\sum_{i=1}^{n-m+1} \lambda_i h_i + \sum_{i=1}^{m-1} \mu_i l_i = l_m$$
 
-- اگر $n - m + 1 = 0$ آنگاه $v_m \in \text{span}\{v_1, \dots, v_{m-1}\}$ و در نتیجه $L$ وابسته خطی (Linearly dependent) است که با فرض تناقض (Contradiction) دارد؛ در نتیجه $n - m + 1 > 0$ یعنی $m \le n$. (اسکالرهای (Scalars) $\beta_i$ همگی با هم صفر نیستند؛ در غیر این صورت $v_m \in \text{span}\{v_1, \dots, v_{m-1}\}$.)
+- اگر $n - m + 1 = 0$ باشد، آنگاه $l_m = \sum_{i=1}^{m-1} \mu_i l_i \in \text{span}(L')$ و در نتیجه $L = \{l_1, \dots, l_m\}$ وابسته خطی (Linearly dependent) است که با فرض استقلال خطی $L$ تناقض (Contradiction) دارد؛ در نتیجه $n - m + 1 > 0$ یعنی $m \le n$.
 
-- بنابراین یکی از $\beta_i$ ها ناصفر (Non-zero) است؛ برای راحتی کار فرض کنیم که $\beta_1 \neq 0$ ، در نتیجه داریم:
+- به همین ترتیب چون $L$ مستقل خطی است، اسکالرهای $\lambda_i$ همگی با هم صفر نیستند (وگرنه $l_m \in \text{span}(L')$). بنابراین یکی از $\lambda_i$ ها ناصفر (Non-zero) است؛ با تغییر اندیس‌گذاری می‌توان آن را $\lambda_{n-m+1} \neq 0_F$ فرض کرد. در نتیجه داریم:
 
-    $$u_1 = (-\beta_1^{-1}\alpha_1) v_1 + \dots + (-\beta_1^{-1}\alpha_{m-1}) v_{m-1} + \beta_1^{-1} v_m + (-\beta_1^{-1}\beta_2) u_2 + \dots + (-\beta_1^{-1}\beta_{n-m+1}) u_{n-m+1}$$
+    $$h_{n-m+1} = \sum_{i=1}^{n-m} (-\lambda_{n-m+1}^{-1}\lambda_i) h_i + \sum_{i=1}^{m-1} (-\lambda_{n-m+1}^{-1}\mu_i) l_i + \lambda_{n-m+1}^{-1} l_m$$
 
-- پس $u_1 \in \text{span}\{v_1, \dots, v_{m-1}, v_m, u_2, \dots, u_{n-m+1}\}$ و لذا:
+    $$\Longrightarrow h_{n-m+1} \in \text{span}(\{h_1, \dots, h_{n-m}, l_1, \dots, l_m\})$$
 
-    $$\text{span}\{v_1, \dots, v_{m-1}, v_m, u_2, \dots, u_{n-m+1}\} = V$$
+    $$\Longrightarrow H' \cup L' = \{h_1, \dots, h_{n-m+1}, l_1, \dots, l_{m-1}\} \subseteq \text{span}(\{h_1, \dots, h_{n-m}, l_1, \dots, l_m\})$$
 
-- کافی است قرار دهیم $H = \{u_2, \dots, u_{n-m+1}\}$.
+    $$\Longrightarrow V = \text{span}(H' \cup L') \subseteq \text{span}(\{h_1, \dots, h_{n-m}, l_1, \dots, l_m\}) \Longrightarrow V = \text{span}(\{h_1, \dots, h_{n-m}, l_1, \dots, l_m\})$$
+
+- کافی است قرار دهیم $H = \{h_1, \dots, h_{n-m}\} \subseteq G$. در این صورت $|H| = n - m$ و $\text{span}(H \cup L) = V$.
 
 ### صفحه ۳۰
 
-- **۲-۶- نتیجه (Corollary):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $X, Y$ دو پایه (Bases) برای $V$ باشند؛ در این صورت $|Y| = |X|$ (یعنی یک تناظر دوسویی (Bijection) بین $X$ و $Y$ وجود دارد).
+- **۲-۶- نتیجه (Corollary) (خوش‌تعریفی بُعد):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد و فرض کنید $X, Y$ دو پایه (Bases) برای $V$ باشند؛ در این صورت $|Y| = |X|$ (یعنی یک تناظر دوسویی (Bijection) بین $X$ و $Y$ وجود دارد).
 
     - **برهان (Proof):**
 
-        - **حالت اول:** اگر $V$ دارای یک پایه نامتناهی (Infinite basis) $X$ باشد، آنگاه برای هر پایه $Y$ از $V$ داریم $|Y| = |X|$.
+        - **حالت اول:** فرض کنید $V$ دارای یک پایه نامتناهی (Infinite basis) $Z$ باشد؛ در این صورت برای هر پایه دیگر $V$ مانند $W$ داریم $|W| = |Z|$ (و هیچ پایه متناهی نمی‌تواند وجود داشته باشد، زیرا طبق قضیه جایگزینی ۱-۶ اگر پایه متناهی $n$ عضوی وجود داشت، هیچ مجموعه مستقل خطی نمی‌توانست بیش از $n$ عضو داشته باشد).
 
-        - **حالت دوم:** هر دوی $X$ و $Y$ متناهی (Finite) هستند که در این صورت حکم از قضیه ۱-۶ نتیجه می‌شود.
+        - **حالت دوم:** هر دوی $X$ و $Y$ متناهی (Finite) هستند. فرض کنید $|Y| = s$ و $|X| = t$ ؛ در این صورت:
+
+            $$\begin{cases} X \text{ مستقل خطی و } Y \text{ مولد است} \stackrel{\text{قضیه ۱-۶}}{\Longrightarrow} t \le s \\ Y \text{ مستقل خطی و } X \text{ مولد است} \stackrel{\text{قضیه ۱-۶}}{\Longrightarrow} s \le t \end{cases} \Longrightarrow s = t$$
 
 - **۳-۶- تعریف (Definition):** بعد (Dimension) یک فضای برداری (Vector space) $V$ روی میدان (Field) $F$ را که توسط تعداد متناهی (Finite) بردار (Vector) پدید آمده باشد (Spanned)، کاردینال (Cardinality) (تعداد اعضای) هر یک از پایه‌های (Bases) آن تعریف می‌کنیم و آن را با $\dim_F V$ نشان می‌دهیم.
 
@@ -618,21 +922,39 @@ $$[x]_B = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}$$
 
 - **۵-۶- نتیجه (Corollary):** فرض کنید $V$ یک فضای برداری (Vector space) روی میدان (Field) $F$ باشد که $\dim_F V = n$ ؛ در این صورت:
 
-    - **الف)** اگر $S = \{v_1, \dots, v_m\}$ مجموعه‌ای از بردارهای مستقل خطی (Linearly independent vectors) در $V$ باشد، آنگاه $m \le n$ (ماکسیمم تعداد بردارهای مستقل خطی $n$ است) و اگر $m = n$ آنگاه $S$ یک پایه (Basis) برای $V$ است.
+    - **الف) (ماکسیمم تعداد بردارهای مستقل خطی از $V$ برابر $n$ است):** اگر $S = \{v_1, \dots, v_m\}$ مجموعه‌ای از بردارهای مستقل خطی (Linearly independent vectors) در $V$ باشد، آنگاه $m \le n$ و به علاوه اگر $m = n$ باشد، آنگاه $S = \{v_1, \dots, v_m\}$ یک پایه (Basis) برای $V$ است.
 
-    - **ب)** اگر $S = \{v_1, \dots, v_m\}$ یک مجموعه مولد (Spanning set) برای $V$ باشد، آنگاه $m \ge n$ (مینیمم تعداد مولدهای $V$ برابر $n$ است) و اگر $m = n$ آنگاه $S$ یک پایه (Basis) برای $V$ است.
+        - **برهان (Proof):** طبق قضیه ۲-۵ (نتیجه ۳-۵ ب)، یک پایه $X$ برای $V$ وجود دارد که $\{v_1, \dots, v_m\} \subseteq X$. طبق نتیجه ۲-۶ داریم $|X| = n$ ، در نتیجه $m \le n$. همچنین اگر $m = n$ باشد، چون $\{v_1, \dots, v_m\} \subseteq X$ و هر دو متناهی و هم‌اندازه‌اند، پس $\{v_1, \dots, v_m\} = X$ یک پایه است.
 
-- **۶-۶- قضیه (Theorem):** فرض کنید $V$ یک فضای برداری با بعد متناهی (Finite-dimensional vector space) و $W$ یک زیرفضای (Subspace) $V$ باشد؛ در این صورت:
+    - **ب) (مینیمم تعداد مولدهای $V$ برابر $n$ است):** اگر $S = \{v_1, \dots, v_m\}$ یک مجموعه مولد (Spanning set) برای $V$ باشد، آنگاه $n \le m$ و به علاوه اگر $m = n$ باشد، آنگاه $S = \{v_1, \dots, v_m\}$ یک پایه (Basis) برای $V$ است.
+
+        - **برهان (Proof):** طبق قضیه ۲-۵ (نتیجه ۳-۵ ج)، یک پایه $X$ برای $V$ وجود دارد که $X \subseteq \{v_1, \dots, v_m\}$. طبق نتیجه ۲-۶ داریم $|X| = n$ ، در نتیجه $n \le m$. همچنین اگر $m = n$ باشد، آنگاه $\{v_1, \dots, v_m\} = X$ یک پایه است.
+
+- **۶-۶- قضیه (Theorem) (بُعد زیرفضا):** فرض کنید $V$ یک فضای برداری با بعد متناهی (Finite-dimensional vector space) و $W$ یک زیرفضای (Subspace) $V$ باشد؛ در این صورت:
 
     - **الف)** $W$ دارای بعد متناهی (Finite dimension) است و $\dim W \le \dim V$.
 
     - **ب)** اگر $\dim W = \dim V$ آنگاه $W = V$.
 
-- **۷-۶- تذکر (Remark):** با به کار بردن قضیه ۶-۶ می‌توان زیرفضاهای (Subspaces) $\mathbb{R}^2$ و $\mathbb{R}^3$ را مشخص کرد:
+    - **برهان (Proof):**
+
+        - **الف)** فرض کنید $X$ یک پایه $W$ باشد. در این صورت $X$ زیرمجموعه مستقل خطی از $W$ و در نتیجه مستقل خطی از $V$ است. لذا طبق نتیجه ۵-۶ داریم $|X| \le \dim(V)$. از طرف دیگر داریم $|X| = \dim(W)$ ، پس $\dim(W) \le \dim(V)$.
+
+        - **ب)** فرض کنید $|X| = \dim(W) = \dim(V)$. چون $X$ مجموعه مستقل خطی در $V$ با اندازه $\dim(V)$ است، از نتیجه ۵-۶ (الف) نتیجه می‌شود که $X$ یک پایه برای $V$ است؛ در نتیجه $\text{span}(X) = V$. از طرف دیگر چون $X$ پایه $W$ است داریم $\text{span}(X) = W$ ، در نتیجه $V = W$.
+
+- **۷-۶- تذکر و مثال (Remark & Example):** با به کار بردن قضیه ۶-۶ می‌توان زیرفضاهای (Subspaces) $\mathbb{R}^2$ و $\mathbb{R}^3$ را بر حسب بعد مشخص کرد:
 
     - زیرفضاهای (Subspaces) $\mathbb{R}^2$ از بعد (Dimension) صفر، یک و دو هستند؛ زیرفضاهای از بعد یکِ $\mathbb{R}^2$ مضارب یک بردار (Vector) ناصفر هستند و در نتیجه خط گذرنده از مبدأ (Line through the origin) می‌باشند.
 
-    - زیرفضاهای (Subspaces) $\mathbb{R}^3$ از بعد (Dimension) صفر، یک، دو و سه هستند (مبدأ، خط و صفحه گذرنده از مبدأ و کل فضا).
+    - **زیرفضاهای $\mathbb{R}^3$ بر حسب بعد:**
+
+        - **بعد صفر:** $\{0\}$ (مبدأ مختصات)
+
+        - **بعد یک:** خط‌های گذرنده از مبدأ
+
+        - **بعد دو:** صفحه‌های گذرنده از مبدأ
+
+        - **بعد سه:** کل فضای $\mathbb{R}^3$
 
 - **۸-۶- قضیه (Theorem):** فرض کنید $W_1, W_2$ دو زیرفضای با بعد متناهی (Finite-dimensional subspaces) از فضای برداری (Vector space) $V$ باشند؛ آنگاه $W_1 + W_2$ دارای بعد متناهی (Finite dimension) است و:
 
@@ -690,57 +1012,169 @@ $$[x]_B = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}$$
 
 9. نگاشت $T: F^2 \to F^2$ با ضابطه $(a_1, a_2) \mapsto (a_1^2, a_2)$ یک تبدیل خطی (Linear transformation) نیست.
 
-- **۳-۷- قضیه (Theorem):** فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت:
+- **۳-۷- قضیه / لم (Theorem / Lemma) (خواص مقدماتی تبدیل خطی):** فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت:
 
-    - **الف)** $T(0) = 0$
+    - **الف)** $T(0_V) = 0_W$
 
-    - **ب)** برای هر $x, y \in V$ و هر $\alpha, \beta \in F$ داریم: $T(\alpha x + \beta y) = \alpha T(x) + \beta T(y)$.
+        - **برهان:**
 
-    - **ج)** برای هر $x \in V$ داریم: $T(-x) = -T(x)$.
+            $$T(0_V + 0_V) = T(0_V) \stackrel{T \text{ خطی است}}{\Longrightarrow} T(0_V) + T(0_V) = T(0_V) = 0_W + T(0_V) \stackrel{\text{قانون حذفی}}{\Longrightarrow} T(0_V) = 0_W$$
 
-    - **د)** برای هر $v_1, \dots, v_n \in V$ و هر $\alpha_1, \dots, \alpha_n \in F$ داریم: $T\left(\sum_{i=1}^n \alpha_i v_i\right) = \sum_{i=1}^n \alpha_i T(v_i)$.
+    - **ب)** برای هر $v \in V$ داریم: $T(-v) = -T(v)$.
+
+        - **برهان:**
+
+            $$T(v + (-v)) = T(0_V) = 0_W \Longrightarrow T(v) + T(-v) = 0_W \stackrel{\text{یکتایی قرینه}}{\Longrightarrow} T(-v) = -T(v)$$
+
+    - **ج)** برای هر $x_1, x_2 \in V$ و هر $\alpha, \beta \in F$ داریم: $T(\alpha x_1 + \beta x_2) = \alpha T(x_1) + \beta T(x_2)$.
+
+        - **برهان:**
+
+            $$T(\alpha x_1 + \beta x_2) \stackrel{\text{تعریف تبدیل خطی}}{=} T(\alpha x_1) + T(\beta x_2) \stackrel{\text{تعریف تبدیل خطی}}{=} \alpha T(x_1) + \beta T(x_2)$$
+
+    - **د)** برای هر $x_1, \dots, x_n \in V$ و هر $\alpha_1, \dots, \alpha_n \in F$ داریم:
+
+        $$T\left(\sum_{i=1}^n \alpha_i x_i\right) = \sum_{i=1}^n \alpha_i T(x_i)$$
+
+        - **برهان:** با استفاده از قسمت (ج) و استقرا روی $n$ به سادگی نتیجه می‌شود.
 
 ### صفحه ۳۴ (بخش اول و دوم)
 
 - **ادامه مثال‌ها (Examples):** 10. فرض کنید $v_0 \neq 0$ یک عنصر ثابت (Fixed element) از $\mathbb{R}^2$ باشد؛ در این صورت نگاشت انتقال (Translation mapping) $T: \mathbb{R}^2 \to \mathbb{R}^2$ با ضابطه $v \mapsto v + v_0$ یک تبدیل خطی (Linear transformation) نیست. 11. فرض کنید $x_1, \dots, x_n$ عناصری ثابت از $\mathbb{R}$ باشند؛ در این صورت نگاشت ارزیابی (Evaluation mapping) $T: F(\mathbb{R}, \mathbb{R}) \to \mathbb{R}^n$ با ضابطه $f \mapsto (f(x_1), \dots, f(x_n))$ یک تبدیل خطی (Linear transformation) است.
 
-- **۴-۷- لم (Lemma):** فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت $T$ یک‌به‌یک (Injective / One-to-one) است اگر و تنها اگر هر زیرمجموعه مستقل خطی (Linearly independent subset) از $V$ را به یک زیرمجموعه مستقل خطی از $W$ ببرد.
+- **۴-۷- لم (Lemma):** فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت:
+
+    $$T \text{ یک‌به‌یک (Injective) است} \Longleftrightarrow T \text{ هر زیرمجموعه مستقل خطی از } V \text{ را به یک زیرمجموعه مستقل خطی از } W \text{ ببرد.}$$
+
+    *(منظور این است که اگر $X \subseteq V$ مستقل خطی باشد، عناصر $T(x)$ به ازای $x \in X$ متمایزند و در $W$ مستقل خطی هستند).*
+
+    - **برهان (Proof):**
+
+        - $(\Longrightarrow)$ فرض کنید $T$ یک‌به‌یک باشد و $X$ یک زیرمجموعه مستقل خطی از $V$ باشد. فرض کنید $y_1, \dots, y_t \in T(X)$ متمایز باشند و $\alpha_1, \dots, \alpha_t \in F$ به طوری که:
+
+            $$\sum_{i=1}^{t} \alpha_i y_i = 0_W$$
+
+            در این صورت عناصر متمایز $x_1, \dots, x_t$ متعلق به $X$ وجود دارند که $y_i = T(x_i)$ ($1 \le i \le t$). بنابراین داریم:
+
+            $$\sum_{i=1}^{t} \alpha_i T(x_i) = 0_W \Longrightarrow T\left(\sum_{i=1}^{t} \alpha_i x_i\right) = T(0_V)$$
+
+            $$\stackrel{T \text{ یک‌به‌یک است}}{\Longrightarrow} \sum_{i=1}^{t} \alpha_i x_i = 0_V \stackrel{X \text{ مستقل خطی است}}{\Longrightarrow} \alpha_1 = \alpha_2 = \dots = \alpha_t = 0_F$$
+
+        - $(\Longleftarrow)$ **(برهان خلف):** فرض کنید $T$ یک‌به‌یک نباشد؛ پس $x_1, x_2 \in V$ متمایز ($x_1 \neq x_2$) وجود دارند به طوری که $T(x_1) = T(x_2)$. در این صورت $x_1 - x_2 \neq 0_V$ ، پس مجموعه تک‌عضوی $\{x_1 + (-x_2)\}$ در $V$ مستقل خطی است *(توجه کنید اگر $v \neq 0_V$ آنگاه $\{v\}$ مستقل خطی است)*. اما داریم:
+
+            $$T(x_1 + (-x_2)) = T(x_1) - T(x_2) = 0_W$$
+
+            و مجموعه $\{0_W\}$ در $W$ مستقل خطی نیست، که با فرض تناقض دارد.
 
 - **۵-۷- لم (Lemma):** فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد و $S = \{v_1, \dots, v_n\} \subseteq V$ ؛ در این صورت:
 
-    - **الف)** $T(\text{span}(S)) = \text{span}(T(S)) = \text{span}\{T(v_1), \dots, T(v_n)\}$
+    - **الف)** $T(\text{span}(S)) = \text{span}(T(S)) = \text{span}(\{T(v_1), \dots, T(v_n)\})$.
 
-    - **ب)** اگر $\text{span}(S) = V$ آنگاه $\text{im}(T) = T(V) = \text{span}(T(S))$.
+    - **ب)** اگر $V = \text{span}(\{v_1, \dots, v_n\})$ آنگاه $\text{im}(T) = T(V) = \text{span}(\{T(v_1), \dots, T(v_n)\})$. *(به بیان دیگر: اگر $V = \text{span}(\{v_1, \dots, v_n\})$ ، آنگاه $T$ پوشا است $\Longleftrightarrow$ هر مجموعه مولد $V$ را به یک مجموعه مولد $W$ ببرد).*
+
+    - **برهان (Proof):**
+
+        - **الف)**
+
+            $$y \in T(\text{span}(\{v_1, \dots, v_n\})) \Longleftrightarrow \exists x \in \text{span}(\{v_1, \dots, v_n\}) : T(x) = y$$
+
+            $$\Longleftrightarrow \exists \alpha_1, \dots, \alpha_n \in F : T\left(\sum_{i=1}^{n} \alpha_i v_i\right) = y$$
+
+            $$\Longleftrightarrow \exists \alpha_1, \dots, \alpha_n \in F : \sum_{i=1}^{n} \alpha_i T(v_i) = y \Longleftrightarrow y \in \text{span}(\{T(v_1), \dots, T(v_n)\})$$
+
+        - **ب)** به راحتی از قسمت (الف) نتیجه می‌شود.
 
 - **مثال (Example):** برای $T: P_2(\mathbb{R}) \to M_{2 \times 2}(\mathbb{R})$ با ضابطه $f \mapsto \begin{pmatrix} f(1) - f(2) & 0 \\ 0 & f(0) \end{pmatrix}$ ، چون $\{1, x, x^2\}$ پایه (Basis) برای $P_2(\mathbb{R})$ است، داریم:
 
     $$T(P_2(\mathbb{R})) = T(\text{span}\{1, x, x^2\}) = \text{span}\{T(1), T(x), T(x^2)\} = \text{span}\left\{\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} -1 & 0 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} -3 & 0 \\ 0 & 0 \end{pmatrix}\right\} = \text{span}\left\{\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} -1 & 0 \\ 0 & 0 \end{pmatrix}\right\}$$
 
-- **۶-۷- قضیه (Theorem):** فرض کنید $V, W$ دو فضای برداری (Vector spaces) روی میدان (Field) $F$ باشند و فرض کنیم $\{v_1, \dots, v_n\}$ پایه‌ای (Basis) برای $V$ باشد؛ اگر $w_1, \dots, w_n \in W$ بردارهای دلخواه (Arbitrary vectors) باشند، در این صورت:
+- **۶-۷- قضیه (Theorem) (قضیه اساسی وجود و یکتایی تبدیل خطی روی پایه):** فرض کنید $V, W$ دو فضای برداری (Vector spaces) روی میدان (Field) $F$ باشند و فرض کنیم $\{v_1, \dots, v_n\}$ پایه‌ای (Basis) برای $V$ باشد؛ اگر $w_1, \dots, w_n \in W$ بردارهای دلخواه (Arbitrary vectors) باشند، در این صورت:
 
-    1. تنها یک تبدیل خطی (Unique linear transformation) $T: V \to W$ وجود دارد که $T(v_i) = w_i$ ($i = 1, \dots, n$).
+    - **الف)** یک و تنها یک تبدیل خطی (Unique linear transformation) $T: V \to W$ وجود دارد که $T(v_i) = w_i$ ($1 \le i \le n$).
 
-    2. $T$ پوشا (Surjective / Onto) است $\Longleftrightarrow \text{span}\{w_1, \dots, w_n\} = W$.
+    - **ب)** $T$ یک‌به‌یک (Injective / One-to-one) است $\Longleftrightarrow$ $w_1, \dots, w_n$ متمایز و $\{w_1, \dots, w_n\}$ در $W$ مستقل خطی (Linearly independent) باشند.
 
-    3. $T$ یک‌به‌یک (Injective / One-to-one) است $\Longleftrightarrow \{w_1, \dots, w_n\}$ مستقل خطی (Linearly independent) است.
+    - **ج)** $T$ پوشا (Surjective / Onto) است $\Longleftrightarrow \text{span}(\{w_1, \dots, w_n\}) = W$.
 
-    4. $T$ دوسویی (Bijective) است $\Longleftrightarrow \{w_1, \dots, w_n\}$ پایه (Basis) برای $W$ است.
+    - **د)** $T$ دوسویی (Bijective / Isomorphism) است $\Longleftrightarrow \{w_1, \dots, w_n\}$ پایه‌ای (Basis) برای $W$ است.
+
+    - **برهان (Proof):**
+
+        - **الف)** تابع $T: V \to W$ را به صورت زیر تعریف می‌کنیم:
+
+            $$T\left(\sum_{i=1}^{n} \alpha_i v_i\right) = \sum_{i=1}^{n} \alpha_i w_i$$
+
+            - **(اول: خوش‌تعریفی و خطی بودن):** فرض کنید $x = \sum_{i=1}^{n} \alpha_i v_i \in V$ و $x = \sum_{i=1}^{n} \beta_i v_i$. در این صورت مطابق قضیه نمایش یکتا در پایه (۳-۴ / ۴-۲) داریم $\alpha_i = \beta_i$ ($1 \le i \le n$). بنابراین:
+
+                $$\sum_{i=1}^{n} \alpha_i w_i = \sum_{i=1}^{n} \beta_i w_i$$
+
+                پس $T$ خوش‌تعریف است (خطی بودن آن نیز به سادگی از تعریف نتیجه می‌شود).
+
+            - **(دوم):** طبق تعریف برای هر $1 \le i \le n$ داریم $T(v_i) = T(1_F v_i) = 1_F w_i = w_i$.
+
+            - **(سوم: یکتایی):** فرض کنید $U: V \to W$ یک تبدیل خطی باشد که $U(v_i) = w_i$ ($1 \le i \le n$). فرض کنید $x \in V$. در این صورت $\alpha_1, \dots, \alpha_n \in F$ وجود دارند به طوری که $x = \sum_{i=1}^{n} \alpha_i v_i$. داریم:
+
+                $$U(x) = U\left(\sum_{i=1}^{n} \alpha_i v_i\right) \stackrel{U \text{ خطی است}}{=} \sum_{i=1}^{n} \alpha_i U(v_i) \stackrel{U(v_i) = w_i}{=} \sum_{i=1}^{n} \alpha_i w_i = T\left(\sum_{i=1}^{n} \alpha_i v_i\right) = T(x)$$
+
+                پس $U = T$.
+
+        - **ب)**
+
+            - $(\Longrightarrow)$ چون $\{v_1, \dots, v_n\}$ مستقل خطی است و $T$ یک‌به‌یک است، بنابر لم ۴-۷ عناصر $T(v_1), \dots, T(v_n)$ متمایزند و مجموعه $\{T(v_1), \dots, T(v_n)\} = \{w_1, \dots, w_n\}$ در $W$ مستقل خطی است.
+
+            - $(\Longleftarrow)$ فرض کنید $x, y \in V$ به طوری که $T(x) = T(y)$. عناصر $\alpha_1, \dots, \alpha_n$ و $\beta_1, \dots, \beta_n$ متعلق به $F$ وجود دارند به طوری که $x = \sum_{i=1}^{n} \alpha_i v_i$ و $y = \sum_{i=1}^{n} \beta_i v_i$. در نتیجه:
+
+                $$T\left(\sum_{i=1}^{n} \alpha_i v_i\right) = T\left(\sum_{i=1}^{n} \beta_i v_i\right) \Longrightarrow \sum_{i=1}^{n} \alpha_i T(v_i) = \sum_{i=1}^{n} \beta_i T(v_i)$$
+
+                $$\Longrightarrow \sum_{i=1}^{n} \alpha_i w_i = \sum_{i=1}^{n} \beta_i w_i \Longrightarrow \sum_{i=1}^{n} (\alpha_i - \beta_i) w_i = 0_W$$
+
+                $$\stackrel{\{w_1, \dots, w_n\} \text{ مستقل خطی}}{\Longrightarrow} \alpha_i = \beta_i \quad (1 \le i \le n) \Longrightarrow x = \sum_{i=1}^{n} \alpha_i v_i = \sum_{i=1}^{n} \beta_i v_i = y$$
+
+        - **ج)**
+
+            $$T \text{ پوشا است} \Longleftrightarrow T(V) = W \Longleftrightarrow T(\text{span}(\{v_1, \dots, v_n\})) = W$$
+
+            $$\stackrel{\text{لم ۵-۷}}{\Longleftrightarrow} \text{span}(\{T(v_1), \dots, T(v_n)\}) = W \Longleftrightarrow \text{span}(\{w_1, \dots, w_n\}) = W$$
+
+        - **د)** از (ب) و (ج) به راحتی نتیجه می‌شود.
 
 ### صفحه ۳۵
 
-- **۷-۷- نتیجه (Corollary):** فرض کنید $V, W$ دو فضای برداری (Vector spaces) هستند و $V$ دارای پایه متناهی (Finite basis) $\{v_1, \dots, v_n\}$ باشد؛ هرگاه $U, T: V \to W$ دو تبدیل خطی (Linear transformations) باشند که به ازای هر $i$ ، $T(v_i) = U(v_i)$ ، آنگاه $T = U$.
+- **۷-۷- نتیجه (Corollary):** فرض کنید $V, W$ دو فضای برداری (Vector spaces) روی میدان $F$ باشند و $V$ دارای پایه متناهی (Finite basis) $\{v_1, \dots, v_n\}$ باشد؛ هرگاه $U, T: V \to W$ دو تبدیل خطی (Linear transformations) باشند که به ازای هر $1 \le i \le n$ داشته باشیم $T(v_i) = U(v_i)$ ، آنگاه $T = U$.
 
-- **۸-۷- قضیه (Theorem):** فرض کنید $V, W$ دو فضای برداری با بعد متناهی (Finite-dimensional vector spaces) بر روی میدان (Field) $F$ باشند به طوری که $\dim V = \dim W$ و فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت احکام زیر هم‌ارزند (Equivalent):
+    - **برهان (Proof):** از قضیه ۶-۷ قسمت (الف) نتیجه می‌شود.
 
-    1. $T$ دوسویی (Bijective) است.
+- **۸-۷- قضیه (Theorem):** فرض کنید $V, W$ دو فضای برداری با بعد متناهی (Finite-dimensional vector spaces) بر روی میدان (Field) $F$ باشند به طوری که $\dim V = \dim W = n$ و فرض کنید $T: V \to W$ یک تبدیل خطی (Linear transformation) باشد؛ در این صورت احکام زیر هم‌ارزند (Equivalent):
 
-    2. $T$ یک‌به‌یک (Injective) است.
+    - **(i)** $T$ دوسویی (Bijective) است.
 
-    3. $T$ پوشا (Surjective) است.
+    - **(ii)** $T$ یک‌به‌یک (Injective) است.
 
-    4. اگر $\{v_1, \dots, v_n\}$ پایه‌ای (Basis) برای $V$ باشد، آنگاه $\{T(v_1), \dots, T(v_n)\}$ پایه‌ای برای $W$ است.
+    - **(iii)** $T$ پوشا (Surjective) است.
 
-    5. پایه‌ای (Basis) چون $\{v_1, \dots, v_n\}$ برای $V$ وجود دارد که $\{T(v_1), \dots, T(v_n)\}$ پایه‌ای برای $W$ است.
+    - **(iv)** برای هر پایه $\{v_1, \dots, v_n\}$ از $V$ ، مجموعه $\{T(v_1), \dots, T(v_n)\}$ پایه‌ای برای $W$ است (و عناصر آن متمایزند).
+
+    - **(v)** پایه‌ای (Basis) چون $\{v_1, \dots, v_n\}$ برای $V$ وجود دارد که $\{T(v_1), \dots, T(v_n)\}$ پایه‌ای برای $W$ است.
+
+    - **برهان (Proof):** ثابت می‌کنیم:
+
+        $$(i) \Longrightarrow (ii) \Longrightarrow (iv) \Longrightarrow (v) \Longrightarrow (i) \quad \text{و همچنین} \quad (i) \Longrightarrow (iii) \Longleftrightarrow (iv)$$
+
+        - **(i) $\Longrightarrow$ (ii):** واضح است.
+
+        - **(ii) $\Longrightarrow$ (iv):** فرض کنید $\{v_1, \dots, v_n\}$ یک پایه برای $V$ باشد؛ پس مستقل خطی است. چون $T$ یک‌به‌یک است، طبق قضیه ۶-۷ (ب)، عناصر $T(v_1), \dots, T(v_n)$ متمایزند و $\{T(v_1), \dots, T(v_n)\}$ در $W$ مستقل خطی است. چون $\dim(W) = n$ و این مجموعه $n$ عضو دارد، طبق نتیجه ۵-۶ (الف) مجموعه $\{T(v_1), \dots, T(v_n)\}$ یک پایه برای $W$ است.
+
+        - **(iv) $\Longrightarrow$ (v):** فضاهای برداری دارای پایه هستند؛ پس $V$ دارای یک پایه مانند $Y = \{v_1, \dots, v_n\}$ است. طبق فرض (iv)، مجموعه $\{T(v_1), \dots, T(v_n)\}$ یک پایه برای $W$ است.
+
+        - **(v) $\Longrightarrow$ (i):** مستقیماً از قضیه ۶-۷ قسمت (د) نتیجه می‌شود.
+
+        - **(i) $\Longrightarrow$ (iii):** واضح است.
+
+        - **(iii) $\Longleftrightarrow$ (iv):** فرض کنید $\{v_1, \dots, v_n\}$ پایه‌ای برای $V$ باشد؛ پس مولد $V$ است. داریم:
+
+            $$T \text{ پوشا است و } \{v_1, \dots, v_n\} \text{ مولد } V \text{ است} \stackrel{\text{قضیه ۶-۷ (ج)}}{\Longleftrightarrow} \{T(v_1), \dots, T(v_n)\} \text{ مولد } W \text{ است}$$
+
+            $$\stackrel{\dim(W) = n \text{ و نتیجه ۵-۶ (ب)}}{\Longleftrightarrow} \{T(v_1), \dots, T(v_n)\} \text{ پایه‌ای برای } W \text{ است.}$$
 
 - **۹-۷- نتیجه (Corollary):** اگر $V = W$ (با بعد متناهی) باشد، آنگاه پنج شرط بالا برای عملگر خطی (Linear operator) $T: V \to V$ هم‌ارزند (Equivalent).
 
