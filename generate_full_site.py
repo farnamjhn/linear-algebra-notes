@@ -106,33 +106,200 @@ def build():
 
     body_html = "".join(processed_tokens)
 
-    print("3. Styling Minimal Callout blocks (NO EMOJIS, technical borders)...")
+    print("3. Transforming Proofs to Collapsible Details sections & Styling Callout blocks...")
+
+    def find_matching_tag(s, start_idx, tag_name):
+        open_tag = f"<{tag_name}"
+        close_tag = f"</{tag_name}>"
+        depth = 0
+        i = start_idx
+        while i < len(s):
+            if s.startswith(open_tag, i) and (i + len(open_tag) == len(s) or s[i + len(open_tag)] in " >\t\n/"):
+                depth += 1
+                i += len(open_tag)
+            elif s.startswith(close_tag, i):
+                depth -= 1
+                if depth == 0:
+                    return i + len(close_tag)
+                i += len(close_tag)
+            else:
+                i += 1
+        return -1
+
+    def parse_inner_li(inner):
+        m1 = re.match(r'^\s*<p>\s*<strong>(.*?)</strong>\s*(.*?)</p>\s*(.*)$', inner, re.DOTALL)
+        if m1:
+            s_html = m1.group(1).strip()
+            p_rest = m1.group(2).strip()
+            remaining = m1.group(3).strip()
+            body_parts = []
+            if p_rest:
+                body_parts.append(f"<p>{p_rest}</p>")
+            if remaining:
+                body_parts.append(remaining)
+            return s_html, "\n".join(body_parts)
+        
+        m2 = re.match(r'^\s*<strong>(.*?)</strong>\s*(.*)$', inner, re.DOTALL)
+        if m2:
+            s_html = m2.group(1).strip()
+            rest = m2.group(2).strip()
+            if rest and not rest.startswith(('<p>', '<ul>', '<ol>', '<div>', '<blockquote>', '<h')):
+                rest = f"<p>{rest}</p>"
+            return s_html, rest
+            
+        return None, None
+
+    def build_proof_details(strong_html, body_content):
+        clean_strong = re.sub(r'<[^>]+>', '', strong_html).strip()
+        clean_strong = re.sub(r'[:—\-]+$', '', clean_strong).strip()
+        
+        extra_title = ""
+        clean_lower = clean_strong.lower()
+        if clean_lower not in ["برهان", "برهان:", "برهان (proof)", "برهان &lrm;(proof)&rlm;"]:
+            extra_title = f'<span class="proof-title-extra">{strong_html}</span>'
+        
+        chevron_svg = '<svg class="proof-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>'
+        
+        return f'''<details class="callout callout-proof">
+  <summary class="callout-header proof-summary">
+    <div class="proof-summary-title">
+      <span class="callout-label">برهان</span>
+      <span class="proof-toggle-btn" title="بستن یا باز کردن برهان" aria-label="بستن یا باز کردن برهان">
+        {chevron_svg}
+      </span>
+      {extra_title}
+    </div>
+  </summary>
+  <div class="callout-body proof-body">
+    {body_content}
+    <div class="proof-collapse-footer">
+      <button type="button" class="proof-collapse-bottom-btn" onclick="const d=this.closest('details');if(d){{d.open=false;d.scrollIntoView({{behavior:'smooth',block:'nearest'}});}}">
+        {chevron_svg}
+        <span>بستن برهان</span>
+      </button>
+    </div>
+  </div>
+</details>'''
+
+    # A. Transform <li> proofs
+    output_parts = []
+    pos = 0
+    li_proof_pattern = re.compile(r'<li>(\s*(?:<p>)?\s*<strong>(.*?)</strong>)', re.DOTALL)
+    while pos < len(body_html):
+        m = li_proof_pattern.search(body_html, pos)
+        if not m:
+            output_parts.append(body_html[pos:])
+            break
+        
+        li_start = m.start()
+        strong_inner = m.group(2)
+        clean_strong = re.sub(r'<[^>]+>', '', strong_inner)
+        
+        if "برهان" in clean_strong or "اثبات" in clean_strong:
+            li_end = find_matching_tag(body_html, li_start, "li")
+            if li_end != -1:
+                full_li = body_html[li_start:li_end]
+                inner_li = full_li[4:-5].strip()
+                s_html, b_html = parse_inner_li(inner_li)
+                if s_html:
+                    details_html = build_proof_details(s_html, b_html)
+                    output_parts.append(body_html[pos:li_start])
+                    output_parts.append(f'<li class="proof-li">{details_html}</li>')
+                    pos = li_end
+                    continue
+
+        output_parts.append(body_html[pos:li_start + 4])
+        pos = li_start + 4
+
+    body_html = "".join(output_parts)
+    body_html = re.sub(r'<ul>\s*<li class="proof-li">(<details class="callout callout-proof">.*?</details>)</li>\s*</ul>', r'\1', body_html, flags=re.DOTALL)
+
+    # B. Transform <blockquote> proofs
+    def blockquote_replacer(m):
+        bq_content = m.group(1).strip()
+        s_html, b_html = parse_inner_li(bq_content)
+        if s_html:
+            clean_s = re.sub(r'<[^>]+>', '', s_html)
+            if "برهان" in clean_s or "اثبات" in clean_s:
+                return build_proof_details(s_html, b_html)
+        return m.group(0)
+
+    body_html = re.sub(r'<blockquote>(.*?)</blockquote>', blockquote_replacer, body_html, flags=re.DOTALL)
+
+    # C. Fallback for standalone <p> proofs
+    def parse_root_p_proofs(html_str):
+        pattern = re.compile(r'<p>\s*<strong>(.*?)</strong>\s*(.*?)</p>', re.DOTALL)
+        pos = 0
+        out = []
+        while pos < len(html_str):
+            m = pattern.search(html_str, pos)
+            if not m:
+                out.append(html_str[pos:])
+                break
+            p_start = m.start()
+            prefix = html_str[max(0, p_start-10):p_start]
+            if "<li>" in prefix or "<details" in prefix:
+                out.append(html_str[pos:p_start+3])
+                pos = p_start + 3
+                continue
+            
+            strong_text = m.group(1)
+            clean = re.sub(r'<[^>]+>', '', strong_text)
+            if ("برهان" in clean or "اثبات" in clean) and "برهان خلف" not in clean:
+                out.append(html_str[pos:p_start])
+                p_rest = m.group(2).strip()
+                rest_html = html_str[m.end():]
+                bound_m = re.search(r'(<h[1-6]\b|<div class="callout"|<details|<p>\s*<strong>\s*(?:[۰-۹\d]+-|\(|تعریف|قضیه|لم|نتیجه|مثال|نکته|تذکر))', rest_html)
+                if bound_m:
+                    proof_body_extra = rest_html[:bound_m.start()]
+                    next_pos = m.end() + bound_m.start()
+                else:
+                    proof_body_extra = rest_html
+                    next_pos = len(html_str)
+                
+                body_parts = []
+                if p_rest:
+                    body_parts.append(f"<p>{p_rest}</p>")
+                if proof_body_extra.strip():
+                    body_parts.append(proof_body_extra.strip())
+                full_body = "\n".join(body_parts)
+                
+                out.append(build_proof_details(strong_text, full_body))
+                pos = next_pos
+                continue
+                
+            out.append(html_str[pos:p_start+3])
+            pos = p_start + 3
+            
+        return "".join(out)
+
+    body_html = parse_root_p_proofs(body_html)
+
+    # D. Callouts for definitions, theorems, lemmas, etc.
     def callout_replacer(m):
         full = m.group(0)
         p_content = m.group(1)
         strong_text = m.group(2)
+        clean_strong = re.sub(r'<[^>]+>', '', strong_text)
         
         c_class = ""
         c_label = ""
-        if "تعریف" in strong_text:
+        if "تعریف" in clean_strong:
             c_class = "callout-def"
             c_label = "تعریف"
-        elif "قضیه" in strong_text:
+        elif "قضیه" in clean_strong:
             c_class = "callout-thm"
             c_label = "قضیه"
-        elif "لم" in strong_text:
+        elif "لم" in clean_strong:
             c_class = "callout-lem"
             c_label = "لم"
-        elif "نتیجه" in strong_text:
+        elif "نتیجه" in clean_strong:
             c_class = "callout-cor"
             c_label = "نتیجه"
-        elif "مثال" in strong_text:
+        elif "مثال" in clean_strong:
             c_class = "callout-example"
             c_label = "مثال"
-        elif "برهان" in strong_text or "اثبات" in strong_text:
-            c_class = "callout-proof"
-            c_label = "برهان"
-        elif "نکته" in strong_text or "تذکر" in strong_text or "یادداشت" in strong_text:
+        elif "نکته" in clean_strong or "تذکر" in clean_strong or "یادداشت" in clean_strong:
             c_class = "callout-note"
             c_label = "تذکر"
         
@@ -143,7 +310,7 @@ def build():
 </div>'''
         return full
 
-    body_html = re.sub(r'<p>(<strong>([^<]+)</strong>(.*?))</p>', callout_replacer, body_html, flags=re.DOTALL)
+    body_html = re.sub(r'<p>(<strong>(.*?)</strong>(.*?))</p>', callout_replacer, body_html, flags=re.DOTALL)
 
     print("4. Enhancing display math with copy buttons and scroll containers...")
     def math_display_replacer(m):
@@ -1482,15 +1649,135 @@ def build():
       color: var(--accent-amber);
     }}
 
-    .callout-proof {{
-      background: transparent;
-      border: none;
-      border-right: 2px solid var(--border-subtle);
-      padding: 0.5rem 1rem;
-      color: var(--text-secondary);
+    /* Collapsible Proof Callouts */
+    details.callout-proof {{
+      margin: 1.25rem 0;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-right: 3.5px solid var(--border-strong);
+      overflow: hidden;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
     }}
-    .callout-proof .callout-label {{
+    details.callout-proof:hover {{
+      border-color: var(--border-base);
+    }}
+    details.callout-proof[open] {{
+      border-color: var(--border-base);
+      border-right-color: var(--text-secondary);
+    }}
+    details.callout-proof summary.proof-summary {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 1rem;
+      background: var(--bg-surface);
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      transition: background 0.12s ease, color 0.12s ease;
+    }}
+    details.callout-proof summary.proof-summary::-webkit-details-marker,
+    details.callout-proof summary.proof-summary::marker {{
+      display: none;
+    }}
+    details.callout-proof summary.proof-summary:hover {{
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }}
+    .proof-summary-title {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }}
+    .proof-summary-title .callout-label {{
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }}
+    .proof-title-extra {{
+      font-size: 0.82rem;
       color: var(--text-muted);
+      font-weight: 500;
+    }}
+    .proof-toggle-btn {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }}
+    details.callout-proof summary.proof-summary:hover .proof-toggle-btn {{
+      color: var(--text-main);
+      background: var(--bg-active);
+      border-color: var(--border-base);
+    }}
+    /* Chevron rotation: points DOWN when closed, UP (^) when open */
+    .proof-chevron {{
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
+    }}
+    details.callout-proof:not([open]) .proof-chevron {{
+      transform: rotate(180deg);
+    }}
+    details.callout-proof[open] .proof-chevron {{
+      transform: rotate(0deg);
+    }}
+    details.callout-proof .proof-body {{
+      padding: 1.15rem 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-base);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }}
+    details.callout-proof .proof-body > *:first-child {{
+      margin-top: 0;
+    }}
+    details.callout-proof .proof-body > *:last-child {{
+      margin-bottom: 0;
+    }}
+    .proof-collapse-footer {{
+      margin-top: 1.25rem;
+      display: flex;
+      justify-content: flex-end;
+    }}
+    .proof-collapse-bottom-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.32rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.12s ease;
+      font-family: var(--font-sans);
+    }}
+    .proof-collapse-bottom-btn:hover {{
+      color: var(--text-main);
+      border-color: var(--border-base);
+      background: var(--bg-hover);
+    }}
+    li.proof-li {{
+      list-style: none !important;
+      margin: 0.75rem 0;
+      padding: 0;
     }}
 
     /* Math Display Containers */
@@ -2387,6 +2674,31 @@ def build():
         }}
       }});
     }});
+
+    // 10. MathJax typeset on proof expand (first time)
+    document.querySelectorAll('details.callout-proof').forEach(details => {{
+      details.addEventListener('toggle', () => {{
+        if (details.open && window.MathJax && window.MathJax.typesetPromise) {{
+          window.MathJax.typesetPromise([details]);
+        }}
+      }}, {{ once: true }});
+    }});
+
+    // 11. Auto-open details if URL hash targets element inside it
+    const handleHashTarget = () => {{
+      const hash = window.location.hash.slice(1);
+      if (hash) {{
+        const target = document.getElementById(hash);
+        if (target) {{
+          const parentDetails = target.closest('details');
+          if (parentDetails && !parentDetails.open) {{
+            parentDetails.open = true;
+          }}
+        }}
+      }}
+    }};
+    window.addEventListener('hashchange', handleHashTarget);
+    handleHashTarget();
   </script>
 </body>
 </html>
