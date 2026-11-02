@@ -6,6 +6,7 @@
 **مشاهده وب‌سایت آنلاین (GitHub Pages):**  
 [https://farnamjhn.github.io/linear-algebra-notes/](https://farnamjhn.github.io/linear-algebra-notes/)
 
+> **پیشنهاد**:‌ پیشنهاد می‌کنم برای درک بهتر و داشتن تجسمی از درس به کورس [Essence of linear algebra](https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&si=JW2l10uJcGJoaXW3) از [Grant sanderson (3b1b)](https://github.com/3b1b) رجوع کنید.
 ---
 
 ##  ویژگی‌های وب‌سایت
@@ -48,7 +49,7 @@
 ---
 ## برهان ها
 
-به کمک [عماد ](https://github.com/emad-tavasoli) برهان ها تا قسمت تبدیل خطی در جزوه قرار دارد
+به کمک [عماد ](https://github.com/emad-tavasoli) برهان ها تا قسمت تبدیل خطی (پایان قسمت هفت) در جزوه قرار دارد.
 
 > توجه داشته باشید که برهان های موجود در جزوه همان برهان هایی است که استاد بر روی تخته نوشته است و ممکن است برخی از برهان ها با برهان کتاب متفاوت باشد.
 
